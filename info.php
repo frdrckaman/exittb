@@ -784,6 +784,7 @@ if($user->isLoggedIn()) {
                         <tr>
                             <th width="5%">#</th>
                             <th width="30%">CRF NAME</th>
+                            <th width="30%">COUNTRY</th>
                             <th width="10%">VERSION</th>
                             <th width="10%">VERSION DATE</th>
                             <th width="10%">STATUS</th>
@@ -792,10 +793,11 @@ if($user->isLoggedIn()) {
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $x=1;foreach($override->getData('crf_versions') as $crf){?>
+                        <?php $x=1;foreach($override->getData('crf_versions') as $crf){$country=$override->get('country','id',$crf['c_id'])?>
                             <tr>
                                 <td><?=$x?></td>
                                 <td><?=$crf['name']?></td>
+                                <td><?=$country[0]['name']?></td>
                                 <td><?='V. '.$crf['version']?></td>
                                 <td><?=$crf['v_date']?></td>
                                 <td><div class="btn-group btn-group-xs"> <?php if($crf['status'] == 1){?><button class="btn btn-success">ACTIVE</button> <?php }else{?><button class="btn btn-warning">INACTIVE</button><?php }?></div></td>

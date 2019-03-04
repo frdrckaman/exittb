@@ -165,6 +165,9 @@ if($user->isLoggedIn()) {
                 'crf_name' => array(
                     'required' => true,
                 ),
+                'country' => array(
+                    'required' => true,
+                ),
                 'version' => array(
                     'required' => true,
                 ),
@@ -191,6 +194,7 @@ if($user->isLoggedIn()) {
                         'name' => Input::get('crf_name'),
                         'version' => Input::get('version'),
                         'v_date' => date('Y-m-d'),
+                        'c_id' => Input::get('country'),
                         'status' => 0,
                         'attachment' => $attachment_file,
                         'staff_id' => $user->data()->id
@@ -254,7 +258,7 @@ if($user->isLoggedIn()) {
                     'required' => true,
                 ),
             ));
-            $c_t=null;
+            $c_t=null;$c_t=$override->get('crf_type','id',Input::get('crf_name'));
             if (!empty($_FILES['attachment']["tmp_name"])) {
                 $attach_file = $_FILES['attachment']['type'];
                 if ($attach_file == "application/pdf") {
@@ -264,8 +268,8 @@ if($user->isLoggedIn()) {
                     $attachment_file1 = $folder . basename($_FILES['attachment']['name']);
                     if (@move_uploaded_file($_FILES['attachment']["tmp_name"], $attachment_file)) {
                         copy($attachment_file, $attachment_file1);
-                        $name=$folderName.'EXT-TB_PG'.Input::get('page').'_'.Input::get('tb_crf_id').'_'.date('Y-m-d').'.pdf';
-                        $name1=$folder.'EXT-TB_PG'.Input::get('page').'_'.Input::get('tb_crf_id').'_'.date('Y-m-d').'.pdf';
+                        $name=$folderName.'EXT-TB_'.$c_t[0]['code'].'_PG'.Input::get('page').'_'.Input::get('tb_crf_id').'_'.date('Y-m-d').'.pdf';
+                        $name1=$folder.'EXT-TB_'.$c_t[0]['code'].'_PG'.Input::get('page').'_'.Input::get('tb_crf_id').'_'.date('Y-m-d').'.pdf';
                         $upload_crf=$user->renameFile($attachment_file,$name);
                         $user->renameFile($attachment_file1,$name1);
                         $checkError = false;
@@ -778,10 +782,28 @@ if($user->isLoggedIn()) {
                 <div class="modal-body clearfix">
                     <div class="controls">
                         <div class="form-row">
-                            <div class="col-md-9">
-                                <input type="text" name="crf_name" class="form-control" value="" placeholder="CFR Name" required=""/>
+                            <div class="col-md-5">
+                                <select class="form-control" name="crf_name">
+                                    <option value="">Select CRF</option>
+                                    <?php foreach ($override->getData('crf_type') as $crf){?>
+                                        <option value="<?=$crf['name']?>"><?=$crf['name']?></option>
+                                    <?php }?>
+                                </select>
                             </div>
+                            <div class="col-md-1">Country:</div>
                             <div class="col-md-3">
+                                <select class="form-control" id="country" name="country" required="">
+                                    <option value="">Select Country</option>
+                                    <?php if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){
+                                        $countries=$override->get('country','status',1);
+                                    }elseif($user->data()->access_level == 4){
+                                        $countries=$override->getNews('country','id',$user->data()->c_id,'status',1);}
+                                        foreach($countries as $country){?>
+                                            <option value="<?=$country['id']?>"><?=$country['name']?></option>
+                                        <?php }?>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
                                 <select class="form-control" name="version" required>
                                     <option value="">Version</option>
                                     <?php $x=1;while($x<=8){?>
