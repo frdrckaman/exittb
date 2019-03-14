@@ -29,15 +29,24 @@ if(!$user->isLoggedIn()) {
                                         'last_login' => date('Y-m-d'),
                                         'count' => 0,
                                     ), $user->data()->id);
-                                } catch (Exception $e) {
-                                }
+                                } catch (Exception $e) {}
                             }
                             try {
                                 $user->updateRecord('staff', array(
                                     'count' => 0,
                                 ), $user->data()->id);
-                            } catch (Exception $e) {
-                            }
+                            } catch (Exception $e) {}
+                            try{
+                                $user->createRecord('login_logs',array(
+                                        'staff_id'=>$user->data()->id,
+                                        'os'=>$user->getOS(),
+                                        'browser'=>$user->getBrowser(),
+                                        'ip'=>$user->getIp(),
+                                        'login_date'=>date('Y-m-d'),
+                                        'login_time'=>date('h:i:sa'),
+                                        't_z'=>'Africa_Dar_es_Salaam'
+                                ));
+                            } catch (Exception $e){}
                             Redirect::to('dashboard.php');
                         }
                         else {
@@ -79,7 +88,7 @@ if(!$user->isLoggedIn()) {
 <html lang="en">
 
 <head>
-    <title>NIMR</title>
+    <title> EXIT-TB DMS | LOGIN</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

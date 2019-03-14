@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5167cc8c-ff29-49a6-a789-6e1c601de56c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/info.php" beforeDir="false" afterPath="$PROJECT_DIR$/info.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/topBar.php" beforeDir="false" afterPath="$PROJECT_DIR$/topBar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/core/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/core/init.php" afterDir="false" />
     </list>
     <ignored path="aman.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,20 +24,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="info.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="info.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/info.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="793" column="32" lean-forward="true" selection-start-line="793" selection-start-column="32" selection-end-line="793" selection-end-column="32" />
+            <state relative-caret-position="10982">
+              <caret line="792" column="29" selection-start-line="792" selection-start-column="29" selection-end-line="792" selection-end-column="29" />
               <folding>
                 <element signature="e#1112#4201#0#PHP" />
                 <element signature="e#4214#4587#0#PHP" />
                 <element signature="e#4600#4982#0#PHP" />
                 <element signature="e#4995#6179#0#PHP" />
                 <element signature="e#6192#7218#0#PHP" />
-                <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#4;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="init.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/core/init.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="24" column="2" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -64,7 +79,7 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/php/classes/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3621">
+            <state relative-caret-position="1088">
               <caret line="213" column="5" selection-start-line="213" selection-start-column="5" selection-end-line="213" selection-end-column="5" />
             </state>
           </provider>
@@ -73,23 +88,16 @@
       <file leaf-file-name="topBar.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/topBar.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="781" column="49" lean-forward="true" selection-start-line="781" selection-start-column="49" selection-end-line="781" selection-end-column="49" />
+            <state relative-caret-position="458">
+              <caret line="351" column="23" lean-forward="true" selection-start-line="346" selection-start-column="20" selection-end-line="351" selection-end-column="23" />
               <folding>
-                <element signature="e#238#16090#0#PHP" />
                 <element signature="e#3973#4928#0#PHP" />
                 <element signature="e#4937#6037#0#PHP" />
-                <element signature="e#6046#7943#0#PHP" />
-                <element signature="e#7952#9579#0#PHP" />
-                <element signature="e#9588#12549#0#PHP" />
-                <element signature="e#12558#13511#0#PHP" />
-                <element signature="e#13520#14532#0#PHP" />
-                <element signature="e#14541#15509#0#PHP" />
-                <element signature="e#15518#16090#0#PHP" />
                 <element signature="n#div#0;n#!!top" />
                 <element signature="n#div#1;n#!!top" />
                 <element signature="n#div#2;n#!!top" />
                 <element signature="n#div#3;n#!!top" />
+                <element signature="n#div#4;n#!!top" />
                 <element signature="n#div#5;n#!!top" />
                 <element signature="n#div#6;n#!!top" />
                 <element signature="n#div#7;n#!!top" />
@@ -103,7 +111,7 @@
       <file leaf-file-name="Email.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/php/classes/Email.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-204">
+            <state relative-caret-position="306">
               <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
             </state>
           </provider>
@@ -154,11 +162,9 @@
         <option value="$PROJECT_DIR$/mail/stylesheets/email.css" />
         <option value="$PROJECT_DIR$/function.php" />
         <option value="$PROJECT_DIR$/clark.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/reset.php" />
         <option value="$PROJECT_DIR$/profile.php" />
         <option value="$PROJECT_DIR$/site.php" />
-        <option value="$PROJECT_DIR$/php/core/init.php" />
         <option value="$PROJECT_DIR$/crf2_p2.php" />
         <option value="$PROJECT_DIR$/crf2_pg1.php" />
         <option value="$PROJECT_DIR$/crf_status.php" />
@@ -196,6 +202,8 @@
         <option value="$USER_HOME$/Desktop/git/index.php" />
         <option value="$PROJECT_DIR$/topBar.php" />
         <option value="$PROJECT_DIR$/info.php" />
+        <option value="$PROJECT_DIR$/php/core/init.php" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -209,7 +217,7 @@
     <packageJsonPaths />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-4" />
     <option name="y" value="20" />
     <option name="width" value="1374" />
@@ -230,6 +238,17 @@
             <path>
               <item name="aman" type="b2602c69:ProjectViewProjectNode" />
               <item name="aman" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="aman" type="b2602c69:ProjectViewProjectNode" />
+              <item name="aman" type="462c0819:PsiDirectoryNode" />
+              <item name="php" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="aman" type="b2602c69:ProjectViewProjectNode" />
+              <item name="aman" type="462c0819:PsiDirectoryNode" />
+              <item name="php" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -312,15 +331,18 @@
       <workItem from="1550654163308" duration="656000" />
       <workItem from="1550657857351" duration="7000" />
       <workItem from="1550822200009" duration="14363000" />
-      <workItem from="1551689021272" duration="2384000" />
+      <workItem from="1551689021272" duration="3816000" />
+      <workItem from="1551967392202" duration="218000" />
+      <workItem from="1552305072645" duration="594000" />
+      <workItem from="1552552092070" duration="4682000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340978000" />
+    <option name="totallyTimeSpent" value="347904000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="32" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13323572" />
@@ -337,9 +359,9 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="PHP-CGI Server" order="8" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="PHP-CGI Server" order="8" />
       <window_info anchor="bottom" id="Changes" order="7" />
       <window_info anchor="bottom" id="Application Servers" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -347,10 +369,9 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.32874617" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32874617" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1566618" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -358,13 +379,14 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="12" />
       <window_info anchor="bottom" id="Changes" order="7" />
+      <window_info anchor="bottom" id="Application Servers" order="11" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Application Servers" order="11" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32874617" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
@@ -389,13 +411,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mail/mail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3332">
-          <caret line="196" column="17" selection-start-line="196" selection-start-column="5" selection-end-line="196" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../client_redams/redams/ltr/form.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
@@ -426,13 +441,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
           <caret line="156" column="16" selection-start-line="156" selection-start-column="16" selection-end-line="167" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="33" lean-forward="true" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -648,13 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/classes/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3621">
-          <caret line="213" column="5" selection-start-line="213" selection-start-column="5" selection-end-line="213" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frd.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -662,13 +663,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DI96.696/topBar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="44" column="62" lean-forward="true" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DI96.696/topBar.php" />
     <entry file="file://$PROJECT_DIR$/reset.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -699,30 +694,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/php/classes/Email.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
+        <state relative-caret-position="306">
           <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10982">
+          <caret line="792" column="29" selection-start-line="792" selection-start-column="29" selection-end-line="792" selection-end-column="29" />
+          <folding>
+            <element signature="e#1112#4201#0#PHP" />
+            <element signature="e#4214#4587#0#PHP" />
+            <element signature="e#4600#4982#0#PHP" />
+            <element signature="e#4995#6179#0#PHP" />
+            <element signature="e#6192#7218#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/core/init.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="24" column="2" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/topBar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="781" column="49" lean-forward="true" selection-start-line="781" selection-start-column="49" selection-end-line="781" selection-end-column="49" />
+        <state relative-caret-position="458">
+          <caret line="351" column="23" lean-forward="true" selection-start-line="346" selection-start-column="20" selection-end-line="351" selection-end-column="23" />
           <folding>
-            <element signature="e#238#16090#0#PHP" />
             <element signature="e#3973#4928#0#PHP" />
             <element signature="e#4937#6037#0#PHP" />
-            <element signature="e#6046#7943#0#PHP" />
-            <element signature="e#7952#9579#0#PHP" />
-            <element signature="e#9588#12549#0#PHP" />
-            <element signature="e#12558#13511#0#PHP" />
-            <element signature="e#13520#14532#0#PHP" />
-            <element signature="e#14541#15509#0#PHP" />
-            <element signature="e#15518#16090#0#PHP" />
             <element signature="n#div#0;n#!!top" />
             <element signature="n#div#1;n#!!top" />
             <element signature="n#div#2;n#!!top" />
             <element signature="n#div#3;n#!!top" />
+            <element signature="n#div#4;n#!!top" />
             <element signature="n#div#5;n#!!top" />
             <element signature="n#div#6;n#!!top" />
             <element signature="n#div#7;n#!!top" />
@@ -732,19 +741,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/info.php">
+    <entry file="file://$PROJECT_DIR$/php/classes/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="793" column="32" lean-forward="true" selection-start-line="793" selection-start-column="32" selection-end-line="793" selection-end-column="32" />
-          <folding>
-            <element signature="e#1112#4201#0#PHP" />
-            <element signature="e#4214#4587#0#PHP" />
-            <element signature="e#4600#4982#0#PHP" />
-            <element signature="e#4995#6179#0#PHP" />
-            <element signature="e#6192#7218#0#PHP" />
-            <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#4;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="1088">
+          <caret line="213" column="5" selection-start-line="213" selection-start-column="5" selection-end-line="213" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
         </state>
       </provider>
     </entry>
