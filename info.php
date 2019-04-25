@@ -188,7 +188,7 @@ if($user->isLoggedIn()) {
                         'token'=>$token
                     ),Input::get('id'));
                     $link='https://system.exit-tb.org/reset.php?token='.$token;//reset url
-                    if($email->resetPassword(Input::get('email'),Input::get('lastname'),'Reset Password',$link)){
+                    if($email->resetPassword(Input::get('email'),Input::get('lastname'),'RESET PASSWORD',$link)){
                         $successMessage = 'Email with Password Reset Link sent Successful';
                     }
                 }
@@ -915,7 +915,12 @@ if($user->isLoggedIn()) {
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $x=1;foreach($override->get('crf_versions','status',1) as $crf){?>
+                        <?php $x=1;if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){
+                            $data=$override->get('crf_versions','status',1);
+                        }elseif($user->data()->access_level == 4 || $user->data()->access_level == 5 ) {
+                            $data=$override->getNews('crf_versions','c_id',$user->data()->c_id,'status',1);
+                        }
+                        foreach($data as $crf){?>
                             <tr>
                                 <td><?=$x?></td>
                                 <td><?=$crf['name']?></td>

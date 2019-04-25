@@ -41,7 +41,7 @@ if($user->isLoggedIn()) {
                 ),
             ));
             if ($validate->passed()) {
-                $salt = Hash::salt(32);
+                $salt = $random->get_rand_alphanumeric(32);
                 $password = $random->get_rand_alphanumeric(8);
                 switch (Input::get('position')) {
                     case 'Principle Investigator':
@@ -372,7 +372,7 @@ if($user->isLoggedIn()) {
                 )
             ));
             if ($validate->passed()) {
-                $salt = Hash::salt(32);
+                $salt = $random->get_rand_alphanumeric(32);
                 try {
                     $user->update(array(
                         'pswd' => 1,

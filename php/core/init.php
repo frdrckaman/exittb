@@ -22,7 +22,7 @@ $GLOBALS['config'] = array(
 spl_autoload_register(function($class){
 	require_once 'php/classes/'.$class.'.php';
 });
-//date_default_timezone_set("Africa/Dar_es_Salaam");
+date_default_timezone_set("Africa/Dar_es_Salaam");
 include_once 'php/functions/sanitize.php';
 include_once 'php/classes/OverideData.php';
 include_once 'php/classes/class.upload.php';

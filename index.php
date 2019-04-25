@@ -36,17 +36,7 @@ if(!$user->isLoggedIn()) {
                                     'count' => 0,
                                 ), $user->data()->id);
                             } catch (Exception $e) {}
-                            try{
-                                $user->createRecord('login_logs',array(
-                                        'staff_id'=>$user->data()->id,
-                                        'os'=>$user->getOS(),
-                                        'browser'=>$user->getBrowser(),
-                                        'ip'=>$user->getIp(),
-                                        'login_date'=>date('Y-m-d'),
-                                        'login_time'=>date('h:i:sa'),
-                                        't_z'=>'Africa_Dar_es_Salaam'
-                                ));
-                            } catch (Exception $e){}
+
                             Redirect::to('dashboard.php');
                         }
                         else {

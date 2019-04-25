@@ -213,6 +213,16 @@ class User {
         return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
     }
 
+    function excelRow($x,$y){
+        $arr = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+        if($x > 26){
+            if($x%26 == 0){$v = abs($x/26 - $x/26);}else{$v = abs(floor($x/26) - 1);}
+            return $arr[$v].''.$arr[$y];
+        }else{
+            return $arr[$y];
+        }
+    }
+
     public function update($fields = array(),$id = null){
         if(!$id && $this->isLoggedIn()){
             $id = $this->data()->id;

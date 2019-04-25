@@ -48,9 +48,16 @@ function variable($a){
                             case 'tbsnum':
                                 $frd[$va] .=$f['val'];
                                 break;
+                            case 'tbtx':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                //$frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] .=$f['val'];
+                                break;
                             case 'tbsx01':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                //$frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx01date':
@@ -58,7 +65,8 @@ function variable($a){
                                 break;
                             case 'tbsx02':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx02date':
@@ -66,7 +74,8 @@ function variable($a){
                                 break;
                             case 'tbsx03':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx03date':
@@ -74,7 +83,8 @@ function variable($a){
                                 break;
                             case 'tbsx04':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx04date':
@@ -82,7 +92,8 @@ function variable($a){
                                 break;
                             case 'tbsx05':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx05date':
@@ -90,42 +101,69 @@ function variable($a){
                                 break;
                             case 'tbsx06':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 break;
                             case 'tbsx06date':
                                 $frd[$va] .=$f['val'];
                                 break;
+                            case 'tbsx_other':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                break;
                             case 'seekcare01':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'seekcare02':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
-                                break;
-                            case 'tmp':
-                                $frd[$va] .=$f['val'];
                                 break;
                             case 'seekcare03':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'seekcare05':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'seekcare06':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'seekcare07':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'seekcare08':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'seekcare09':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'seekcareother':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                         }
@@ -143,9 +181,16 @@ function variable($a){
                             case 'tbsnum':
                                 $frd[$va] =$f['val'];
                                 break;
+                            case 'tbtx':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                //$frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] .=$f['val'];
+                                break;
                             case 'tbsx01':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                //$frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx01date':
@@ -153,7 +198,8 @@ function variable($a){
                                 break;
                             case 'tbsx02':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx02date':
@@ -161,7 +207,8 @@ function variable($a){
                                 break;
                             case 'tbsx03':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx03date':
@@ -169,7 +216,8 @@ function variable($a){
                                 break;
                             case 'tbsx04':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx04date':
@@ -177,7 +225,8 @@ function variable($a){
                                 break;
                             case 'tbsx05':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx05date':
@@ -185,43 +234,69 @@ function variable($a){
                                 break;
                             case 'tbsx06':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
-                                //$frd[$va] =$f['val'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 break;
                             case 'tbsx06date':
                                 $frd[$va] =$f['val'];
                                 break;
+                            case 'tbsx_other':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                break;
                             case 'seekcare01':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'seekcare02':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
-                                break;
-                            case 'tmp':
-                                $frd[$va] =$f['val'];
                                 break;
                             case 'seekcare03':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'seekcare05':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'seekcare06':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'seekcare07':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'seekcare08':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'seekcare09':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                             case 'seekcareother':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
                         }
@@ -253,10 +328,10 @@ function findText($id,$val){
 }
 //variable(1);
 //print_r(findText(3,'ward'));
-foreach($override->get('forms','qid',13) as $fid){//echo$fr.'  , ';
+foreach($override->get('forms','qid',33) as $fid){//echo$fr.'  , ';
     $dbv=variable($fid['fid']);$am=null;
     $am=null;$stf='';
-    $arr = array('country','institution','facility','tbsnum','tbsx01','tbsx01date','tbsx02','tbsx02date','tbsx03','tbsx03date','tbsx04','tbsx04date','tbsx05','tbsx05date','tbsx06','tbsx06date','seekcare01','seekcare02','seekcare03','seekcare05','seekcare06','seekcareother');
+    $arr = array('country','institution','facility','tbsnum','tbtx','tbtxperiod','tbsx01','tbsx01date','tbsx02','tbsx02date','tbsx03','tbsx03date','tbsx04','tbsx04date','tbsx05','tbsx05date','tbsx06','tbsx06date','tbsx_other','seekcare01','seekcare02','seekcare03','seekcare05','seekcare06','seekcare07','seekcare08','seekcare09','seekcareother');
     foreach($arr as $ar){//print_r($ar);
         if($dbv){
             if(array_key_exists($ar,$dbv)){
@@ -277,13 +352,15 @@ foreach($override->get('forms','qid',13) as $fid){//echo$fr.'  , ';
         if(findText($fid['fid'],'chronicillness')){$chronicillness=findText($fid['fid'],'chronicillness');}else{$chronicillness='';}*/
 
         //print_r($am);
-        if($override->selectData4('crf01_pg02','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbsnum',$am['tbsnum'])){$dup=true;echo$am['country'].''.$am['institution'].''.$am['facility'].''.$am['tbsnum'].'  ,  ';}else{$dup=false;}//echo$f.' , ';$f++;
+        if($override->selectData4('crf01_pg02_ug','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbsnum',$am['tbsnum'])){$dup=true;echo$am['country'].''.$am['institution'].''.$am['facility'].''.$am['tbsnum'].'  ,  ';}else{$dup=false;}//echo$f.' , ';$f++;
         if($dbv && $dup==false){
-            $user->createRecord('crf01_pg02', array(
+            $user->createRecord('crf01_pg02_ug', array(
                 'country' => $am['country'],
                 'institution' => $am['institution'],
                 'facility' => $am['facility'],
                 'tbsnum' => $am['tbsnum'],
+                'tbtx' => $am['tbtx'],
+                'tbtxperiod' => $am['tbtxperiod'],
                 'tbsx01' => $am['tbsx01'],
                 'tbsx01date' => $am['tbsx01date'],
                 'tbsx02' => $am['tbsx02'],
@@ -296,11 +373,15 @@ foreach($override->get('forms','qid',13) as $fid){//echo$fr.'  , ';
                 'tbsx05date' => $am['tbsx05date'],
                 'tbsx06' => $am['tbsx06'],
                 'tbsx06date'=>$am['tbsx06date'],
+                'tbsx_other' => $am['tbsx_other'],
                 'seekcare01' => $am['seekcare01'],
                 'seekcare02' => $am['seekcare02'],
                 'seekcare03' => $am['seekcare03'],
                 'seekcare05' => $am['seekcare05'],
                 'seekcare06' => $am['seekcare06'],
+                'seekcare07' => $am['seekcare07'],
+                'seekcare08' => $am['seekcare08'],
+                'seekcare09' => $am['seekcare09'],
                 'seekcareother' => $am['seekcareother'],
                 'fid' => $fid['fid']
             ));

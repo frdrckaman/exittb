@@ -2,6 +2,7 @@
 require_once 'php/core/init.php';
 $user = new User();
 $override = new OverideData();$usr=null;
+$random = new Random();
 $pageError = null;$successMessage = null;$errorM = false;$errorMessage = null;
 if($_GET['token']){
     $staff=$override->get('staff','token',$_GET['token']);
@@ -20,7 +21,7 @@ if($_GET['token']){
                     )
                 ));
                 if ($validate->passed()) {
-                    $salt = Hash::salt(32);
+                    $salt = $random->get_rand_alphanumeric(32);
                     $password = Hash::make(Input::get('new_password'), $salt);
                     try {
                         $override->update($password,$salt,1,$staff[0]['id']);

@@ -62,6 +62,11 @@ class OverideData{
         $num = $query->rowCount();
         return $num;
     }
+    public function getColumn($table){
+        $query = $this->_pdo->query("SHOW COLUMNS FROM $table");
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
     public function getData($table){
         $query = $this->_pdo->query("SELECT * FROM $table");
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -123,7 +128,7 @@ class OverideData{
         return $result;
     }
     public function crf01Data($id){
-        $query = $this->_pdo->query("SELECT * FROM crf01_pg01 c1 JOIN crf01_pg02 c2 ON c1.country=c2.country AND c1.institution=c2.institution AND c1.facility=c2.facility AND c1.tbsnum=c2.tbsnum WHERE c1.country='$id' AND c2.country='$id'");
+        $query = $this->_pdo->query("SELECT * FROM crf01_pg01_ug c1 JOIN crf01_pg02_ug c2 ON c1.country=c2.country AND c1.institution=c2.institution AND c1.facility=c2.facility AND c1.tbsnum=c2.tbsnum WHERE c1.country='$id' AND c2.country='$id'");
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
