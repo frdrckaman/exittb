@@ -5,8 +5,8 @@ $override = new OverideData();
 $site=null;$country=null;$errorM1=null;
 $pageError = null;$successMessage = null;$errorM = false;$errorMessage = null;
 if($user->isLoggedIn()) {
-    $site=$override->get('site','id',$user->data()->s_id);
-    $country=$override->get('country','id',$user->data()->c_id);
+    $site_name=$override->get('site','id',$user->data()->s_id);
+    $country_name=$override->get('country','id',$user->data()->c_id);
 
     if (Input::exists('post')) {
         if (Input::get('change_pswd')) {
@@ -135,7 +135,7 @@ if($user->isLoggedIn()) {
         <ol class="breadcrumb">
             <li><a href="index.php">Dashboard</a></li>
             <li><a href="profile.php">profile</a></li>
-            <li class="active"><?=$user->data()->firstname.' ',$user->data()->lastname?></li>
+            <li class="active"><?=$user->data()->firstname.' ',$user->data()->lastname;?></li>
         </ol>
     </div>
 </div>
@@ -279,13 +279,13 @@ if($user->isLoggedIn()) {
             <div class="form-row">
                 <div class="col-md-6">Country:</div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" value="<?=$country['name'].' ( '.$country['short_code'].' ) '?>" disabled/>
+                    <input type="text" class="form-control" value="<?=$country_name[0]['name'].' ( '.$country_name[0]['short_code'].' ) '?>" disabled/>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-6">Site:</div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" value="<?=$site['name'].' ( '.$site['short_code'].' ) '?>" disabled/>
+                    <input type="text" class="form-control" value="<?=$site_name[0]['name'].' ( '.$site_name[0]['short_code'].' ) '?>" disabled/>
                 </div>
             </div>
             <div class="form-row">

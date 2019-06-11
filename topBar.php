@@ -254,54 +254,74 @@ if($user->isLoggedIn()) {
                 'tb_crf_id' => array(
                     'required' => true,
                 ),
-                'page' => array(
-                    'required' => true,
-                ),
             ));
-            $c_t=null;$c_t=$override->get('crf_type','id',Input::get('crf_name'));
+            $c_t=null;$s_dr=null;$c_t=$override->get('crf_type','id',Input::get('crf_name'));
             if (!empty($_FILES['attachment']["tmp_name"])) {
                 $attach_file = $_FILES['attachment']['type'];
                 if ($attach_file == "application/pdf") {
                     $folder = 'scanned_crf/';
                     $folderName = '/var/www/quexf.exit-tb.org/public_html/scans/';
-                    $attachment_file = $folderName . basename($_FILES['attachment']['name']);
-                    $attachment_file1 = $folder . basename($_FILES['attachment']['name']);
-                    if (@move_uploaded_file($_FILES['attachment']["tmp_name"], $attachment_file)) {
-                        copy($attachment_file, $attachment_file1);
-                        $name=$folderName.'EXT-TB_'.$c_t[0]['code'].'_PG'.Input::get('page').'_'.Input::get('tb_crf_id').'_'.date('Y-m-d').'.pdf';
-                        $name1=$folder.'EXT-TB_'.$c_t[0]['code'].'_PG'.Input::get('page').'_'.Input::get('tb_crf_id').'_'.date('Y-m-d').'.pdf';
-                        $upload_crf=$user->renameFile($attachment_file,$name);
-                        $user->renameFile($attachment_file1,$name1);
-                        $checkError = false;
-                        //$attachment = $attachment_file;
-                    } else {
-                        $checkError = true;
-                        $errorMessage = 'Not uploaded to a Server';
-                    }
+                    //$attachment_file = $folderName . basename($_FILES['attachment']['name']);
+                    $attachment_file = $folder . basename($_FILES['attachment']['name']);
+                    $pages = $override->getNews('crf_type','id',Input::get('crf_name'),'status',1);
+                    $page = $pages[0]['pages'];$f=1;
+                    //print_r($user->countPDF($attachment_file));
+                        if (@move_uploaded_file($_FILES['attachment']["tmp_name"], $attachment_file)) {
+                            if($user->countPDF($attachment_file) == $page){
+                                if ($validate->passed()) {
+                                    $name=$folder.'EXT-TB_'.$c_t[0]['code'].'_'.Input::get('tb_crf_id').'_'.date('Y-m-d').'_337331.pdf';
+                                    $upload_crf=$user->renameFile($attachment_file,$name);
+                                    try {
+                                        $user->createRecord('crf_record', array(
+                                            'crf_id' => Input::get('crf_name'),
+                                            'tb_crf_id' => Input::get('tb_crf_id'),
+                                            'page' => 0,
+                                            'up_date' => date('Y-m-d'),
+                                            'processed' => 0,
+                                            'c_id' => $user->data()->c_id,
+                                            's_id' => $user->data()->s_id,
+                                            'attachment' => $upload_crf,
+                                            'staff_id' => $user->data()->id
+                                        ));
+                                        while($f <= $page){
+                                            $pdf_name = 'EXT-TB_'.$c_t[0]['code'].'_PG'.$f.'_'.Input::get('tb_crf_id').'_'.date('Y-m-d');
+                                            //$s_dr='/var/www/quexf.exit-tb.org/public_html/scans/'.$pdf_name;
+                                            $user->splitPDF($upload_crf,$f,'/var/www/quexf.exit-tb.org/public_html/scans/'.$pdf_name);
+                                            //$user->splitPDF($upload_crf,$f,'/var/www/system.exit-tb.org/public_html/sop/'.$pdf_name);
+                                            try {
+                                                $user->createRecord('split_pdf', array(
+                                                    'crf_id' => Input::get('tb_crf_id'),
+                                                    'name' => $pdf_name,
+                                                    'page' => $f,
+                                                    'split_pdf' => $s_dr,
+                                                    'original_pdf' => $upload_crf,
+                                                    'split_date' => date('Y-m-d'),
+                                                ));
+                                            } catch (Exception $e) {
+                                                die($e->getMessage());
+                                            }
+                                            $f++;
+                                        }
+                                         $successMessage = 'CRF Uploaded Successful';
+                                    } catch (Exception $e) {
+                                        die($e->getMessage());
+                                    }
+                                } else {
+                                    $pageError = $validate->errors();
+                                }
+                            }else{
+                                $errorMessage = 'There are Missing Pages in this CRF or File is Corrupted. Please check the CRF an upload again';
+                                $user->removePDF($attachment_file);
+                            }
+                        } else {
+                            $checkError = true;
+                            $errorMessage = 'Not uploaded to a Server';
+                        }
+
                 } else {
                     $checkError = true;
                     $errorMessage = 'Not a Supported Format';
                 }
-            }
-            if ($validate->passed() && $checkError == false) {
-                try {
-                    $user->createRecord('crf_record', array(
-                        'crf_id' => Input::get('crf_name'),
-                        'tb_crf_id' => Input::get('tb_crf_id'),
-                        'page' => Input::get('page'),
-                        'up_date' => date('Y-m-d'),
-                        'processed' => 0,
-                        'c_id' => $user->data()->c_id,
-                        's_id' => $user->data()->s_id,
-                        'attachment' => $upload_crf,
-                        'staff_id' => $user->data()->id
-                    ));
-                    $successMessage = 'CRF Uploaded Successful';
-                } catch (Exception $e) {
-                    die($e->getMessage());
-                }
-            } else {
-                $pageError = $validate->errors();
             }
         }
         elseif (Input::get('crf_type')) {
@@ -319,6 +339,7 @@ if($user->isLoggedIn()) {
                     $user->createRecord('crf_type', array(
                         'name' => Input::get('crf_name'),
                         'pages' => Input::get('pages'),
+                        'code' => Input::get('code'),
                         'status' => 1,
                         'staff_id' => $user->data()->id,
                     ));
@@ -722,7 +743,7 @@ if($user->isLoggedIn()) {
                 <div class="modal-body clearfix">
                     <div class="controls">
                         <div class="form-row">
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <select class="form-control" name="crf_name" id="crf" required="">
                                     <option value="">Select CRFs</option>
                                     <?php foreach($override->getData('crf_type') as $crf){?>
@@ -730,21 +751,21 @@ if($user->isLoggedIn()) {
                                     <?php }?>
                                 </select>
                             </div>
-                            <div class="col-md-3" >
+                            <!--<div class="col-md-3" >
                                 <div id="waitP" style="display:none;" class="col-md-offset-5 col-md-1"><img src='img/owl/spinner-mini.gif' width="12" height="12" /></div>
                                 <div id="p">
                                     <select class="form-control" name="page" id="pg" required="">
                                         <option value="">Select Page</option>
                                     </select>
                                 </div>
+                            </div>-->
+                            <div class="col-md-4">
+                                <input type="text" name="tb_crf_id" class="form-control" value="" placeholder="ENTER CRF ID " />
                             </div>
                         </div>
                         <label class="col-md-12"></label>
                         <div class="form-row">
-                            <div class="col-md-6">
-                                <input type="text" name="tb_crf_id" class="form-control" value="" placeholder="ENTER CRF ID " />
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="input-group file">
                                     <input type="text" class="form-control" placeholder="Select CRFs"/>
                                     <input type="file" name="attachment" required=""/>
@@ -894,8 +915,11 @@ if($user->isLoggedIn()) {
                 <div class="modal-body clearfix">
                     <div class="controls">
                         <div class="form-row">
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="text" name="crf_name" class="form-control" value="" placeholder="CRF Name" required=""/>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="code" class="form-control" value="" placeholder="CRF Code" required=""/>
                             </div>
                             <div class="col-md-3">
                                 <input type="number" name="pages" class="form-control" value="" placeholder="Pages" required=""/>

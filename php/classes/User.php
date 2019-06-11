@@ -222,7 +222,23 @@ class User {
             return $arr[$y];
         }
     }
-
+    function splitPDF($file,$page,$name){
+        exec('pdftk '.$file.' cat '.$page.' output '.$name.'.pdf');
+    }
+    function pdfPages($file){
+        exec('pdftk '.$file.' dump_data', $output, $return);
+        $no = implode(' ',$output);
+        return $no[1];
+    }
+    function countPDF($file){
+        exec('pdftk '.$file.' dump_data', $output, $return);
+        $array = explode(' ', $output[0]);
+        return $array[1];
+    }
+    function removePDF($file){
+        exec('rm '.$file, $output, $return);
+        return true;
+    }
     public function update($fields = array(),$id = null){
         if(!$id && $this->isLoggedIn()){
             $id = $this->data()->id;

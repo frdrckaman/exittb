@@ -212,9 +212,10 @@ if($user->isLoggedIn()) {
                 }*/
             }
             elseif(Input::get('activate_crf')){
+                if(Input::get('active')){$a_v=Input::get('active');}else{$a_v=0;}
                 try {
                     $user->updateRecord('crf_versions', array(
-                        'status' => Input::get('active'),
+                        'status' => $a_v,
                     ),Input::get('id'));
                     $successMessage = 'CRF Activated Successful';
 
