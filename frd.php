@@ -2,91 +2,90 @@
 require_once 'php/core/init.php';
 $user = new User();
 $override = new OverideData();
-/*$pdo = null;
+/*
+$pdo = null;
+
+function countPDF($file){$pageNo=null;
+    exec('pdftk '.$file.' dump_data', $output, $return);
+    $array = explode(' ', $output[0]);
+
+    if($array && $array[1] == 'NumberOfPages:'){
+        $pageNo = $array[1];
+    }else{
+        foreach($output as $out){
+            $ar = explode(' ', $out);
+            if($ar[0] == 'NumberOfPages:'){
+                $pageNo = $ar[1];
+                break;
+            }
+        }
+    }
+    print_r($pageNo);
+    //return $pageNo ;
+}
+print_r(countPDF('sop/89.pdf'));
+
 try{
     $pdo = new PDO("sqlsrv:server=localhost,1435;Database=mocca","sa","123456a*");
 }catch (PDOException $e){
     $e->getMessage();
 }
 
-//$query = $pdo->query("SELECT screening_id,ID FROM [SCREENING FORM]");
-$query = $pdo->query("SELECT study_id,ID FROM [FORM 01]");
-$result = $query->fetchAll(PDO::FETCH_ASSOC);
-//print_r($result);
-//if($pdo){echo 'frdrck';}else{echo'aman';}
-foreach($result as $study_id){$scn=$study_id['ID'];
-    print_r($study_id['study_id']);
-   // $query = $pdo->query("UPDATE [FORM 01] SET visit_code = 0 WHERE ID ='$scn'");
-   // $query->execute();
-    /* if($screening['screening_id']){
-         $s_id=str_split($screening['screening_id']);
-         $int=$s_id[0].$s_id[1];
-         if($int == 'ar' ){
-             $s_id[0]='A';$s_id[1]='R';
-             $screening_id=implode('',$s_id);
-             //print_r($screening_id);echo ' , ';
-             $query = $pdo->query("UPDATE [SCREENING FORM] SET screening_id = '$screening_id' WHERE ID ='$scn'");
-             if($query->execute()){
-                 echo'Good , ';
-             }
-         }
-     }*/
-    /*if(strlen($screening['screening_id']) == 7){
-        $s_id=str_split($screening['screening_id']);
-        $int=$s_id[0].$s_id[1];
-        if($int == 'AR' || $int == 'HM' || $int == 'BD' || $int == 'TM' || $int == 'WH' || $int == 'NH' || $int == 'KH' || $int == 'KB' || $int == 'MD'){
-            if($s_id[3] == 7 || $s_id[3] == 6 || $s_id[3] == 0){$s_id[3]=0;}
-            unset($s_id[2]);
-            $screening_id=implode('',$s_id);
-            print_r($screening_id);
-            echo'  ,  ';
-            //$query = $pdo->query("UPDATE [SCREENING FORM] SET screening_id = '$screening_id' WHERE ID ='$scn'");
-            $query = $pdo->query("UPDATE [FORM 02] SET screening_id = '$screening_id' WHERE ID ='$scn'");
-            $query->execute();
+
+
+
+if (!empty($_FILES['attachment']["tmp_name"])) {
+    $attach_file = $_FILES['attachment']['type'];
+    if ($attach_file == "application/pdf") {
+        $folderName = 'sop/';
+        $attachment_file = $folderName . basename($_FILES['attachment']['name']);
+
+        //print_r($attachment_file);
+        if (@move_uploaded_file($_FILES['attachment']["tmp_name"], $attachment_file)) {
+            $checkError = false;
+            print_r($user->countPDF($attachment_file));
+            echo'Good';
+            //$attachment = $attachment_file;
+        } else {
+            echo'Bad';
+            $checkError = true;
+            $errorMessage = 'Not uploaded to a Server';
         }
-    }*/
-/*elseif(strlen($screening['screening_id']) == 5){
-    $s_id=str_split($screening['screening_id']);
-    $int=$s_id[0].$s_id[1];
-    if($int == 'AR' || $int == 'HM' || $int == 'BD' || $int == 'TM' || $int == 'WH' || $int == 'NH' || $int == 'KH' || $int == 'KB' || $int == 'MD'){
-        $int=$s_id[0].$s_id[1].'0'.$s_id[2].$s_id[3].$s_id[4];
-        $screening_id=$int;
-        print_r($screening_id);
-        echo'  ,  ';
-        //$query = $pdo->query("UPDATE [SCREENING FORM] SET screening_id = '$screening_id' WHERE ID ='$scn'");
-        $query = $pdo->query("UPDATE [FORM 02] SET screening_id = '$screening_id' WHERE ID ='$scn'");
-        $query->execute();
+    } else {
+        $checkError = true;
+        $errorMessage = 'Not a Supported Format';
     }
+
 }*/
+/*$im = new imagick('/var/www/system.exit-tb.org/public_html/scanned_crf/EXIT-TB_CRF01_PG0_1_111-00001.pdf');
+$im->setImageFormat('jpg');
+header('Content-Type: image/jpeg');
+echo $im;*/
+$qrys = $override->getData('data_qry');
 
-
-        if (!empty($_FILES['attachment']["tmp_name"])) {echo 'aman';
-            $attach_file = $_FILES['attachment']['type'];
-            if ($attach_file == "application/pdf") {
-                $folderName = 'stylesheets/';
-                $attachment_file = $folderName . basename($_FILES['attachment']['name']);
-                print_r($user->countPDF('$attachment_file'));
-                /*if (@move_uploaded_file($_FILES['attachment']["tmp_name"], $attachment_file)) {
-                    $checkError = false;
-                    echo'Good';
-                    //$attachment = $attachment_file;
-                } else {
-                    echo'Bad';
-                    $checkError = true;
-                    $errorMessage = 'Not uploaded to a Server';
-                }*/
-            } else {
-                $checkError = true;
-                $errorMessage = 'Not a Supported Format';
-            }
-
-}
 ?>
 <html>
 <body>
 <form enctype="multipart/form-data" method="post">
     <input type="file" name="attachment" required=""/>
     <input type="submit">
-</form>
+</form><br>
+    <table border="1">
+        <thead>
+            <th>#</th>
+            <th>STUDY</th>
+            <th>FILE</th>
+        </thead>
+        <tbody>
+            <?php $x=1;foreach ($qrys as $qry){$data=$override->get('forms','fid',$qry['fid'])?>
+                <tr>
+                    <td><?=$x?></td>
+                    <td><?=$qry['study_id']?></td>
+                    <td><?=$data[0]['description']?></td>
+                </tr>
+            <?php $x++;}?>
+        </tbody>
+    </table>
 </body>
 </html>
+

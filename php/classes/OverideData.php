@@ -57,6 +57,11 @@ class OverideData{
         $num = $query->rowCount();
         return $num;
     }
+    public function countNoRepeat4($table,$param,$where,$id,$where1,$id1,$where2,$id2,$where3,$id3){
+        $query = $this->_pdo->query("SELECT DISTINCT $param FROM $table WHERE $where = '$id' AND $where1 = '$id1' AND $where2 = '$id2' AND $where3 = '$id3'");
+        $num = $query->rowCount();
+        return $num;
+    }
     public function cCount($id){
         $query = $this->_pdo->query("SELECT * FROM screening_form ");
         $num = $query->rowCount();
@@ -84,6 +89,37 @@ class OverideData{
     }
     public function range($table,$field1,$value1,$field2,$value2){
         $query = $this->_pdo->query("SELECT * FROM $table WHERE $field1 >= '$value1' AND $field2 <= '$value2'");
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function dateRange($table,$value,$start,$end){
+        $query = $this->_pdo->query("SELECT * FROM $table WHERE $value BETWEEN '$start' AND '$end'");
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function dateRangeNoR($table,$param,$value,$start,$end){
+        $query = $this->_pdo->query("SELECT DISTINCT $param FROM $table WHERE $value BETWEEN '$start' AND '$end'");
+        $num = $query->rowCount();
+        return $num;
+    }
+    public function dateRangeNo($table,$param,$id,$vl,$cid,$cvl,$value,$start,$end){
+        $query = $this->_pdo->query("SELECT DISTINCT $param FROM $table WHERE $id = '$vl' AND $cid = '$cvl' AND $value BETWEEN '$start' AND '$end'");
+        $num = $query->rowCount();
+        return $num;
+    }
+    public function wkDataRange($table,$param,$where,$id,$where1,$id1,$value,$start,$end){
+        /*********************************************************************************/
+        $query = $this->_pdo->query("SELECT DISTINCT $param FROM $table WHERE $where = '$id' AND $where1 = '$id1' AND $value BETWEEN '$start' AND '$end'");
+        $num = $query->rowCount();
+        return $num;
+    }
+    public function lastRow($table,$value){
+        $query = $this->_pdo->query("SELECT * FROM $table ORDER BY $value DESC LIMIT 1");
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function lastRow1($table,$where,$id,$value){
+        $query = $this->_pdo->query("SELECT * FROM $table WHERE $where = '$id' ORDER BY $value DESC LIMIT 1");
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -153,7 +189,7 @@ class OverideData{
         return $result;
     }
     public function getValue1($x){
-        $query = $this->_pdo->query("select bg.varname,fvc.bid,fvc.val from boxgroupstype bg join boxes bx on bg.bgid = bx.bgid join formboxverifychar fvc on fvc.bid = bx.bid WHERE fvc.fid = $x");
+        $query = $this->_pdo->query("select bg.varname,fvc.bid,fvc.val from boxgroupstype bg join boxes bx on bg.bgid = bx.bgid join formboxverifychar fvc on fvc.bid = bx.bid WHERE fvc.fid = $x ORDER BY fvc.bid ASC");
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -362,6 +398,11 @@ class OverideData{
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    public function getSelectNoRepeat4($table,$value,$value1,$value3,$where,$id,$where2,$id2,$where3,$id3){
+        $query = $this->_pdo->query("SELECT DISTINCT $value,$value1,$value3 FROM $table WHERE $where = '$id' AND $where2 = '$id2' AND $where3 = '$id3'");
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
     public function getSelectDataNoRepeat($table,$param,$param2,$param3,$field,$value,$field1,$value1,$value2,$field2,$field3,$value3){
         $query = $this->_pdo->query("SELECT DISTINCT $param,$param2,$param3 FROM $table WHERE $field = '$value' AND $field1 = '$value1' AND $value2 = '$field2' AND $field3 = $value3");
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -379,6 +420,11 @@ class OverideData{
     }
     public function getSelectData3($table,$param1,$param2,$param3,$field,$value,$field1,$value1,$value2,$field2){
         $query = $this->_pdo->query("SELECT DISTINCT $param1,$param2,$param3 FROM $table WHERE $field = '$value' AND $field1 = '$value1' AND $value2 = '$field2'");
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function getSelectData4($table,$param1,$param2,$param3,$field,$value,$field1,$value1,$value2,$field2,$value3,$field3){
+        $query = $this->_pdo->query("SELECT DISTINCT $param1,$param2,$param3 FROM $table WHERE $field = '$value' AND $field1 = '$value1' AND $value2 = '$field2' AND $value3 = '$field3'");
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

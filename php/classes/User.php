@@ -1,34 +1,34 @@
-<?php 
+<?php
 class User {
-	private $_db,
-	        $_data,
-            $_getdata,
-	        $_sessionName,
-            $_sessionTableName,
-            $_sessionTable,
-	        $_cookieName;
-	        public $isLoggedIn;
+    private $_db,
+        $_data,
+        $_getdata,
+        $_sessionName,
+        $_sessionTableName,
+        $_sessionTable,
+        $_cookieName;
+    public $isLoggedIn;
 
-	public function __construct($user = null){
-      $this->_db = DB::getInstance();
-      $this->_sessionName = config::get('session/session_name');
+    public function __construct($user = null){
+        $this->_db = DB::getInstance();
+        $this->_sessionName = config::get('session/session_name');
         $this->_sessionTable = config::get('session/session_table');
-      $this->_cookieName = config::get('remember/cookie_name');
+        $this->_cookieName = config::get('remember/cookie_name');
 
-      if(!$user){
-        if(Session::exists($this->_sessionName)){
-         $user = Session::get($this->_sessionName);
-            $this->_sessionTableName = Session::getTable($this->_sessionTable);
-        if($this->findUser($user,$this->_sessionTableName)){
-          $this->isLoggedIn = true;
+        if(!$user){
+            if(Session::exists($this->_sessionName)){
+                $user = Session::get($this->_sessionName);
+                $this->_sessionTableName = Session::getTable($this->_sessionTable);
+                if($this->findUser($user,$this->_sessionTableName)){
+                    $this->isLoggedIn = true;
+                } else {
+
+                }
+            }
         } else {
-
-           }
+            $this->find($user);
         }
-      } else {
-      	$this->find($user);
-      }
-	}
+    }
     public function getSessionTable(){
         return $this->_sessionTableName;
     }
@@ -206,7 +206,7 @@ class User {
         if(strlen($x)<=$length) {return $x;}
         else {
             $y=substr($x,0,$length) . '...';
-           return $y;
+            return $y;
         }
     }
     function removeSpecialChar($string){
@@ -230,15 +230,45 @@ class User {
         $no = implode(' ',$output);
         return $no[1];
     }
-    function countPDF($file){
+    function countPDF($file){$pageNo=null;
         exec('pdftk '.$file.' dump_data', $output, $return);
         $array = explode(' ', $output[0]);
-        return $array[1];
+        if($array && $array[1] == 'NumberOfPages:'){
+            $pageNo = $array[1];
+        }else{
+            foreach($output as $out){
+                $ar = explode(' ', $out);
+                if($ar[0] == 'NumberOfPages:'){
+                    $pageNo = $ar[1];
+                    break;
+                }
+            }
+        }
+        return $pageNo ;
     }
     function removePDF($file){
         exec('rm '.$file, $output, $return);
         return true;
     }
+
+    function exportData($data,$file) {
+        $timestamp = time();
+        $filename = $file.'_' . $timestamp . '.xls';
+
+        header("Content-Type: application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+
+        $isPrintHeader = false;
+        foreach ($data as $row) {
+            if (! $isPrintHeader) {
+                echo implode("\t", array_keys($row)) . "\n";
+                $isPrintHeader = true;
+            }
+            echo implode("\t", array_values($row)) . "\n";
+        }
+        exit();
+    }
+
     public function update($fields = array(),$id = null){
         if(!$id && $this->isLoggedIn()){
             $id = $this->data()->id;
@@ -285,28 +315,28 @@ class User {
         }
     }
 
-	public function create($fields = array()){
+    public function create($fields = array()){
         if(!$this->_db->insert('staff',$fields)){
             throw new Exception('There is a problem creating Account');
         }
-	}
+    }
     public function createRecord($table,$fields = array()){
         if(!$this->_db->insert($table,$fields)){
             throw new Exception('There is a problem creating Account');
         }return true;
     }
 
-	public function find($user = null){
-      if($user){
-        $field = (is_numeric($user)) ? 'id' : 'email';
-        $data = $this->_db->get('staff',array($field,'=',$user));
+    public function find($user = null){
+        if($user){
+            $field = (is_numeric($user)) ? 'id' : 'email';
+            $data = $this->_db->get('staff',array($field,'=',$user));
 
-        if($data->count()){
-        	$this->_data=$data->first();
-         return true;
+            if($data->count()){
+                $this->_data=$data->first();
+                return true;
+            }
         }
-      }
-	}
+    }
     public function findUser($user = null,$table){
         if($user){
             $field = (is_numeric($user)) ? 'id' : 'username';
@@ -335,58 +365,58 @@ class User {
         return false;
     }
 
-  public function login($username=null,$password=null,$remember = false){
-      if(!$username && !$password && $this->exists()){
-          Session::put($this->_sessionName,$this->data()->id);
-      } else {
-          $user = $this->find($username);
-          if($user){
-              if($this->data()->password === Hash::make($password,$this->data()->salt)){
-                  Session::put($this->_sessionName,$this->data()->id);
-                  if($remember){
-                      $hash = Hash::unique();
-                      $hashCheck = $this->_db->get('user_session',array('user_id','=',$this->data()->id));
-                      if(!$hashCheck->count()){
-                          $this->_db->insert('user_session' ,array(
-                              'user_id' => $this->data()->id,
-                              'hash' =>$hash
-                          ));
-                      }else {
-                          $hash = $hashCheck->first()->hash;
-                      }
-                      Cookie::put($this->_cookieName,$hash,config::get('remember/cookie_expiry'));
-                  }
-                  return true;
-              }
-          }
-      }
-      return false;
-  }
+    public function login($username=null,$password=null,$remember = false){
+        if(!$username && !$password && $this->exists()){
+            Session::put($this->_sessionName,$this->data()->id);
+        } else {
+            $user = $this->find($username);
+            if($user){
+                if($this->data()->password === Hash::make($password,$this->data()->salt)){
+                    Session::put($this->_sessionName,$this->data()->id);
+                    if($remember){
+                        $hash = Hash::unique();
+                        $hashCheck = $this->_db->get('user_session',array('user_id','=',$this->data()->id));
+                        if(!$hashCheck->count()){
+                            $this->_db->insert('user_session' ,array(
+                                'user_id' => $this->data()->id,
+                                'hash' =>$hash
+                            ));
+                        }else {
+                            $hash = $hashCheck->first()->hash;
+                        }
+                        Cookie::put($this->_cookieName,$hash,config::get('remember/cookie_expiry'));
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-  public function exists(){
-  	return (!empty($this->_data)) ? true : false;
-  }
-  public function logout(){
-      $this->_db->delete('user_session', array('user_id', '=', $this->data()->id));
-      Session::delete($this->_sessionName);
-      Cookie::delete($this->_cookieName);
-  }
-  public function data(){
-  	return $this->_data;
-  }
-  public function isLoggedIn(){
-  	return $this->isLoggedIn;
-  }
+    public function exists(){
+        return (!empty($this->_data)) ? true : false;
+    }
+    public function logout(){
+        $this->_db->delete('user_session', array('user_id', '=', $this->data()->id));
+        Session::delete($this->_sessionName);
+        Cookie::delete($this->_cookieName);
+    }
+    public function data(){
+        return $this->_data;
+    }
+    public function isLoggedIn(){
+        return $this->isLoggedIn;
+    }
     public function selectAll($table){
-       if($result = $this->_db->getAll($table)){
-           $this->_getdata = $result;
-       } else throw new Exception('There is a problem getting the values');
+        if($result = $this->_db->getAll($table)){
+            $this->_getdata = $result;
+        } else throw new Exception('There is a problem getting the values');
     }
     public function getData(){
         return $this->_getdata;
     }
-  public function getInfo($table){
-      $override = new OverideData();
-      return $override->getData($table);
-  }
+    public function getInfo($table){
+        $override = new OverideData();
+        return $override->getData($table);
+    }
 }

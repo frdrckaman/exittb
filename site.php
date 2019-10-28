@@ -16,14 +16,14 @@ if($user->isLoggedIn()) {
     $study_crf=$override->get('crf_type','status',1);
     if($_GET['id'] == 'c'){
         $s_name=$site[0]['name'];$c_name=$country[0]['name'];
-        $t_crf=$override->countNoRepeat('crf_record','tb_crf_id','c_id',$_GET['c']);
-        $p_crf=$override->countNoRepeat2('crf_record','tb_crf_id','processed',1,'c_id',$_GET['c']);
-        $w_crf=$override->countNoRepeat2('crf_record','tb_crf_id','processed',0,'c_id',$_GET['c']);
+        $t_crf=$override->countNoRepeat2('crf_record','tb_crf_id','c_id',$_GET['c'],'status',1);
+        $p_crf=$override->countNoRepeat3('crf_record','tb_crf_id','processed',1,'c_id',$_GET['c'],'status',1);
+        $w_crf=$override->countNoRepeat3('crf_record','tb_crf_id','processed',0,'c_id',$_GET['c'],'status',1);
     }elseif($_GET['id'] == 's'){
         $s_name=$site[0]['name'];$c_name=$country[0]['name'];
-        $t_crf=$override->countNoRepeat2('crf_record','tb_crf_id','s_id',$_GET['s'],'c_id',$_GET['c']);
-        $p_crf=$override->countNoRepeat3('crf_record','tb_crf_id','processed',1,'c_id',$_GET['c'],'s_id',$_GET['s']);
-        $w_crf=$override->countNoRepeat3('crf_record','tb_crf_id','processed',0,'c_id',$_GET['c'],'s_id',$_GET['s']);
+        $t_crf=$override->countNoRepeat3('crf_record','tb_crf_id','s_id',$_GET['s'],'c_id',$_GET['c'],'status',1);
+        $p_crf=$override->countNoRepeat4('crf_record','tb_crf_id','processed',1,'c_id',$_GET['c'],'s_id',$_GET['s'],'status',1);
+        $w_crf=$override->countNoRepeat4('crf_record','tb_crf_id','processed',0,'c_id',$_GET['c'],'s_id',$_GET['s'],'status',1);
     }else{
         Redirect::to('403.php');
     }
@@ -154,9 +154,9 @@ if($user->isLoggedIn()) {
 <div class="col-md-5">
     <?php if($study_crf){foreach($study_crf as $st_crf){
         if($_GET['id'] == 'c'){
-            $crf_no=$override->countNoRepeat2('crf_record','tb_crf_id','crf_id',$st_crf['id'],'c_id',$_GET['c']);
+            $crf_no=$override->countNoRepeat3('crf_record','tb_crf_id','crf_id',$st_crf['id'],'c_id',$_GET['c'],'status',1);
         }elseif($_GET['id'] == 's' ){
-            $crf_no=$override->countNoRepeat3('crf_record','tb_crf_id','crf_id',$st_crf['id'],'c_id',$_GET['c'],'s_id',$_GET['s']);
+            $crf_no=$override->countNoRepeat4('crf_record','tb_crf_id','crf_id',$st_crf['id'],'c_id',$_GET['c'],'s_id',$_GET['s'],'status',1);
         }
         ?>
         <div class="col-md-6">

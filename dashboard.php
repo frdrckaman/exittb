@@ -5,24 +5,26 @@ $override = new OverideData();
 $pageError = null;$successMessage = null;$errorM = false;$errorMessage = null;
 $t_crf=0;$p_crf=0;$w_crf=0;$s_name=null;$c_name=null;$site=null;$country=null;
 $study_crf=null;$data_limit=10000;
+//modification remove all pilot crf have been removed/deleted from study crf
 if($user->isLoggedIn()) {
     $site=$override->get('site','id',$user->data()->s_id);
     $country=$override->get('country','id',$user->data()->c_id);
     $study_crf=$override->get('crf_type','status',1);
     if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){
         $s_name='ALL';$c_name='ALL';
-        $t_crf=$override->countNoRepeatAll('crf_record','tb_crf_id');
-        $p_crf=$override->countNoRepeat('crf_record','tb_crf_id','processed',1);
-        $w_crf=$override->countNoRepeat('crf_record','tb_crf_id','processed',0);
+        $t_crf=$override->countNoRepeat('crf_record','tb_crf_id','status',1);
+        $p_crf=$override->countNoRepeat2('crf_record','tb_crf_id','processed',1,'status',1);
+        $w_crf=$override->countNoRepeat2('crf_record','tb_crf_id','processed',0,'status',1);
     }elseif($user->data()->access_level == 4 || $user->data()->access_level == 5){
         $s_name=$site[0]['name'];$c_name=$country[0]['name'];
-        $t_crf=$override->countNoRepeat('crf_record','tb_crf_id','c_id',$user->data()->c_id);
-        $p_crf=$override->countNoRepeat2('crf_record','tb_crf_id','processed',1,'c_id',$user->data()->c_id);
-        $w_crf=$override->countNoRepeat2('crf_record','tb_crf_id','processed',0,'c_id',$user->data()->c_id);
+        $t_crf=$override->countNoRepeat2('crf_record','tb_crf_id','c_id',$user->data()->c_id,'status',1);
+        $p_crf=$override->countNoRepeat3('crf_record','tb_crf_id','processed',1,'c_id',$user->data()->c_id,'status',1);
+        $w_crf=$override->countNoRepeat3('crf_record','tb_crf_id','processed',0,'c_id',$user->data()->c_id,'status',1);
     }elseif($user->data()->access_level == 6 ){
-        $t_crf=$override->countNoRepeat2('crf_record','tb_crf_id','s_id',$user->data()->s_id,'c_id',$user->data()->c_id);
-        $p_crf=$override->countNoRepeat3('crf_record','tb_crf_id','processed',1,'c_id',$user->data()->c_id,'s_id',$user->data()->s_id);
-        $w_crf=$override->countNoRepeat3('crf_record','tb_crf_id','processed',0,'c_id',$user->data()->c_id,'s_id',$user->data()->s_id);
+        //22 CRF from pilot
+        $t_crf=$override->countNoRepeat3('crf_record','tb_crf_id','s_id',$user->data()->s_id,'c_id',$user->data()->c_id,'status',1);
+        $p_crf=$override->countNoRepeat4('crf_record','tb_crf_id','processed',1,'c_id',$user->data()->c_id,'s_id',$user->data()->s_id,'status',1);
+        $w_crf=$override->countNoRepeat4('crf_record','tb_crf_id','processed',0,'c_id',$user->data()->c_id,'s_id',$user->data()->s_id,'status',1);
     }else{
         Redirect::to('403.php');
     }
@@ -34,7 +36,7 @@ if($user->isLoggedIn()) {
 <html lang="en">
 
 <head>
-    <title>EXIT-TB</title>
+    <title> EXIT-TB | Dashboard </title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -145,11 +147,11 @@ if($user->isLoggedIn()) {
 <div class="col-md-5">
     <?php if($study_crf){foreach($study_crf as $st_crf){
         if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){
-            $crf_no=$override->countNoRepeat('crf_record','tb_crf_id','crf_id',$st_crf['id']);
+            $crf_no=$override->countNoRepeat2('crf_record','tb_crf_id','crf_id',$st_crf['id'],'status',1);
         }elseif($user->data()->access_level == 4 || $user->data()->access_level == 5){
-            $crf_no=$override->countNoRepeat2('crf_record','tb_crf_id','crf_id',$st_crf['id'],'c_id',$user->data()->c_id);
+            $crf_no=$override->countNoRepeat3('crf_record','tb_crf_id','crf_id',$st_crf['id'],'c_id',$user->data()->c_id,'status',1);
         }elseif($user->data()->access_level == 6 ){
-            $crf_no=$override->countNoRepeat3('crf_record','tb_crf_id','crf_id',$st_crf['id'],'c_id',$user->data()->c_id,'s_id',$user->data()->s_id);
+            $crf_no=$override->countNoRepeat4('crf_record','tb_crf_id','crf_id',$st_crf['id'],'c_id',$user->data()->c_id,'s_id',$user->data()->s_id,'status',1);
         }
         ?>
         <div class="col-md-6">

@@ -255,6 +255,15 @@ if($user->isLoggedIn()) {
                     die($e->getMessage());
                 }
             }
+            elseif(Input::get('delete_barcode')){
+                try {
+                    $user->deleteRecord('barcode', 'id',Input::get('id'));
+                    $successMessage = 'Barcode Deleted Successful';
+
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+            }
             elseif (Input::get('search')){
                 $validate = new validate();
                 $validate = $validate->check($_POST, array(
@@ -304,6 +313,17 @@ if($user->isLoggedIn()) {
                     $successMessage = 'Query Raised Successful';
                 } else {
                     $pageError = $validate->errors();
+                }
+            }
+            elseif (Input::get('delete_crf')){
+                try {
+                    $user->updateRecord('crf_record', array(
+                        'status' => 0,
+                    ),Input::get('id'));
+                    $successMessage = 'CRF Deleted Successful';
+
+                } catch (Exception $e) {
+                    die($e->getMessage());
                 }
             }
         }
@@ -401,6 +421,7 @@ if($user->isLoggedIn()) {
                             <th width="10%">SITE</th>
                             <th width="10%">PHONE</th>
                             <th width="10%">EMAIL</th>
+                            <th width="10%">STATUS</th>
                             <th width="20%">MANAGE</th>
                         </tr>
                         </thead>
@@ -420,6 +441,7 @@ if($user->isLoggedIn()) {
                                 <td><?=$site[0]['name']?></td>
                                 <td><?=$staff['phone_number']?></td>
                                 <td><?=$staff['email_address']?></td>
+                                <td><div class="btn-group btn-group-xs"> <?php if($staff['token'] || $staff['count']>= 4){?><button class="btn btn-warning">INACTIVE</button> <?php }else{?><button class="btn btn-success">ACTIVE</button><?php }?></div></td></td>
                                 <td>
                                     <?php if($staff['access_level'] != 2 || $power == 1){?>
                                         <a href="#edit_staff<?=$y?>" data-toggle="modal" class="widget-icon" title="Edit Staff Information"><span class="icon-pencil"></span></a>
@@ -918,7 +940,7 @@ if($user->isLoggedIn()) {
                         <tbody>
                         <?php $x=1;if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){
                             $data=$override->get('crf_versions','status',1);
-                        }elseif($user->data()->access_level == 4 || $user->data()->access_level == 5 ) {
+                        }elseif($user->data()->access_level == 4 || $user->data()->access_level == 5 || $user->data()->access_level == 6) {
                             $data=$override->getNews('crf_versions','c_id',$user->data()->c_id,'status',1);
                         }
                         foreach($data as $crf){?>
@@ -1145,7 +1167,7 @@ if($user->isLoggedIn()) {
         elseif($_GET['id'] == 10){?>
             <div class="block">
                 <div class="header">
-                    <h2>AMANA SITE SUMMARY REPORT</h2>
+                    <h2> SITE SUMMARY REPORT</h2>
                 </div>
                 <div class="content">
                     <table class="table table-bordered">
@@ -1222,7 +1244,8 @@ if($user->isLoggedIn()) {
 
                     </div>
                 </div>
-            <?php }else{?>
+            <?php }
+            else{?>
                 <div class="block">
                     <div class="header">
                         <h2>SCANNED CRFs</h2>
@@ -1240,11 +1263,11 @@ if($user->isLoggedIn()) {
                             </thead>
                             <tbody>
                             <?php $x=1;$no=0;$site=null;if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){
-                                $data = $override->getNoRepeatD3('crf_record','tb_crf_id','up_date','s_id','crf_id',$_GET['crf']);
+                                $data = $override->getSelectNoRepeat4('crf_record','tb_crf_id','up_date','s_id','crf_id',$_GET['crf'],'status',1,'c_id',$_GET['cid']);
                             }elseif ($user->data()->access_level == 4 || $user->data()->access_level == 5){
-                                $data = $override->getSelectNoRepeat3('crf_record','tb_crf_id','up_date','s_id','crf_id',$_GET['crf'],'c_id',$user->data()->c_id);
+                                $data = $override->getSelectNoRepeat4('crf_record','tb_crf_id','up_date','s_id','crf_id',$_GET['crf'],'c_id',$user->data()->c_id,'status',1);
                             }elseif ($user->data()->access_level == 6){
-                                $data = $override->getSelectData3('crf_record','tb_crf_id','up_date','s_id','crf_id',$_GET['crf'],'c_id',$user->data()->c_id,'s_id',$user->data()->s_id);
+                                $data = $override->getSelectData4('crf_record','tb_crf_id','up_date','s_id','crf_id',$_GET['crf'],'c_id',$user->data()->c_id,'s_id',$user->data()->s_id,'status',1);
                             }
                             foreach($data as $crf){$site=$override->get('site','id',$crf['s_id']) ?>
                                 <tr>
@@ -1280,11 +1303,9 @@ if($user->isLoggedIn()) {
                         </thead>
                         <tbody>
                         <?php $x=1;if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){
-                            $data = $override->get('crf_record','tb_crf_id',$_GET['crf']);
-                        }elseif($user->data()->access_level == 4 || $user->data()->access_level == 5){
-                            $data = $override->getNews('crf_record','c_id',$user->data()->c_id,'tb_crf_id',$_GET['crf']);
-                        }elseif ($user->data()->access_level == 6){
-                            $data = $override->selectData('crf_record','c_id',$user->data()->id,'s_id',$user->data()->s_id,'crf_id',$_GET['crf']);
+                            $data = $override->getNews('crf_record','tb_crf_id',$_GET['crf'],'status',1);
+                        }elseif($user->data()->access_level == 4 || $user->data()->access_level == 5 || $user->data()->access_level == 6){
+                            $data = $override->getNews('crf_record','c_id',$user->data()->c_id,'tb_crf_id',$_GET['crf'],'status',1);
                         }
                         foreach($data as $crf){$name=$override->get('crf_type','id',$crf['crf_id'])?>
                             <tr>
@@ -1292,9 +1313,36 @@ if($user->isLoggedIn()) {
                                 <td><?=$crf['tb_crf_id']?></td>
                                 <td><?=$crf['page']?></td>
                                 <td><?=$crf['up_date']?></td>
-                                <td><div class="btn-group btn-group-xs"><a href="read.php?path=<?=$crf['attachment']?>" target="_blank" class="btn btn-info btn-clean"><span class="icon-eye-open"></span> Click to View CRF</a></div></td>
+                                <td>
+                                    <div class="btn-group btn-group-xs"><a href="read.php?path=<?=$crf['attachment']?>" target="_blank" class="btn btn-info btn-clean"><span class="icon-eye-open"></span> Click to View CRF</a></div>
+                                    <?php if($user->data()->power == 1){?>
+                                        <a href="#delete_crf<?=$x?>" data-toggle="modal" class="widget-icon" title="Delete CRF"><span class="icon-trash"></span></a>
+                                    <?php }?>
+                                </td>
                             </tr>
-                            <?php $x++;}?>
+                            <?php if($user->data()->power == 1){?>
+                                <div class="modal modal-danger" id="delete_crf<?=$x?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form method="post">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title">YOU SURE YOU WANT TO DELETE THIS CRF ?</h4>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="col-md-2 pull-right">
+                                                        <input type="hidden" name="id" value="<?=$crf['id']?>">
+                                                        <input type="submit" name="delete_crf" value="DELETE" class="btn btn-default btn-clean">
+                                                    </div>
+                                                    <div class="col-md-2 pull-right">
+                                                        <button type="button" class="btn btn-default btn-clean" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php }$x++;}?>
                         </tbody>
                     </table>
 
@@ -1317,15 +1365,23 @@ if($user->isLoggedIn()) {
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $x=1;$no=0;foreach($override->getData('crf_type') as $crf){$check=$override->get('crf_record','c_id',$_GET['c']);
+                        <?php $x=1;$no=0;foreach($override->getData('crf_type') as $crf){
+                            if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){$check=$override->get('crf_record','c_id',$_GET['c']);
+                            }else{
+                                $check=$override->get('crf_record','c_id',$user->data()->c_id);
+                            }
                             if($check){
-                                $no=$override->countNoRepeat2('crf_record','tb_crf_id','crf_id',$crf['id'],'c_id',$user->data()->c_id);
+                                if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){
+                                    $no=$override->countNoRepeat3('crf_record','tb_crf_id','crf_id',$crf['id'],'c_id',$_GET['c'],'status',1);
+                                }else{
+                                    $no=$override->countNoRepeat3('crf_record','tb_crf_id','crf_id',$crf['id'],'c_id',$user->data()->c_id,'status',1);
+                                }
                             }else{$no=0;}?>
                             <tr>
                                 <td><?=$x?></td>
                                 <td><?=$crf['name']?></td>
                                 <td><div class="btn-group btn-group-xs"><button class="btn btn-info">&nbsp;<?=$no?>&nbsp;</button></div></td>
-                                <td><div class="btn-group btn-group-xs"><a href="info.php?id=11&crf=<?=$crf['id']?>" class="btn btn-info btn-clean"><span class="icon-eye-open"></span> Click to View</a></div></td>
+                                <td><div class="btn-group btn-group-xs"><a href="info.php?id=11&crf=<?=$crf['id']?>&cid=<?=$_GET['c']?>" class="btn btn-info btn-clean"><span class="icon-eye-open"></span> Click to View</a></div></td>
                             </tr>
                             <?php $x++;}?>
                         </tbody>
@@ -1438,7 +1494,7 @@ if($user->isLoggedIn()) {
                 <div class="content">
                     <table cellpadding="0" cellspacing="0" width="100%" class="table table-bordered table-striped sortable">
                         <thead>
-                        <tr>
+                        <!--<tr>
                             <th width="5%">#</th>
                             <th width="15%">SUBJECT</th>
                             <th width="25%">DETAILS</th>
@@ -1447,18 +1503,30 @@ if($user->isLoggedIn()) {
                             <th width="10%">STATUS</th>
                             <th width="10">GENERATED BY</th>
                             <th width="10%">VIEW</th>
+                        </tr>-->
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="15%">TB-STUDY-ID</th>
+                            <th width="25%">MISSING VALUE</th>
+                            <th width="15%">COUNTRY</th>
+                            <th width="10%">STATUS</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php $x=1;$no=0;if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){
-                            $data=$override->getSort('query_logs','status',0,'id');
+                            //$data=$override->getSort('query_logs','status',0,'id');
+                            $data=$override->get('data_qry','status',0);
+                            //print_r($data);
                         }elseif ($user->data()->access_level == 4 || $user->data()->access_level == 5){
-                            $data=$override->getSort2('query_logs','c_id',$user->data()->c_id,'status',0,'id');
+                            //$data=$override->getSort2('query_logs','c_id',$user->data()->c_id,'status',0,'id');
+                            $data=$override->getSort2('data_qry','c_id',$user->data()->c_id,'status',0,'id');
                         }elseif ($user->data()->access_level == 6){
-                            $data=$override->getSort2('query_logs','s_id',$user->data()->s_id,'status',0,'id');
+                            //$data=$override->getSort2('query_logs','s_id',$user->data()->s_id,'status',0,'id');
+                            $data=$override->getSort2('data_qry','c_id',$user->data()->c_id,'status',0,'id');
                         }
-                        foreach($data as $crf){$site=$override->get('site','id',$crf['s_id']) ?>
-                            <tr>
+                        foreach($data as $crf){
+                            $country = $override->get('country','id',$crf['c_id']) ?>
+                            <!--<tr>
                                 <td><?=$x?></td>
                                 <td><?=$crf['subject']?></td>
                                 <td><?=$user->customStringLength($crf['details'],80)?></td>
@@ -1467,6 +1535,13 @@ if($user->isLoggedIn()) {
                                 <td><div class="btn-group btn-group-xs"> <?php if($crf['status'] == 1){?><button class="btn btn-success">SOLVED</button> <?php }else{?><button class="btn btn-danger">NOT SOLVED</button><?php }?></div></td>
                                 <td><?php if($crf['staff_id'] == 2){echo 'System';}else{echo 'Data Manager';}?></td>
                                 <td><div class="btn-group btn-group-xs"><a href="query.php?id=<?=$crf['id']?>" class="btn btn-info btn-clean"><span class="icon-eye-open"></span> Click to View </a></div></td>
+                            </tr>-->
+                            <tr>
+                                <td><?=$x?></td>
+                                <td><?=$crf['study_id']?></td>
+                                <td><?=$crf['missing_values']?></td>
+                                <td><?=$country[0]['name']?></td>
+                                <td><div class="btn-group btn-group-xs"> <button class="btn btn-warning">unverified</button></div></td></td>
                             </tr>
                             <?php $x++;}?>
                         </tbody>
@@ -1657,6 +1732,62 @@ if($user->isLoggedIn()) {
                                 <td><?php if($crf['staff_id'] == 2){echo 'System';}else{echo 'Data Manager';}?></td>
                                 <td><div class="btn-group btn-group-xs"><a href="info.php?id=18&q=<?=$crf['id']?>" class="btn btn-info btn-clean"><span class="icon-eye-open"></span> Click to View </a></div></td>
                             </tr>
+                            <?php $x++;}?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php }
+        elseif ($_GET['id'] == 20){?>
+            <div class="block">
+                <div class="header">
+                    <h2>CRFs USED</h2>
+                </div>
+                <div class="content">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>CRF CODE</th>
+                            <th>BARCODE</th>
+                            <th>VERSION</th>
+                            <th>COUNTRY</th>
+                            <th>MANAGE</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php $x=1;foreach($override->getData('barcode') as $barcode){$country=$override->get('country','id',$barcode['c_id'])?>
+                            <tr>
+                                <td><?=$x?></td>
+                                <td><?=$barcode['crf_code']?></td>
+                                <td><?=$barcode['barcode']?></td>
+                                <td><?=$barcode['version']?></td>
+                                <td><?=$country[0]['name']?></td>
+                                <td>
+                                    <a href="#delete_barcode<?=$x?>" data-toggle="modal" class="widget-icon" title="Delete CRF"><span class="icon-trash"></span></a>
+                                </td>
+                            </tr>
+                            <div class="modal modal-danger" id="delete_barcode<?=$x?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form method="post">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">YOU SURE YOU WANT TO DELETE THIS BARCODE</h4>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="col-md-2 pull-right">
+                                                    <input type="hidden" name="id" value="<?=$barcode['id']?>">
+                                                    <input type="submit" name="delete_barcode" value="DELETE" class="btn btn-default btn-clean">
+                                                </div>
+                                                <div class="col-md-2 pull-right">
+                                                    <button type="button" class="btn btn-default btn-clean" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <?php $x++;}?>
                         </tbody>
                     </table>

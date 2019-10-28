@@ -94,7 +94,7 @@ if($_GET['token']){
             <?php }elseif($successMessage){?>
                 <div class="block">
                     <div class="alert alert-success">
-                        <b>Success!</b> <?=$successMessage?><a href="index.php" class="btn btn-info"><strong>LOGIN</strong></a>
+                        <b>Success!</b> <?=$successMessage?><a href="index.php" class="btn btn-info"><strong>CLICK HERE TO LOGIN</strong></a>
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                     </div>
                 </div>

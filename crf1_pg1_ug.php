@@ -28,7 +28,7 @@ function variable($a){
         }
         $x++;
     }
-    // print_r($var);
+   // print_r($var);
     if($var){
         foreach($var as $va){
             foreach($v1 as $f){
@@ -48,119 +48,133 @@ function variable($a){
                             case 'tbsnum':
                                 $frd[$va] .=$f['val'];
                                 break;
-                            case 'tbtx':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                //$frd[$va] = $bx[0]['value'];
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] .=$f['val'];
-                                break;
-                            case 'tbsx01':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                //$frd[$va] = $bx[0]['value'];
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] .=$f['val'];
-                                break;
-                            case 'tbsx01date':
+                            case 'vdate':
                                 $frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx02':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
-                                //$frd[$va] .=$f['val'];
-                                break;
-                            case 'tbsx02date':
+                            case 'enum':
                                 $frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx03':
+                            case 'clinic1':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                break;
+                            case 'clinic2':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx03date':
+                            case 'rchclinic':
                                 $frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx04':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
-                                //$frd[$va] .=$f['val'];
-                                break;
-                            case 'tbsx04date':
+                            case 'age':
                                 $frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx05':
+                            case 'gender':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx05date':
+                            case 'marital':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'other_marital':
                                 $frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx06':
+                            case 'occupation':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx06date':
+                            case 'education':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'ward':
                                 $frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx_other':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
+                            case 'village':
+                                $frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare01':
+                            case 'location':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'leadertencell':
+                                $frd[$va] .=$f['val'];
+                                break;
+                            case 'hivpos':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                //$frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'hivposperiod':
+                                $frd[$va] .=$f['val'];
+                                break;
+                            case 'onart':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                //$frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'onartperiod':
+                                $frd[$va] .=$f['val'];
+                                break;
+                            case 'tbcasecontact':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare02':
+                            case 'chronicdx':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare03':
+                            case 'chronicillness':
+                                $frd[$va] .=$f['val'];
+                                break;
+                            case 'alcohol':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare05':
+                            case 'alcoholpres':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare06':
+                            case 'tobacco':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare07':
+                            case 'tobaccopres':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare08':
+                            case 'drug':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
+                                $frd[$va] = $bx[0]['label'];print_r($frd[$va]);
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare09':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
-                                //$frd[$va] .=$f['val'];
-                                break;
-                            case 'seekcareother':
+                            case 'drugpres':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
@@ -181,119 +195,133 @@ function variable($a){
                             case 'tbsnum':
                                 $frd[$va] =$f['val'];
                                 break;
-                            case 'tbtx':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                //$frd[$va] = $bx[0]['value'];
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] .=$f['val'];
-                                break;
-                            case 'tbsx01':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                //$frd[$va] = $bx[0]['value'];
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] .=$f['val'];
-                                break;
-                            case 'tbsx01date':
+                            case 'vdate':
                                 $frd[$va] =$f['val'];
                                 break;
-                            case 'tbsx02':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
-                                //$frd[$va] .=$f['val'];
-                                break;
-                            case 'tbsx02date':
+                            case 'enum':
                                 $frd[$va] =$f['val'];
                                 break;
-                            case 'tbsx03':
+                            case 'clinic1':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                break;
+                            case 'clinic2':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx03date':
+                            case 'rchclinic':
                                 $frd[$va] =$f['val'];
                                 break;
-                            case 'tbsx04':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
-                                //$frd[$va] .=$f['val'];
-                                break;
-                            case 'tbsx04date':
+                            case 'age':
                                 $frd[$va] =$f['val'];
                                 break;
-                            case 'tbsx05':
+                            case 'gender':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx05date':
+                            case 'marital':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'other_marital':
                                 $frd[$va] =$f['val'];
                                 break;
-                            case 'tbsx06':
+                            case 'occupation':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx06date':
+                            case 'education':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'ward':
                                 $frd[$va] =$f['val'];
                                 break;
-                            case 'tbsx_other':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
+                            case 'village':
+                                $frd[$va] =$f['val'];
                                 break;
-                            case 'seekcare01':
+                            case 'location':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                $frd[$va] = $bx[0]['value'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'leadertencell':
+                                $frd[$va] =$f['val'];
+                                break;
+                            case 'hivpos':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                //$frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'hivposperiod':
+                                $frd[$va] =$f['val'];
+                                break;
+                            case 'onart':
+                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
+                                //$frd[$va] = $bx[0]['value'];
+                                $frd[$va] = $bx[0]['label'];
+                                //$frd[$va] .=$f['val'];
+                                break;
+                            case 'onartperiod':
+                                $frd[$va] =$f['val'];
+                                break;
+                            case 'tbcasecontact':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare02':
+                            case 'chronicdx':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare03':
+                            case 'chronicillness':
+                                $frd[$va] =$f['val'];
+                                break;
+                            case 'alcohol':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare05':
+                            case 'alcoholpres':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare06':
+                            case 'tobacco':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare07':
+                            case 'tobaccopres':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare08':
+                            case 'drug':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
+                                $frd[$va] = $bx[0]['label'];//print_r($frd[$va]);
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'seekcare09':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
-                                //$frd[$va] .=$f['val'];
-                                break;
-                            case 'seekcareother':
+                            case 'drugpres':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
@@ -328,61 +356,66 @@ function findText($id,$val){
 }
 //variable(1);
 //print_r(findText(3,'ward'));
-foreach($override->get('forms','qid',33) as $fid){//echo$fr.'  , ';
+foreach($override->get('forms','qid',32) as $fid){//echo$fr.'  , ';
     $dbv=variable($fid['fid']);$am=null;
+    $text=$override->get('formboxverifytext','fid',$fid['fid']);
+    if($text){$desc=$text[0]['val'];}else{$desc='';}
     $am=null;$stf='';
-    $arr = array('country','institution','facility','tbsnum','tbtx','tbtxperiod','tbsx01','tbsx01date','tbsx02','tbsx02date','tbsx03','tbsx03date','tbsx04','tbsx04date','tbsx05','tbsx05date','tbsx06','tbsx06date','tbsx_other','seekcare01','seekcare02','seekcare03','seekcare05','seekcare06','seekcare07','seekcare08','seekcare09','seekcareother');
+    //$arr = array('country','institution','facility','tbsnum','vdate','enum','clinic1','clinic2','rchclinic','age','gender','marital','other_marital','occupation','education','ward','village','location','leadertencell','hivpos','hivposperiod','onart','onartperiod','tbcasecontact','chronicdx','chronicillness','alcohol','alcoholpres','tobacco','tobaccopres','drug','drugpres');
+    $arr = array('country','institution','facility','tbsnum','vdate','enum','clinic1','clinic2','rchclinic','age','gender','marital','other_marital','occupation','education','location','ward','village','leadertencell','hivpos','hivposperiod','onart','onartperiod','tbcasecontact','chronicdx','alcohol','alcoholpres','tobacco','tobaccopres','drugpres','chronicillness','drug');
     foreach($arr as $ar){//print_r($ar);
         if($dbv){
             if(array_key_exists($ar,$dbv)){
                 if(isset($am[$ar])){$am[$ar] .= $dbv[$ar];}else{$am[$ar] = $dbv[$ar];}
             }else {
-                if(isset($am[$ar])){$am[$ar] .= '';}else{$am[$ar] = '';}
+                if(isset($am[$ar])){$am[$ar] .= ' ';}else{$am[$ar] = ' ';}
             }
             $x++;
         }
     }
     try {//print_r( $override->getValueT($fid['fid']));echo ' , ';
-        //print_r($am);echo'  ,  ';
-        /*if(findText($fid['fid'],'ward')){$ward=findText($fid['fid'],'ward');}else{$ward='';}
-        if(findText($fid['fid'],'village')){$village=findText($fid['fid'],'village');}else{$village='';}
-        if(findText($fid['fid'],'leadertencell')){$leadertencell=findText($fid['fid'],'leadertencell');}else{$leadertencell='';}
-        if(findText($fid['fid'],'phone1')){$phone1=findText($fid['fid'],'phone1');}else{$phone1='';}
-        if(findText($fid['fid'],'phone2')){$phone2=findText($fid['fid'],'phone2');}else{$phone2='';}
-        if(findText($fid['fid'],'chronicillness')){$chronicillness=findText($fid['fid'],'chronicillness');}else{$chronicillness='';}*/
+       // print_r($am['drug']);echo'  ,  ';
+        if(findText($fid['fid'],'ward')){$ward=findText($fid['fid'],'ward');}else{$ward='';}//print_r($ward);
+        if(findText($fid['fid'],'village')){$village=findText($fid['fid'],'village');}else{$village='';}//print_r($village);
+        if(findText($fid['fid'],'leadertencell')){$leadertencell=findText($fid['fid'],'leadertencell');}else{$leadertencell='';}//print_r($leadertencell);
+        if(findText($fid['fid'],'chronicillness')){$chronicillness=findText($fid['fid'],'chronicillness');}else{$chronicillness='';}//print_r($chronicillness);
 
-        //print_r($am);
-        if($override->selectData4('crf01_pg02_ug','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbsnum',$am['tbsnum'])){$dup=true;echo$am['country'].''.$am['institution'].''.$am['facility'].''.$am['tbsnum'].'  ,  ';}else{$dup=false;}//echo$f.' , ';$f++;
+        //print_r($am['drug']);echo' , ';
+        if($override->selectData4('crf01_pg01_ug','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbsnum',$am['tbsnum'])){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
         if($dbv && $dup==false){
-            $user->createRecord('crf01_pg02_ug', array(
+            $user->createRecord('crf01_pg01_ug', array(
                 'country' => $am['country'],
                 'institution' => $am['institution'],
                 'facility' => $am['facility'],
                 'tbsnum' => $am['tbsnum'],
-                'tbtx' => $am['tbtx'],
-                'tbtxperiod' => $am['tbtxperiod'],
-                'tbsx01' => $am['tbsx01'],
-                'tbsx01date' => $am['tbsx01date'],
-                'tbsx02' => $am['tbsx02'],
-                'tbsx02date' => $am['tbsx02date'],
-                'tbsx03'=>$am['tbsx03'],
-                'tbsx03date' => $am['tbsx03date'],
-                'tbsx04' => $am['tbsx04'],
-                'tbsx04date' => $am['tbsx04date'],
-                'tbsx05' => $am['tbsx05'],
-                'tbsx05date' => $am['tbsx05date'],
-                'tbsx06' => $am['tbsx06'],
-                'tbsx06date'=>$am['tbsx06date'],
-                'tbsx_other' => $am['tbsx_other'],
-                'seekcare01' => $am['seekcare01'],
-                'seekcare02' => $am['seekcare02'],
-                'seekcare03' => $am['seekcare03'],
-                'seekcare05' => $am['seekcare05'],
-                'seekcare06' => $am['seekcare06'],
-                'seekcare07' => $am['seekcare07'],
-                'seekcare08' => $am['seekcare08'],
-                'seekcare09' => $am['seekcare09'],
-                'seekcareother' => $am['seekcareother'],
+                'vdate' => $am['vdate'],
+                'enum' => $am['enum'],
+                'clinic1' => $am['clinic1'],
+                'clinic2' => $am['clinic2'],
+                'rchclinic'=>$am['rchclinic'],
+                'age' => $am['age'],
+                'gender' => $am['gender'],
+                'marital' => $am['marital'],
+                'other_marital' => $am['other_marital'],
+                'occupation' => $am['occupation'],
+                'education' => $am['education'],
+                'ward'=>$ward,
+                'village' => $village,
+                'location' => $am['location'],
+                'leadertencell' => $leadertencell,
+                'hivpos' => $am['hivpos'],
+                'hivposperiod' => $am['hivposperiod'],
+                'onart' => $am['onart'],
+                'onartperiod'=>$am['onartperiod'],
+                'tbcasecontact' => $am['tbcasecontact'],
+                'chronicdx' => $am['chronicdx'],
+                'chronicillness' => $chronicillness,
+                'alcohol' => $am['alcohol'],
+                'alcoholpres' => $am['alcoholpres'],
+                'tobacco' => $am['tobacco'],
+                'tobaccopres'=>$am['tobaccopres'],
+                'drug' => $am['drug'],
+                'drugpres' => $am['drugpres'],
                 'fid' => $fid['fid']
             ));
             //$successMessage = 'Staff have been Successful Registered';
@@ -398,3 +431,8 @@ $arr_crf1_pg1=array('country','institution','facility','tbsnum','vdate','enum','
 $arr_crf1_pg2=array('country','institution','facility','tbsnum','tbsx01','tbsx01date','tbsx02','tbsx02date','tbsx03','tbsx03date','tbsx04','tbsx04date','tbsx05','tbsx05date','tbsx06','tbsx06date','seekcare01','seekcare02','seekcare03','seekcare05','seekcare06','seekcareother');
 $arr_crf2_pg1=array('country','institution','facility','tbsnum','vdate','age','gender','marital','other_marital','occupation','education','ward','village','location','tencell','phone1','phone2','hivpos','hivposyr','onart','onartyr','tbcasecontact','chronicdx','chronicillness','alcohol','alcoholpres','tobacco','tobaccopres','drug','drugpres','tbtx','tbtxyr');
 $arr_crf2_pg2=array('country','institution','facility','tbsnum','tbsx01','tbsx01days','tbsx02','tbsx02days','tbsx03','tbsx03days','tbsx04','tbsx04days','tbsx05','tbsx05days');
+$arr_crf_se_pg1=array('country','institution','facility','enum','qn01_1','qn01_2','qn01_3','qn01_4','qn01_5','qn02_1','qn02_2','qn02_3','qn02_4');
+$arr_crf_se_pg2=array('country','institution','facility','enum','qn02_5','qn02_6','qn02_7','qn02_8a','qn02_8b','qn02_9a','qn02_9b','qn02_10','qn02_11','qn02_12','qn02_13a','qn02_13b','qn02_14a','qn02_14b','qn02_15','qn02_16');
+$arr_crf_se_pg3=array('country','institution','facility','enum','qn02_17','qn02_18','qn02_19','qn02_20','qn02_21','qn2_22','qn02_23a','qn02_23b','qn02_24a','qn02_24b','qn02_25');
+$arr_crf_se_pg4=array('country','institution','facility','enum','interviewer_signature','interviewer_id_code','date_form_completed','signature_of_person_checking_form','name','id_of_person_checking_form','date_form_checked');
+$arr_crf_trm_pg1=array('country','institution','facility','enum','txunit','phone1','phone2','hospnum','birthdate','dxdate','txdate','txcompdate','tbtxoutcome','formdate');
