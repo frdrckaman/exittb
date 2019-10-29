@@ -2,52 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5167cc8c-ff29-49a6-a789-6e1c601de56c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/crf.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf01.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf01_pg1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf01_pg2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf01_pg3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf02.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf03.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf_versions/CRF 03 CLIENT FOLLOW UP FORM_1_ETH_2019-10-23.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf_versions/CRF 03 CLIENT FOLLOW UP FORM_v1_ETH_2019-10-23.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf_versions/CRF 03 CLIENT FOLLOW UP FORM_v2_ETH_2019-10-23.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf_versions/CRF 03 CLIENT FOLLOW UP FORM_v3_ETH_2019-10-23.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/tableexport.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/email.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/export_v2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/FileSaver.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/pdfobject.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/tableexport.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pdftoimage/Exceptions/InvalidFormat.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pdftoimage/Exceptions/InvalidLayerMethod.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pdftoimage/Exceptions/PageDoesNotExist.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pdftoimage/Exceptions/PdfDoesNotExist.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pdftoimage/Pdf.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qry.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rebarcode.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/review/crf01.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scanned_crf/EXIT-TB_CRF01_PG0_1_111-00001_CID_1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scanned_crf/EXIT-TB_CRF02_PG0_1_111-00004_CRFID_8_CID_1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sop/EXIT-TB_CRF01_PG0_1_111-00001_CID_1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sop/EXIT-TB_CRF02_PG0_1_111-00004_CRFID_8_CID_1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/upload.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wreport.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crf1_pg1.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf1_pg1_ug.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crf1_pg2.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf1_pg2_ug.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crf_versions/_SOCIO_ECONOMIC_QUESTIONNAIRE_2019_03_17.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crf_versions/_TREATMENT_OUTCOME_FORM_2019_03_17.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frd.php" beforeDir="false" afterPath="$PROJECT_DIR$/frd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/function.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/info.php" beforeDir="false" afterPath="$PROJECT_DIR$/info.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/classes/Email.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classes/Email.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/classes/OverideData.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classes/OverideData.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/classes/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classes/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reset.php" beforeDir="false" afterPath="$PROJECT_DIR$/reset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site.php" beforeDir="false" afterPath="$PROJECT_DIR$/site.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/topBar.php" beforeDir="false" afterPath="$PROJECT_DIR$/topBar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crf01.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf01.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crf1_pg1_ug.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf1_pg1_ug.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crf1_pg2_ug.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf1_pg2_ug.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rebarcode.php" beforeDir="false" afterPath="$PROJECT_DIR$/rebarcode.php" afterDir="false" />
     </list>
     <ignored path="aman.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,6 +28,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="OverideData.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/classes/OverideData.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2044">
+              <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="dashboard.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashboard.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -91,29 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="crf.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/crf.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rebarcode.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rebarcode.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rebarcode.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="upload.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/upload.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="340">
+              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -134,13 +83,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="crf01.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="crf01.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crf01.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8857">
-              <caret line="613" column="34" lean-forward="true" selection-start-line="613" selection-start-column="34" selection-end-line="613" selection-end-column="34" />
+            <state relative-caret-position="-323">
+              <caret line="14" column="39" lean-forward="true" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
               <folding>
-                <element signature="e#931#3712#0#PHP" />
+                <element signature="e#3642#3734#0#PHP" />
                 <element signature="e#6481#6488#1#HTML" expanded="true" />
                 <element signature="e#6866#6873#1#HTML" expanded="true" />
                 <element signature="e#7211#7218#1#HTML" expanded="true" />
@@ -165,20 +114,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="crf01_pg1.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/crf01_pg1.php">
+      <file leaf-file-name="crf1_pg1_ug.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crf1_pg1_ug.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="163">
-              <caret line="303" column="192" selection-start-line="303" selection-start-column="141" selection-end-line="303" selection-end-column="192" />
+              <caret line="384" column="84" lean-forward="true" selection-start-line="384" selection-start-column="8" selection-end-line="384" selection-end-column="84" />
+              <folding>
+                <element signature="e#9372#17734#0#PHP" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="crf02.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/crf02.php">
+      <file leaf-file-name="crf1_pg2_ug.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crf1_pg2_ug.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="57" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="57" />
+            <state relative-caret-position="418">
+              <caret line="362" column="40" selection-start-line="362" selection-start-column="40" selection-end-line="362" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="crf01_pg1.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crf01_pg1.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="305" column="32" lean-forward="true" selection-end-line="357" selection-end-column="126" />
             </state>
           </provider>
         </entry>
@@ -246,8 +207,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/crf_tr_out.php" />
-        <option value="$PROJECT_DIR$/../mocca/php/classes/User.php" />
         <option value="$PROJECT_DIR$/process.php" />
         <option value="$PROJECT_DIR$/../Redams/scrn.php" />
         <option value="$PROJECT_DIR$/sideBar.php" />
@@ -292,11 +251,13 @@
         <option value="$PROJECT_DIR$/upload.php" />
         <option value="$PROJECT_DIR$/../frd/src/Pdf.php" />
         <option value="$PROJECT_DIR$/frd.php" />
-        <option value="$PROJECT_DIR$/rebarcode.php" />
         <option value="$PROJECT_DIR$/topBar.php" />
         <option value="$PROJECT_DIR$/crf01_pg1.php" />
         <option value="$PROJECT_DIR$/qry.php" />
+        <option value="$PROJECT_DIR$/crf1_pg1_ug.php" />
+        <option value="$PROJECT_DIR$/crf1_pg2_ug.php" />
         <option value="$PROJECT_DIR$/crf01.php" />
+        <option value="$PROJECT_DIR$/rebarcode.php" />
       </list>
     </option>
   </component>
@@ -342,6 +303,17 @@
             <path>
               <item name="aman" type="b2602c69:ProjectViewProjectNode" />
               <item name="aman" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="aman" type="b2602c69:ProjectViewProjectNode" />
+              <item name="aman" type="462c0819:PsiDirectoryNode" />
+              <item name="php" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="aman" type="b2602c69:ProjectViewProjectNode" />
+              <item name="aman" type="462c0819:PsiDirectoryNode" />
+              <item name="php" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -487,12 +459,12 @@
       <workItem from="1571467907649" duration="597000" />
       <workItem from="1571496110140" duration="6934000" />
       <workItem from="1571745979645" duration="20475000" />
-      <workItem from="1571970498025" duration="20789000" />
+      <workItem from="1571970498025" duration="35465000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="969343000" />
+    <option name="totallyTimeSpent" value="984019000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="24" width="1549" height="846" extended-state="6" />
@@ -566,8 +538,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Downloads/scan/import.php" />
-    <entry file="file://$USER_HOME$/Downloads/scan/functions.import.php" />
     <entry file="file://$PROJECT_DIR$/../quexf/admin/output.php" />
     <entry file="file://$PROJECT_DIR$/../quexf/functions/functions.output.php" />
     <entry file="file://$PROJECT_DIR$/../tripSystem/php/classes/OverideData.php" />
@@ -748,13 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/classes/OverideData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/themes.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -823,16 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frd.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
-          <folding>
-            <element signature="e#91#1539#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crf.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -844,13 +797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="30" lean-forward="true" selection-start-line="1" selection-end-line="3" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rebarcode.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -868,13 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crf01_pg1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="303" column="192" selection-start-line="303" selection-start-column="141" selection-end-line="303" selection-end-column="192" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qry.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -882,12 +821,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/crf1_pg2_ug.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="362" column="40" selection-start-line="362" selection-start-column="40" selection-end-line="362" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crf1_pg1_ug.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="384" column="84" lean-forward="true" selection-start-line="384" selection-start-column="8" selection-end-line="384" selection-end-column="84" />
+          <folding>
+            <element signature="e#9372#17734#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crf01_pg1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="305" column="32" lean-forward="true" selection-end-line="357" selection-end-column="126" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/crf01.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8857">
-          <caret line="613" column="34" lean-forward="true" selection-start-line="613" selection-start-column="34" selection-end-line="613" selection-end-column="34" />
+        <state relative-caret-position="-323">
+          <caret line="14" column="39" lean-forward="true" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
           <folding>
-            <element signature="e#931#3712#0#PHP" />
+            <element signature="e#3642#3734#0#PHP" />
             <element signature="e#6481#6488#1#HTML" expanded="true" />
             <element signature="e#6866#6873#1#HTML" expanded="true" />
             <element signature="e#7211#7218#1#HTML" expanded="true" />
@@ -908,6 +871,30 @@
             <element signature="e#34796#34802#0#HTML" expanded="true" />
             <element signature="e#37254#37260#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/classes/OverideData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2044">
+          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frd.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+          <folding>
+            <element signature="e#91#1539#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rebarcode.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
         </state>
       </provider>
     </entry>

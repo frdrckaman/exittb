@@ -306,22 +306,22 @@ if($user->isLoggedIn()){
                                     <div class="col-md-2">MARITAL STATUS:</div>
                                     <div class="col-md-10">
                                         <div class="checkbox-inline">
-                                            <label><input type="radio" name="marital" <?php if($data[0]['marital'] == 'Single'){echo 'checked';}?>/> Single</label>
+                                            <label><input type="radio" name="marital" value="Single" <?php if($data[0]['marital'] == 'Single'){echo 'checked';}?>/> Single</label>
                                         </div>
                                         <div class="checkbox-inline">
-                                            <label><input type="radio" name="marital" <?php if($data[0]['marital'] == 'Married'){echo 'checked';}?>/> Married</label>
+                                            <label><input type="radio" name="marital" value="Married" <?php if($data[0]['marital'] == 'Married'){echo 'checked';}?>/> Married</label>
                                         </div>
                                         <div class="checkbox-inline">
-                                            <label><input type="radio" name="marital" <?php if($data[0]['marital'] == 'Divorced'){echo 'checked';}?>/> Divorced</label>
+                                            <label><input type="radio" name="marital" value="Divorced" <?php if($data[0]['marital'] == 'Divorced'){echo 'checked';}?>/> Divorced</label>
                                         </div>
                                         <div class="checkbox-inline">
-                                            <label><input type="radio" name="marital" <?php if($data[0]['marital'] == 'Separated'){echo 'checked';}?>/> Separated</label>
+                                            <label><input type="radio" name="marital" value="Separated" <?php if($data[0]['marital'] == 'Separated'){echo 'checked';}?>/> Separated</label>
                                         </div>
                                         <div class="checkbox-inline">
-                                            <label><input type="radio" name="marital" <?php if($data[0]['marital'] == 'Cohabited'){echo 'checked';}?>/> Cohabited</label>
+                                            <label><input type="radio" name="marital" value="Cohabited" <?php if($data[0]['marital'] == 'Cohabited'){echo 'checked';}?>/> Cohabited</label>
                                         </div>
                                         <div class="checkbox-inline">
-                                            <label><input type="radio" name="marital" <?php if($data[0]['marital'] == 'Widow/Widower'){echo 'checked';}?>/> Widow/Widower</label>
+                                            <label><input type="radio" name="marital" value="Widow/Widower" <?php if($data[0]['marital'] == 'Widow/Widower'){echo 'checked';}?>/> Widow/Widower</label>
                                         </div>
                                         <div class="checkbox-inline">
                                             <label style="color: #761c19;font-weight: bolder"><input type="radio" value="" name="marital" /> <strong>Uncheck</strong></label>

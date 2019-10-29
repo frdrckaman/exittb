@@ -382,12 +382,14 @@ foreach($override->get('forms','qid',32) as $fid){//echo$fr.'  , ';
 
         //print_r($am['drug']);echo' , ';
         if($override->selectData4('crf01_pg01_ug','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbsnum',$am['tbsnum'])){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
+        $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbsnum'];
         if($dbv && $dup==false){
             $user->createRecord('crf01_pg01_ug', array(
                 'country' => $am['country'],
                 'institution' => $am['institution'],
                 'facility' => $am['facility'],
                 'tbsnum' => $am['tbsnum'],
+                'study_id' => $study_id,
                 'vdate' => $am['vdate'],
                 'enum' => $am['enum'],
                 'clinic1' => $am['clinic1'],
