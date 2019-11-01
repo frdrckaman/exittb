@@ -230,6 +230,7 @@ foreach($override->get('forms','qid',42) as $fid){//echo$fr.'  , ';
         $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbenum'];
         if($override->selectData4('crf01_pg02','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',$am['tbenum'])){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
         if($dbv && $dup==false){
+            //print_r($tbsx_other);
             $user->createRecord('crf01_pg02', array(
                 'country' => $am['country'],
                 'institution' => $am['institution'],
@@ -247,7 +248,7 @@ foreach($override->get('forms','qid',42) as $fid){//echo$fr.'  , ';
                 'tbsx05' => $am['tbsx05'],
                 'tbsx05days' => $am['tbsx05days'],
                 'tbsx06' => $am['tbsx06'],
-                'tbsx_other'=>$tbsx_other,
+                'tbsx_other'=> $tbsx_other,
                 'tbsx06days' => $am['tbsx06days'],
                 'cough_care' => $am['cough_care'],
                 'carefac' => $am['carefac'],

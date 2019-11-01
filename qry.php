@@ -4,17 +4,17 @@ $user = new User();
 $override = new OverideData();$msv='';
 
 $arr1 = array('vdate','clinic','age','gender','marital','occupation','education','location','hivpos','hivposyr','hivres','onart','onartyr','tbcasecontact','chronicillness','chronicdx','alcohol','alcoholpres','tobacco','tobaccopres','drug','drugpres','tbtx','tbtxyr');
-$getData = $override->get('crf01_pg01','fid',6276);
+$getData = $override->getData('crf01_pg01');
 //print_r($getData);
 $id=null;$errors=null;$x=1;$y=1;foreach ($getData as $data){
         foreach ($arr1 as $arr){//print_r($arr);echo ' , ';
             if($data[$arr]==' '){//print_r($arr);echo ' , ';
                 switch ($arr){
                     case 'hivpos':
-                        $errors[$x] = 'Qn1 (a) {Response}';$id=$data['country'].$data['institution'].$data['facility'].$data['tbenum'];$x++;print_r($errors[$x]);
+                        $errors[$x] = 'Qn1 (a) {Response}';$id=$data['country'].$data['institution'].$data['facility'].$data['tbenum'];$x++;//print_r($errors[$x]);
                         break;
                     case 'hivposyr':
-                        print_r($data['hivpos']);
+                        //print_r($data['hivpos']);
                         if($data['hivpos'] === 'Yes'){
                             $errors[$x] = 'Qn1 (a) {Year tested}';$id=$data['country'].$data['institution'].$data['facility'].$data['tbenum'];$x++;
                         }
@@ -90,11 +90,11 @@ $id=null;$errors=null;$x=1;$y=1;foreach ($getData as $data){
             }
             //print_r($msv);
             try{
-                $checkID=$override->get('data_qry','study_id',preg_replace('/[^A-Za-z0-9\-]/', '', $data['study_id']));
+                $checkID=$override->selectData('data_qry','study_id',preg_replace('/[^A-Za-z0-9\-]/', '', $data['study_id']),'crf_id',7,'pg',1);
                 if(!$checkID){
                     if($data['country']){
                         //print_r($data['study_id']);echo ' , ';
-                        /*$user->createRecord('data_qry',array(
+                        $user->createRecord('data_qry',array(
                             'study_id' => preg_replace('/[^A-Za-z0-9\-]/', '', $data['study_id']),
                             'm_value' => $msv,
                             'crf_id' => 7,
@@ -107,7 +107,7 @@ $id=null;$errors=null;$x=1;$y=1;foreach ($getData as $data){
                             'fid' => $data['fid'],
                             'staff_id' => 2
                         ));
-                        echo 'Good';*/
+                        echo 'Good';
                     }
                 }
             } catch (Exception $e) {

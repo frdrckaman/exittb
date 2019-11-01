@@ -3,44 +3,128 @@ require_once'php/core/init.php';
 $user = new User();
 $override = new OverideData();$data=null;
 $pageError = null;$successMessage = null;$errorM = false;$errorMessage = null;
+$d1='';$d2='';$d3='';$d4='';$d5='';$d6='';
 if($user->isLoggedIn()){
-    $data = $override->get('crf01_pg02','study_id','21200028');
+    //$data = $override->getData('crf01_pg02');
     if(Input::exists('post')){
-        $validate = new validate();
-        $validate = $validate->check($_POST, array(
-            'study_id' => array(
-                'required' => true,
-            ),
-        ));
-        if ($validate->passed()) {
-            try {
-                $user->updateRecord('crf01_pg02', array(
-                    'study_id' => Input::get('study_id'),
-                    'tbsx01' => Input::get('tbsx01'),
-                    'tbsx01days' => date('dmY',strtotime(Input::get('tbsx01days'))) ,
-                    'tbsx02' => Input::get('tbsx02'),
-                    'tbsx02days' =>date('dmY',strtotime(Input::get('tbsx02days'))),
-                    'tbsx03'=>Input::get('tbsx03'),
-                    'tbsx03days' => date('dmY',strtotime(Input::get('tbsx03days'))),
-                    'tbsx04' => Input::get('tbsx04'),
-                    'tbsx04days' => date('dmY',strtotime(Input::get('tbsx04days'))),
-                    'tbsx05' => Input::get('tbsx05'),
-                    'tbsx05days' => date('dmY',strtotime(Input::get('tbsx05days'))),
-                    'tbsx06' => Input::get('tbsx06'),
-                    'tbsx_other'=> Input::get('tbsx_other'),
-                    'tbsx06days' => date('dmY',strtotime(Input::get('tbsx06days'))),
-                    'cough_care' => Input::get('cough_care'),
-                    'carefac' => Input::get('carefac'),
-                    'othercarefac' => Input::get('othercarefac'),
-                ),$data[0]['id']);
-                $successMessage = 'Changes Made Successful';
-                $data = $override->get('crf01_pg02','study_id','21200028');
-
-            } catch (Exception $e) {
-                die($e->getMessage());
+        if(Input::get('crf01_pg2')){
+            $validate = new validate();
+            $validate = $validate->check($_POST, array(
+                'study_id' => array(
+                    'required' => true,
+                ),
+            ));
+            if ($validate->passed()) {
+                try {
+                    $user->updateRecord('crf01_pg02', array(
+                        'study_id' => Input::get('study_id'),
+                        'tbsx01' => Input::get('tbsx01'),
+                        'tbsx01days' => Input::get('tbsx01days') ,
+                        'tbsx02' => Input::get('tbsx02'),
+                        'tbsx02days' => Input::get('tbsx02days'),
+                        'tbsx03'=>Input::get('tbsx03'),
+                        'tbsx03days' => Input::get('tbsx03days'),
+                        'tbsx04' => Input::get('tbsx04'),
+                        'tbsx04days' => Input::get('tbsx04days'),
+                        'tbsx05' => Input::get('tbsx05'),
+                        'tbsx05days' => Input::get('tbsx05days'),
+                        'tbsx06' => Input::get('tbsx06'),
+                        'tbsx_other'=> Input::get('tbsx_other'),
+                        'tbsx06days' => Input::get('tbsx06days'),
+                        'cough_care' => Input::get('cough_care'),
+                        'carefac' => Input::get('carefac'),
+                        'othercarefac' => Input::get('othercarefac'),
+                    ),Input::get('sid'));
+                    $successMessage = 'Changes Made Successful';
+                    try {$user->updateRecord('data_qry', array('status' => 1), Input::get('id'));} catch (Exception $e) {}
+                    unlink(Input::get('img'));
+                    $query = $override->lastRow2('data_qry','status',0,'pg',2,'id');
+                    if($query){
+                        $data = $override->get('crf01_pg02','study_id',$query[0]['study_id']);
+                        try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+                        $pdf = $override->get('forms','fid',$query[0]['fid']);
+                        $pathToPdf=$pdf[0]['description'];
+                        $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+                        $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+                        $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+                        $pdfImg->saveImage($pathToWhereImageShouldBeStored);
+                        $imgL='crf_images/'.$svDoc.'.jpg';
+                    }else{
+                        $successMessage = 'No More Forms Available';
+                    }
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+            } else {
+                $pageError = $validate->errors();
             }
-        } else {
-            $pageError = $validate->errors();
+        }
+        elseif (Input::get('cl_qry')){
+            $validate = new validate();
+            $validate = $validate->check($_POST, array(
+                'study_id' => array(
+                    'required' => true,
+                ),
+            ));
+            if ($validate->passed()) {
+                try {
+                    $user->updateRecord('crf01_pg02', array(
+                        'study_id' => Input::get('study_id'),
+                        'tbsx01' => Input::get('tbsx01'),
+                        'tbsx01days' => Input::get('tbsx01days') ,
+                        'tbsx02' => Input::get('tbsx02'),
+                        'tbsx02days' => Input::get('tbsx02days'),
+                        'tbsx03'=>Input::get('tbsx03'),
+                        'tbsx03days' => Input::get('tbsx03days'),
+                        'tbsx04' => Input::get('tbsx04'),
+                        'tbsx04days' => Input::get('tbsx04days'),
+                        'tbsx05' => Input::get('tbsx05'),
+                        'tbsx05days' => Input::get('tbsx05days'),
+                        'tbsx06' => Input::get('tbsx06'),
+                        'tbsx_other'=> Input::get('tbsx_other'),
+                        'tbsx06days' => Input::get('tbsx06days'),
+                        'cough_care' => Input::get('cough_care'),
+                        'carefac' => Input::get('carefac'),
+                        'othercarefac' => Input::get('othercarefac'),
+                    ),$data[0]['id']);
+                    $successMessage = 'Query added Successful';
+                    try {$user->updateRecord('data_qry', array('status' => 3), Input::get('id'));} catch (Exception $e) {}
+                    unlink(Input::get('img'));
+                    $query = $override->lastRow2('data_qry','status',0,'pg',2,'id');
+                    if($query){
+                        $data = $override->get('crf01_pg02','study_id',$query[0]['study_id']);
+                        try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+                        $pdf = $override->get('forms','fid',$query[0]['fid']);
+                        $pathToPdf=$pdf[0]['description'];
+                        $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+                        $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+                        $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+                        $pdfImg->saveImage($pathToWhereImageShouldBeStored);
+                        $imgL='crf_images/'.$svDoc.'.jpg';
+                    }else{
+                        $successMessage = 'No More Forms Available';
+                    }
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+            } else {
+                $pageError = $validate->errors();
+            }
+        }
+    }else{
+        $query = $override->lastRow2('data_qry','status',0,'pg',2,'id');
+        if($query){
+            $data = $override->get('crf01_pg02','study_id',$query[0]['study_id']);
+            try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+            $pdf = $override->get('forms','fid',$query[0]['fid']);
+            $pathToPdf=$pdf[0]['description'];
+            $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+            $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+            $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+            $pdfImg->saveImage($pathToWhereImageShouldBeStored);
+            $imgL='crf_images/'.$svDoc.'.jpg';
+        }else{
+            $successMessage = 'No More Forms Available';
         }
     }
 }else{
@@ -125,6 +209,9 @@ if($user->isLoggedIn()){
                     <form method="post">
                         <div class="modal-body clearfix">
                             <div class="controls">
+                                <input type="hidden" name="img" value="<?=$imgL?>">
+                                <input type="hidden" name="sid" value="<?=$data[0]['id']?>">
+                                <input type="hidden" name="id" value="<?=$query[0]['id']?>">
                                 <div class="form-row" id="s1">
                                     <div class="col-md-2">STUDY ID:</div>
                                     <div class="col-md-6" id="v_code">
@@ -144,7 +231,7 @@ if($user->isLoggedIn()){
                                         <div class="pull-right">
                                             <div class="col-md-5">Date Started:</div>
                                             <div class="col-md-7">
-                                                <input type="text" name="tbsx01days" class="datepicker form-control" value="<?=$data[0]['tbsx01days']?>">
+                                                <input type="text" name="tbsx01days" class="form-control" value="<?=$data[0]['tbsx01days']?>">
                                             </div>
                                         </div>
                                     </div>
@@ -161,7 +248,7 @@ if($user->isLoggedIn()){
                                         <div class="pull-right">
                                             <div class="col-md-5">Date Started:</div>
                                             <div class="col-md-7">
-                                                <input type="text" name="tbsx02days" class="datepicker form-control" value="<?=$data[0]['tbsx02days']?>">
+                                                <input type="text" name="tbsx02days" class="form-control" value="<?=$data[0]['tbsx02days']?>">
                                             </div>
                                         </div>
                                     </div>
@@ -178,7 +265,7 @@ if($user->isLoggedIn()){
                                         <div class="pull-right">
                                             <div class="col-md-5">Date Started:</div>
                                             <div class="col-md-7">
-                                                <input type="text" name="tbsx03days" class="datepicker form-control" value="<?=$data[0]['tbsx03days']?>">
+                                                <input type="text" name="tbsx03days" class="form-control" value="<?=$data[0]['tbsx03days']?>">
                                             </div>
                                         </div>
                                     </div>
@@ -194,7 +281,7 @@ if($user->isLoggedIn()){
                                         <div class="pull-right">
                                             <div class="col-md-5">Date Started:</div>
                                             <div class="col-md-7">
-                                                <input type="text" name="tbsx04days" class="datepicker form-control" value="<?=$data[0]['tbsx04days']?>">
+                                                <input type="text" name="tbsx04days" class="form-control" value="<?=$data[0]['tbsx04days']?>">
                                             </div>
                                         </div>
                                     </div>
@@ -210,7 +297,7 @@ if($user->isLoggedIn()){
                                         <div class="pull-right">
                                             <div class="col-md-5">Date Started:</div>
                                             <div class="col-md-7">
-                                                <input type="text" name="tbsx05days" class="datepicker form-control" value="<?=$data[0]['tbsx05days']?>">
+                                                <input type="text" name="tbsx05days" class="form-control" value="<?=$data[0]['tbsx05days']?>">
                                             </div>
                                         </div>
                                     </div>
@@ -226,7 +313,7 @@ if($user->isLoggedIn()){
                                         <div class="pull-right">
                                             <div class="col-md-5">Date Started:</div>
                                             <div class="col-md-7">
-                                                <input type="text" name="tbsx06days" class="datepicker form-control" value="<?=$data[0]['tbsx06days']?>">
+                                                <input type="text" name="tbsx06days" class="form-control" value="<?=$data[0]['tbsx06days']?>">
                                             </div>
                                         </div>
                                     </div>
@@ -281,27 +368,22 @@ if($user->isLoggedIn()){
                             <div class="pull-right col-md-3">
                                 <input type="submit" name="crf01_pg2" value="SUBMIT" class="btn btn-success">
                             </div>
+                            <div class="pull-left col-md-3">
+                                <input type="submit" name="cl_qry" value="QUERY" class="btn btn-warning">
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        <?php if($query){?>
+            <div class="col-md-offset-0 col-md-6">
+                <img src='<?=$imgL?>' width='100%'>
+            </div>
+        <?php }?>
     </div>
-
 </div>
-<!--Start of Tawk.to Script
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/5c13b96082491369ba9e1d8a/default';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-    })();
-</script>
-<!--End of Tawk.to Script-->
+
 </body>
 <script>
     <?php if($user->data()->pswd == 0){?>

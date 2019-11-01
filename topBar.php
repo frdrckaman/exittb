@@ -648,7 +648,7 @@ if($user->isLoggedIn()) {
                             <a href=""> CRF01<i class="icon-angle-right pull-right"></i></a>
                             <ul class="dropdown-submenu">
                                 <li><a href="crf01.php">PG01</a> </li>
-                                <li><a href="#" disabled="">PG02</a> </li>
+                                <li><a href="crf02.php" disabled="">PG02</a> </li>
                                 <li><a href="#" disabled="">PG03</a> </li>
                             </ul>
                     </ul>

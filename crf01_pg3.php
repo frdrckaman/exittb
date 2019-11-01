@@ -66,8 +66,9 @@ function variable($a){
                                 $frd[$va] = $bx[0]['label'];
                                 break;
                             case 'tbscore':
-                                $bx=$override->get('boxes','bid',$f['bid']);print_r($f['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
+                                //$bx=$override->get('boxes','bid',$f['bid']);print_r($f['bid']);echo' , ';
+                                //$frd[$va] = $bx[0]['label'];
+                                $frd[$va] =$f['val'];
                                 break;
                             case 'cxtbcase':
                                 $frd[$va] .=$f['val'];
@@ -107,8 +108,9 @@ function variable($a){
                                 $frd[$va] = $bx[0]['label'];
                                 break;
                             case 'tbscore':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
+                                //$bx=$override->get('boxes','bid',$f['bid']);print_r($bx[0]['bid']);echo' , ';
+                                //$frd[$va] = $bx[0]['label'];
+                                $frd[$va] =$f['val'];
                                 break;
                             case 'cxtbcase':
                                 $frd[$va] =$f['val'];
@@ -167,26 +169,29 @@ foreach($override->get('forms','qid',43) as $fid){//echo$fr.'  , ';
 
         //print_r($am);echo' , ';
         $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbenum'];
-        if($override->selectData4('crf01_pg03','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',$am['tbenum'])){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
-        if($dbv && $dup==false){ //print_r($am['tbscore']);echo' , ';
-            $user->createRecord('crf01_pg03', array(
-                'country' => $am['country'],
-                'institution' => $am['institution'],
-                'facility' => $am['facility'],
-                'tbenum' => $am['tbenum'],
-                'study_id' => $study_id,
-                'xpertsputum' => $am['xpertsputum'],
-                'xpertstool' => $am['xpertstool'],
-                'smear' => $am['smear'],
-                'cxray' => $am['cxray'],
-                'tbscore'=>$am['tbscore'],
-                'cxtbcase' => $cxtbcase,
-                'formdate' => $am['formdate'],
-                'status' => 1,
-                'fid' => $fid['fid']
-            ));
-            //$successMessage = 'Staff have been Successful Registered';
-            echo'Good';
+        print_r($study_id);echo ' , ';
+        if(!str_replace(' ', '', $study_id) == ''){
+            if($override->selectData4('crf01_pg03','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',$am['tbenum'])){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
+            if($dbv && $dup==false){ //print_r($am['tbscore']);echo' , ';
+                $user->createRecord('crf01_pg03', array(
+                    'country' => $am['country'],
+                    'institution' => $am['institution'],
+                    'facility' => $am['facility'],
+                    'tbenum' => $am['tbenum'],
+                    'study_id' => $study_id,
+                    'xpertsputum' => $am['xpertsputum'],
+                    'xpertstool' => $am['xpertstool'],
+                    'smear' => $am['smear'],
+                    'cxray' => $am['cxray'],
+                    'tbscore'=>$am['tbscore'],
+                    'cxtbcase' => $cxtbcase,
+                    'formdate' => $am['formdate'],
+                    'status' => 1,
+                    'fid' => $fid['fid']
+                ));
+                //$successMessage = 'Staff have been Successful Registered';
+                echo'Good';
+            }
         }
     } catch (Exception $e) {
         die($e->getMessage());

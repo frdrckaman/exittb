@@ -62,30 +62,7 @@ $im->setImageFormat('jpg');
 header('Content-Type: image/jpeg');
 echo $im;*/
 $qrys = $override->getData('data_qry');
+print_r(date('dmY',strtotime('')))
 
 ?>
-<html>
-<body>
-<form enctype="multipart/form-data" method="post">
-    <input type="file" name="attachment" required=""/>
-    <input type="submit">
-</form><br>
-    <table border="1">
-        <thead>
-            <th>#</th>
-            <th>STUDY</th>
-            <th>FILE</th>
-        </thead>
-        <tbody>
-            <?php $x=1;foreach ($qrys as $qry){$data=$override->get('forms','fid',$qry['fid'])?>
-                <tr>
-                    <td><?=$x?></td>
-                    <td><?=$qry['study_id']?></td>
-                    <td><?=$data[0]['description']?></td>
-                </tr>
-            <?php $x++;}?>
-        </tbody>
-    </table>
-</body>
-</html>
 
