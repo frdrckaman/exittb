@@ -47,12 +47,15 @@ if($user->isLoggedIn()){
                         'tbtxyr' => Input::get('tbtxyr'),
                     ),Input::get('sid'));
                     $successMessage = 'Changes Made Successful';
-                    try {$user->updateRecord('data_qry', array('status' => 1), Input::get('id'));} catch (Exception $e) {}
+                    //try {$user->updateRecord('data_qry', array('status' => 1), Input::get('id'));} catch (Exception $e) {}
+                    try {$user->updateRecord('qry', array('status' => 1), Input::get('id'));} catch (Exception $e) {}
                     unlink(Input::get('img'));
-                    $query = $override->lastRow2('data_qry','status',0,'pg',1,'id');
+                    //$query = $override->lastRow2('data_qry','status',0,'pg',1,'id');
+                    $query = $override->lastRow2('qry','status',0,'pg',1,'id');
                     if($query){
                         $data = $override->get('crf01_pg01','study_id',$query[0]['study_id']);
-                        try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+                        //try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+                        try {$user->updateRecord('qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
                         $pdf = $override->get('forms','fid',$query[0]['fid']);
                         $pathToPdf=$pdf[0]['description'];
                         $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
@@ -110,12 +113,15 @@ if($user->isLoggedIn()){
                         'tbtxyr' => Input::get('tbtxyr'),
                     ),Input::get('sid'));
                     $successMessage = 'Query added Successful';
-                    try {$user->updateRecord('data_qry', array('status' => 3), Input::get('id'));} catch (Exception $e) {}
+                    //try {$user->updateRecord('data_qry', array('status' => 3), Input::get('id'));} catch (Exception $e) {}
+                    try {$user->updateRecord('qry', array('status' => 3), Input::get('id'));} catch (Exception $e) {}
                     unlink(Input::get('img'));
-                    $query = $override->lastRow2('data_qry','status',0,'pg',1,'id');
+                    //$query = $override->lastRow2('data_qry','status',0,'pg',1,'id');
+                    $query = $override->lastRow2('qry','status',0,'pg',1,'id');
                     if($query){
                         $data = $override->get('crf01_pg01','study_id',$query[0]['study_id']);
-                        try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+                        //try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+                        try {$user->updateRecord('qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
                         $pdf = $override->get('forms','fid',$query[0]['fid']);
                         $pathToPdf=$pdf[0]['description'];
                         $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
@@ -135,10 +141,12 @@ if($user->isLoggedIn()){
             }
         }
     }else{
-        $query = $override->lastRow2('data_qry','status',0,'pg',1,'id');
+        //$query = $override->lastRow2('data_qry','status',0,'pg',1,'id');
+        $query = $override->lastRow2('qry','status',0,'pg',1,'id');
         if($query){
             $data = $override->get('crf01_pg01','study_id',$query[0]['study_id']);
-            try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+            //try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+            try {$user->updateRecord('qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
             $pdf = $override->get('forms','fid',$query[0]['fid']);
             $pathToPdf=$pdf[0]['description'];
             $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');

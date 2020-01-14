@@ -640,7 +640,7 @@ if($user->isLoggedIn()) {
                     </ul>
                 </li>
             <?php }?>
-            <?php if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){?>
+            <?php if($user->data()->power == 1 ){?>
                 <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-file-alt"></span> REVIEW CRF</a>
                     <ul class="dropdown-menu">
@@ -649,6 +649,18 @@ if($user->isLoggedIn()) {
                             <ul class="dropdown-submenu">
                                 <li><a href="crf01.php">PG01</a> </li>
                                 <li><a href="crf02.php" disabled="">PG02</a> </li>
+                                <li><a href="#" disabled="">PG03</a> </li>
+                            </ul>
+                    </ul>
+                </li>
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-file-text-alt"></span> Resolve Query</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href=""> CRF01<i class="icon-angle-right pull-right"></i></a>
+                            <ul class="dropdown-submenu">
+                                <li><a href="fixdata.php?id=1">PG01</a> </li>
+                                <li><a href="fixdata.php?id=2" disabled="">PG02</a> </li>
                                 <li><a href="#" disabled="">PG03</a> </li>
                             </ul>
                     </ul>

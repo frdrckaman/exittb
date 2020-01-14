@@ -328,6 +328,55 @@ if($user->isLoggedIn()) {
             }
         }
   }
+    if(Input::exists('post')){
+        if(Input::get('re_upload')){
+            $validate = new validate();
+            $validate = $validate->check($_POST, array(
+                'study_id' => array(
+
+                ),
+            ));
+            $c_t=null;$c_t=$override->get('crf_type','id',Input::get('crf_name'));
+            if (!empty($_FILES['attachment']["tmp_name"])) {
+                $attach_file = $_FILES['attachment']['type'];
+                if ($attach_file == "application/pdf") {
+                    $folderName = 'reupload/';
+                    $attachment_file = $folderName . basename($_FILES['attachment']['name']);
+                    if (@move_uploaded_file($_FILES['attachment']["tmp_name"], $attachment_file)) {
+                        $name=$folderName.Input::get('study_id').'_PG0'.Input::get('pg').'_CRFID_'.Input::get('crf_id').'_CID_'.$user->data()->c_id.'_'.date('Y-m-d').'.pdf';
+                        $upload_crf=$user->renameFile($attachment_file,$name);
+                        $checkError = false;
+                        $attachment = $attachment_file;
+                    } else {
+                        $checkError = true;
+                        $errorMessage = 'Not uploaded to a Server';
+                    }
+                } else {
+                    $checkError = true;
+                    $errorMessage = 'Not a Supported Format';
+                }
+            }
+            if ($validate->passed() && $checkError == false) {
+                try {
+                    $user->createRecord('re_upload_crf', array(
+                        'study_id' => Input::get('study_id'),
+                        'pg' => Input::get('pg'),
+                        'up_date' => date('Y-m-d'),
+                        'crf_id' => Input::get('crf_id'),
+                        'q_id' => Input::get('q_id'),
+                        'attachment' =>  $upload_crf,
+                        'staff_id' => $user->data()->id
+                    ));
+                    $user->updateRecord('data_qry',array('status'=>4),Input::get('q_id'));
+                    $successMessage = 'CRF Uploaded Successful';
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+            } else {
+                $pageError = $validate->errors();
+            }
+        }
+    }
 }else{
     Redirect::to('index.php');
 }
@@ -1488,8 +1537,8 @@ if($user->isLoggedIn()) {
                     <?php if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){?>
                         <a class="pull-right btn btn-danger" href="#rise_query" data-toggle="modal" data-backdrop="static">Rise Query</a>
                     <?php }?>
-                    <a class="pull-right btn btn-info" href="info.php?id=17">Pending Query</a>
-                    <a class="pull-right btn btn-success" href="info.php?id=19">Solved Query</a>
+                    <!--<a class="pull-right btn btn-info" href="info.php?id=17">Pending Query</a>-->
+                    <!--<a class="pull-right btn btn-success" href="info.php?id=19">Solved Query</a>-->
                 </div>
                 <div class="content">
                     <table cellpadding="0" cellspacing="0" width="100%" class="table table-bordered table-striped sortable">
@@ -1508,28 +1557,31 @@ if($user->isLoggedIn()) {
                             <th width="5%">#</th>
                             <th width="15%">TB-STUDY-ID</th>
                             <th width="25%">MISSING VALUE</th>
-                            <th width="15%">COUNTRY</th>
-                            <th width="10%">STATUS</th>
+                            <th width="10%">PAGE</th>
+                            <th width="15%">ACTION</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php $x=1;$no=0;if($user->data()->access_level == 1 || $user->data()->access_level == 2 || $user->data()->access_level == 3){
                             //$data=$override->getSort('query_logs','status',0,'id');
-                            $data=$override->get('data_qry','status',0);
+                            $data=$override->get('data_qry','status',3);
                             //print_r($data);
                         }elseif ($user->data()->access_level == 4 || $user->data()->access_level == 5){
+                            if($user->data()->c_id == 2){$c=3;}elseif ($user->data()->c_id == 3){$c=2;}else{$c=$user->data()->c_id;}
                             //$data=$override->getSort2('query_logs','c_id',$user->data()->c_id,'status',0,'id');
-                            $data=$override->getSort2('data_qry','c_id',$user->data()->c_id,'status',0,'id');
+                            $data=$override->getSort2('data_qry','c_id',$c,'status',3,'id');
                         }elseif ($user->data()->access_level == 6){
+                            if($user->data()->c_id == 2){$c=3;}elseif ($user->data()->c_id == 3){$c=2;}else{$c=$user->data()->c_id;}
                             //$data=$override->getSort2('query_logs','s_id',$user->data()->s_id,'status',0,'id');
-                            $data=$override->getSort2('data_qry','c_id',$user->data()->c_id,'status',0,'id');
+                            $data=$override->getSort2('data_qry','c_id',$c,'status',3,'id');
                         }
                         foreach($data as $crf){
-                            $country = $override->get('country','id',$crf['c_id']) ?>
+                            $country = $override->get('country','id',$user->data()->c_id);
+                            $crfN = $override->get('crf_type','id',$crf['crf_id'])?>
                             <!--<tr>
                                 <td><?=$x?></td>
                                 <td><?=$crf['subject']?></td>
-                                <td><?=$user->customStringLength($crf['details'],80)?></td>
+                                <td><?=$user->customStringLength($crf['m_value'],80)?></td>
                                 <td><?=$crf['crf_id']?></td>
                                 <td><?=$crf['q_date']?></td>
                                 <td><div class="btn-group btn-group-xs"> <?php if($crf['status'] == 1){?><button class="btn btn-success">SOLVED</button> <?php }else{?><button class="btn btn-danger">NOT SOLVED</button><?php }?></div></td>
@@ -1539,10 +1591,64 @@ if($user->isLoggedIn()) {
                             <tr>
                                 <td><?=$x?></td>
                                 <td><?=$crf['study_id']?></td>
-                                <td><?=$crf['missing_values']?></td>
-                                <td><?=$country[0]['name']?></td>
-                                <td><div class="btn-group btn-group-xs"> <button class="btn btn-warning">unverified</button></div></td></td>
+                                <td><?=$crf['m_value']?></td>
+                                <!--<td><div class="btn-group btn-group-xs"> <button class="btn btn-warning">unverified</button></div></td></td>-->
+                                <td><?=$crf['pg']?></td>
+                                <td><div class="btn-group btn-group-xs"><a href="#re_upload" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="btn btn-info"><span class="icon-upload-alt"></span> Upload CRF</a></div></td>
                             </tr>
+                            <div class="modal" id="re_upload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form enctype="multipart/form-data" method="post">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">REUPLOAD CRFs</h4>
+                                            </div>
+                                            <div class="modal-body clearfix">
+                                                <div class="controls">
+                                                    <div class="form-row">
+                                                        <div class="col-md-5">
+                                                            <input type="hidden" name="q_id" value="<?=$crf['id']?>">
+                                                            <input type="hidden" name="crf_id" value="<?=$crf['crf_id']?>">
+                                                            <input type="text" name="tb_crf_id" class="form-control" value="" placeholder="<?=$crfN[0]['name']?>" disabled/>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input type="hidden" name="study_id" value="<?=$crf['study_id']?>">
+                                                            <input type="text" name="tb_crf_id" class="form-control" value="" placeholder="CRF ID: <?=$crf['study_id']?> " disabled/>
+                                                        </div>
+                                                        <div class="col-md-3" >
+                                                            <input type="hidden" name="pg" value="<?=$crf['pg']?>">
+                                                            <input type="text" name="tb_crf_id" class="form-control" value="" placeholder="PG <?=$crf['pg']?>" disabled/>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-md-12"></label>
+                                                    <div class="form-row">
+                                                        <div class="col-md-12">
+                                                            <div class="input-group file">
+                                                                <input type="text" class="form-control" placeholder="Select CRFs"/>
+                                                                <input type="file" name="attachment" required=""/>
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn btn-primary" type="button">Browse</button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-md-12">&nbsp;</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="pull-right col-md-3">
+                                                    <input type="submit" value="Submit" name="re_upload" class="btn btn-success btn-clean">
+                                                </div>
+                                                <div class="pull-right col-md-2">
+                                                    <button type="button" class="btn btn-default btn-clean" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <?php $x++;}?>
                         </tbody>
                     </table>
@@ -1793,6 +1899,46 @@ if($user->isLoggedIn()) {
                     </table>
                 </div>
             </div>
+        <?php }
+        elseif ($_GET['id'] == 21){?>
+            <div class="block">
+                <div class="header">
+                    <h2 style="color: #1DC116">QUERIES </h2>
+                </div>
+                <div class="content">
+                    <table cellpadding="0" cellspacing="0" width="100%" class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="35%">CRF NAME</th>
+                            <th width="10%">Queries</th>
+                            <th width="15%">VIEW</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php $x=1;$no=0;foreach($override->getData('crf_type') as $crfT){
+                            if($user->data()->access_level == 1 && $user->data()->access_level == 2 && $user->data()->access_level == 3){
+                                $no=$override->countNoRepeat2('data_qry','study_id','crf_id',$crfT['id'],'status',3);
+                            }elseif ($user->data()->access_level == 4 || $user->data()->access_level == 5 || $user->data()->access_level == 6){
+                                if($user->data()->c_id == 2){$c=3;}elseif ($user->data()->c_id == 3){$c=2;}else{$c=$user->data()->c_id;}
+                                $no=$override->countNoRepeat3('data_qry','study_id','c_id',$c,'crf_id',$crfT['id'],'status',3);
+                            }
+                            ?>
+                            <tr>
+                                <td><?=$x?></td>
+                                <td><?=$crfT['name']?></td>
+                                <td><div class="btn-group btn-group-xs"><button class="btn btn-info">&nbsp;<?=$no?>&nbsp;</button>&nbsp;&nbsp;<span>Loading <img src='img/owl/spinner-mini.gif' width="12" height="12" /></span></div></td>
+                                <td><div class="btn-group btn-group-xs"><a href="info.php?id=16" class="btn btn-info btn-clean"><span class="icon-eye-open"></span> Click to View</a></div></td>
+                            </tr>
+                            <?php $x++;}?>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        <?php }
+        elseif ($_GET['id'] == 22){?>
+
         <?php }?>
     </div>
 </div>

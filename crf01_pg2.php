@@ -203,9 +203,9 @@ function findText($id,$val){
         return $inputValue;
     }
 }
-//variable(1);
-//print_r(findText(3,'ward'));
-foreach($override->get('forms','qid',42) as $fid){//echo$fr.'  , ';
+
+//qid = 50 , 42
+foreach($override->get('forms','qid',50) as $fid){//echo$fr.'  , ';
     $dbv=variable($fid['fid']);$am=null;
     $text=$override->get('formboxverifytext','fid',$fid['fid']);
     if($text){$desc=$text[0]['val'];}else{$desc='';}
@@ -223,19 +223,23 @@ foreach($override->get('forms','qid',42) as $fid){//echo$fr.'  , ';
     }
     try {//print_r( $override->getValueT($fid['fid']));echo ' , ';
         // print_r($am['drug']);echo'  ,  ';
-        if(findText($fid['fid'],'tbsx_other')){$tbsx_other=findText($fid['fid'],'tbsx_other');}else{$tbsx_other='';}//print_r($ward);
-        if(findText($fid['fid'],'othercarefac')){$othercarefac=findText($fid['fid'],'othercarefac');}else{$othercarefac='';}//print_r($village);
+        if(findText($fid['fid'],'tbsx_other')){$tbsx_other=findText($fid['fid'],'tbsx_other');}else{$tbsx_other=' ';}//print_r($ward);
+        if(findText($fid['fid'],'othercarefac')){$othercarefac=findText($fid['fid'],'othercarefac');}else{$othercarefac=' ';}//print_r($village);
 
         //print_r($am);echo' , ';
         $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbenum'];
-        if($override->selectData4('crf01_pg02','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',$am['tbenum'])){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
+        $cntry=preg_replace('/[^A-Za-z0-9\-]/', '', $am['country']);
+        $inst=preg_replace('/[^A-Za-z0-9\-]/', '', $am['institution']);
+        $faci=preg_replace('/[^A-Za-z0-9\-]/', '', $am['facility']);
+        $tbnum=preg_replace('/[^A-Za-z0-9\-]/', '', $am['tbenum']);
+        if($override->selectData4('crf01_pg02','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',$tbnum)){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
         if($dbv && $dup==false){
             //print_r($tbsx_other);
             $user->createRecord('crf01_pg02', array(
-                'country' => $am['country'],
-                'institution' => $am['institution'],
-                'facility' => $am['facility'],
-                'tbenum' => $am['tbenum'],
+                'country' => $cntry,
+                'institution' => $inst,
+                'facility' => $faci,
+                'tbenum' => $tbnum,
                 'study_id' => $study_id,
                 'tbsx01' => $am['tbsx01'],
                 'tbsx01days' => $am['tbsx01days'],

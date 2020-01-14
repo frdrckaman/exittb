@@ -53,7 +53,7 @@ function variable($a){
                                 $frd[$va] .=$f['val'];
                                 break;
                             case 'vdate':
-                                $frd[$va] .=$f['val'];print_r($frd[$va]);echo ' , ';
+                                $frd[$va] .=$f['val'];//print_r($frd[$va]);echo ' , ';
                                 break;
                             case 'clinic':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
@@ -161,7 +161,7 @@ function variable($a){
                                 $frd[$va] =$f['val'];
                                 break;
                             case 'vdate':
-                                $frd[$va] =$f['val'];print_r($frd[$va]);echo ' , ';
+                                $frd[$va] =$f['val'];//print_r($frd[$va]);echo ' , ';
                                 break;
                             case 'clinic':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
@@ -277,9 +277,8 @@ function findText($id,$val){
         return $inputValue;
     }
 }
-//variable(1);
-//print_r(findText(3,'ward'));
-foreach($override->get('forms','qid',41) as $fid){//echo$fr.'  , ';
+//qid 41 , 49
+foreach($override->get('forms','qid',49) as $fid){//echo$fr.'  , ';
     $dbv=variable($fid['fid']);$am=null;
     $text=$override->get('formboxverifytext','fid',$fid['fid']);
     if($text){$desc=$text[0]['val'];}else{$desc='';}
@@ -297,19 +296,24 @@ foreach($override->get('forms','qid',41) as $fid){//echo$fr.'  , ';
     }
     try {//print_r( $override->getValueT($fid['fid']));echo ' , ';
         // print_r($am['drug']);echo'  ,  ';
-        if(findText($fid['fid'],'hospnum')){$hospnum=findText($fid['fid'],'hospnum');}else{$hospnum='';}//print_r($ward);
-        if(findText($fid['fid'],'chronicdx')){$chronicdx=findText($fid['fid'],'chronicdx');}else{$chronicdx='';}//print_r($village);
+        if(findText($fid['fid'],'hospnum')){$hospnum=findText($fid['fid'],'hospnum');}else{$hospnum=' ';}//print_r($ward);
+        if(findText($fid['fid'],'chronicdx')){$chronicdx=findText($fid['fid'],'chronicdx');}else{$chronicdx=' ';}//print_r($village);
 
         //print_r($am['drug']);echo' , ';
         if($override->selectData4('crf01_pg01','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',preg_replace('/[^A-Za-z0-9\-]/', '', $am['tbenum']))){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
         //print_r($am);echo '<br>';
         $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbenum'];
+        $cntry=preg_replace('/[^A-Za-z0-9\-]/', '', $am['country']);
+        $inst=preg_replace('/[^A-Za-z0-9\-]/', '', $am['institution']);
+        $faci=preg_replace('/[^A-Za-z0-9\-]/', '', $am['facility']);
+        $tbnum=preg_replace('/[^A-Za-z0-9\-]/', '', $am['tbenum']);
+        //print_r($study_id);echo ' , ';
         if($dbv && $dup==false){
             $user->createRecord('crf01_pg01', array(
-                'country' => $am['country'],
-                'institution' => $am['institution'],
-                'facility' => $am['facility'],
-                'tbenum' => $am['tbenum'],
+                'country' => $cntry,
+                'institution' => $inst,
+                'facility' => $faci,
+                'tbenum' => $tbnum,
                 'study_id' => $study_id,
                 'hospnum' => $hospnum,
                 'vdate' => $am['vdate'],
@@ -349,10 +353,12 @@ foreach($override->get('forms','qid',41) as $fid){//echo$fr.'  , ';
 
 }
 
-$arr1 = array('country','institution','facility','tbenum','hospnum','vdate','clinic','age','gender','marital','occupation','education','location','hivpos','hivposyr','hivres','onart','onartyr','tbcasecontact','chronicillness','chronicdx','alcohol','alcoholpres','tobacco','tobaccopres','drug','drugpres','tbtx','tbtxyr');
+$arr1 = array('country','cc','facility','tbenum','hospnum','vdate','clinic','age','gender','marital','occupation','education','location','hivpos','hivposyr','hivres','onart','onartyr','tbcasecontact','chronicillness','chronicdx','alcohol','alcoholpres','tobacco','tobaccopres','drug','drugpres','tbtx','tbtxyr');
 $arr2 = array('country','institution','facility','tbenum','tbsx01','tbsx01days','tbsx02','tbsx02days','tbsx03','tbsx03days','tbsx04','tbsx04days','tbsx05','tbsx05days','tbsx06','tbsx_other','tbsx06days','cough_care','carefac','othercarefac');
 $arr3 = array('country','institution','facility','tbenum','xpertsputum','xpertstool','smear','cxray','tbscore','cxtbcase','formdate');
 $arrE1 = array('country','institution','facility','enum','qn01_1','qn01_2','qn01_3','qn01_4','qn01_5','qn02_1','qn02_2','qn02_3','qn02_4');
 $arrE2 = array('country','institution','facility','enum','qn02_5','qn02_6','qn02_7','qn02_8a','qn02_8b','qn02_9a','qn02_9b','qn02_10','qn02_11','qn02_12','qn02_13a','qn02_13b','qn02_14a','qn02_14b','qn02_15','qn02_16');
 $arrE3 = array('country','institution','facility','enum','qqn02_17','qn02_18','qqn02_19','qn02_20','qn02_21','qn02_22','qn02_23a','qn02_23b','qn02_24a','qn02_24b','qn02_25');
 $arrE4 = array('country','institution','facility','enum','intsign','intcode','formdate','compinitials','compsign','compdate');
+$arrN1 = array('country','institution','facility','tbenum','hospnum','vdate','clinic','age','marital','gender','occupation','education','location','hivpos','hivposyr','hivres','onart','onartyr','tbcasecontact','chronicillness','chronicillnessdx','alcohol','alcoholpres','tobacco','tobaccopres','drug','drugpres','tbtx','tbtxyr','tbsx01','tbsx02','tbsx01days','tbsx02days');
+$arrN2 = array('country','institution','facility','tbenum','tbsx03','tbsx03days','tbsx04','tbsx04days','tbsx05','tbsx05days','tbsx06','tbsx06days','cough_care','carefac','othercarefac','xpertsputum','xpertstool','smear','cxray','tbscore','cxtbcase','formdate');

@@ -3,7 +3,7 @@ class OverideData{
     private $_pdo;
     function __construct(){
         try {
-            $this->_pdo = new PDO('mysql:host=127.0.0.1;dbname=exittb','root','');
+            $this->_pdo = new PDO('mysql:host=localhost;dbname=exittb','frd','frdrck@1');
         }catch (PDOException $e){
             $e->getMessage();
         }

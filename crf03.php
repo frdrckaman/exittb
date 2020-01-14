@@ -4,36 +4,120 @@ $user = new User();
 $override = new OverideData();$data=null;
 $pageError = null;$successMessage = null;$errorM = false;$errorMessage = null;
 if($user->isLoggedIn()){
-    $data = $override->get('crf01_pg03','study_id','21100007');
+    //$data = $override->get('crf01_pg03','study_id','21100007');
     if(Input::exists('post')){
-        $validate = new validate();
-        $validate = $validate->check($_POST, array(
-            'study_id' => array(
-                'required' => true,
-            ),
+        if(Input::get('crf01_pg03')){
+            $validate = new validate();
+            $validate = $validate->check($_POST, array(
+                'study_id' => array(
+                    'required' => true,
+                ),
 
-        ));
-        if ($validate->passed()) {
-            try {
-                $user->updateRecord('crf01_pg03', array(
-                    'study_id' => Input::get('study_id'),
-                    'xpertsputum' => Input::get('xpertsputum'),
-                    'xpertstool' => Input::get('xpertstool'),
-                    'smear' => Input::get('smear'),
-                    'cxray' => Input::get('cxray'),
-                    'tbscore'=>Input::get('tbscore'),
-                    'cxtbcase' => Input::get('cxtbcase'),
-                    'formdate' => date('dmY',strtotime(Input::get('formdate'))),
-                ),$data[0]['id']);
-                $successMessage = 'Changes Made Successful';
-                $data = $override->get('crf01_pg03','study_id','21100007');
+            ));
+            if ($validate->passed()) {
+                try {
+                    $user->updateRecord('crf01_pg03', array(
+                        'study_id' => Input::get('study_id'),
+                        'xpertsputum' => Input::get('xpertsputum'),
+                        'xpertstool' => Input::get('xpertstool'),
+                        'smear' => Input::get('smear'),
+                        'cxray' => Input::get('cxray'),
+                        'tbscore'=>Input::get('tbscore'),
+                        'cxtbcase' => Input::get('cxtbcase'),
+                        'formdate' => date('dmY',strtotime(Input::get('formdate'))),
+                    ),Input::get('id'));
+                    $successMessage = 'Changes Made Successful';
+                    //try {$user->updateRecord('data_qry', array('status' => 1), Input::get('id'));} catch (Exception $e) {}
+                    try {$user->updateRecord('qry', array('status' => 1), Input::get('id'));} catch (Exception $e) {}
+                    unlink(Input::get('img'));
+                    //$query = $override->lastRow2('data_qry','status',0,'pg',1,'id');
+                    $query = $override->lastRow2('qry','status',0,'pg',3,'id');
+                    if($query){
+                        $data = $override->get('crf01_pg03','study_id',$query[0]['study_id']);
+                        //try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+                        try {$user->updateRecord('qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+                        $pdf = $override->get('forms','fid',$query[0]['fid']);
+                        $pathToPdf=$pdf[0]['description'];
+                        /*$svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+                        $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+                        $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+                        $pdfImg->saveImage($pathToWhereImageShouldBeStored);*/
+                        $imgL='crf_images/'.$svDoc.'.jpg';
+                    }else{
+                        $successMessage = 'No More Forms Available';
+                    }
 
-            } catch (Exception $e) {
-                die($e->getMessage());
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+            } else {
+                $pageError = $validate->errors();
             }
-        } else {
-            $pageError = $validate->errors();
+        }elseif (Input::get('cl_qry')){
+            $validate = new validate();
+            $validate = $validate->check($_POST, array(
+                'study_id' => array(
+                    'required' => true,
+                ),
+
+            ));
+            if ($validate->passed()) {
+                try {
+                    $user->updateRecord('crf01_pg03', array(
+                        'study_id' => Input::get('study_id'),
+                        'xpertsputum' => Input::get('xpertsputum'),
+                        'xpertstool' => Input::get('xpertstool'),
+                        'smear' => Input::get('smear'),
+                        'cxray' => Input::get('cxray'),
+                        'tbscore'=>Input::get('tbscore'),
+                        'cxtbcase' => Input::get('cxtbcase'),
+                        'formdate' => date('dmY',strtotime(Input::get('formdate'))),
+                    ),Input::get('id'));
+                    $successMessage = 'Query added Successful';
+                    //try {$user->updateRecord('data_qry', array('status' => 3), Input::get('id'));} catch (Exception $e) {}
+                    try {$user->updateRecord('qry', array('status' => 3), Input::get('id'));} catch (Exception $e) {}
+                    unlink(Input::get('img'));
+                    //$query = $override->lastRow2('data_qry','status',0,'pg',1,'id');
+                    $query = $override->lastRow2('qry','status',0,'pg',3,'id');
+                    if($query){
+                        $data = $override->get('crf01_pg03','study_id',$query[0]['study_id']);
+                        //try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+                        try {$user->updateRecord('qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+                        /*$pdf = $override->get('forms','fid',$query[0]['fid']);
+                        $pathToPdf=$pdf[0]['description'];
+                        $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+                        $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+                        $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+                        $pdfImg->saveImage($pathToWhereImageShouldBeStored);*/
+                        $imgL='crf_images/'.$svDoc.'.jpg';
+                    }else{
+                        $successMessage = 'No More Forms Available';
+                    }
+
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+            } else {
+                $pageError = $validate->errors();
+            }
         }
+    }else{
+        $query = $override->lastRow2('qry','status',0,'pg',3,'id');
+        if($query){
+            $data = $override->get('crf01_pg03','study_id',$query[0]['study_id']);
+            //try {$user->updateRecord('data_qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+            try {$user->updateRecord('qry', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
+            $pdf = $override->get('forms','fid',$query[0]['fid']);
+            $pathToPdf=$pdf[0]['description'];
+            $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+            /*$pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+            $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+            $pdfImg->saveImage($pathToWhereImageShouldBeStored);
+            $imgL='crf_images/'.$svDoc.'.jpg';*/
+        }else{
+            $successMessage = 'No More Forms Available';
+        }
+
     }
 }else{
     Redirect::to('index.php');
@@ -120,6 +204,7 @@ if($user->isLoggedIn()){
                                 <div class="form-row" id="s1">
                                     <div class="col-md-2">STUDY ID:</div>
                                     <div class="col-md-6" id="v_code">
+                                        <input type="hidden" name="id" value="<?=$data[0]['id']?>">
                                         <input type="text" name="study_id" class="form-control" value="<?=$data[0]['study_id']?>" required=""/>
                                     </div>
                                 </div>
@@ -222,7 +307,10 @@ if($user->isLoggedIn()){
                         </div>
                         <div class="modal-footer">
                             <div class="pull-right col-md-3">
-                                <input type="submit" name="crf01_pg3" value="SUBMIT" class="btn btn-success">
+                                <input type="submit" name="crf01_pg03" value="SUBMIT" class="btn btn-success">
+                            </div>
+                            <div class="pull-left col-md-3">
+                                <input type="submit" name="cl_qry" value="QUERY" class="btn btn-warning">
                             </div>
                         </div>
                     </form>

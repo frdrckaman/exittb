@@ -36,9 +36,10 @@ $country=$override->get('country','id',$user->data()->c_id);
         <a href="info.php?id=8" class="list-group-item"><span class="icon-file-text"></span>Reports<i class="icon-angle-right pull-right"></i></a>
         <a href="charts.php" class="list-group-item"><span class="icon-bar-chart"></span>Statistics<i class="icon-angle-right pull-right"></i></a>-->
         <?php if($user->data()->access_level > 0 && $user->data()->access_level<=5){?>
-            <a href="info.php?id=8" class="list-group-item"><span class="icon-file-text"></span>Reports<i class="icon-angle-right pull-right"></i></a>
+            <!--<a href="info.php?id=8" class="list-group-item"><span class="icon-file-text"></span>Reports<i class="icon-angle-right pull-right"></i></a>-->
+            <!--<a href="info.php?id=8" class="list-group-item"><span class="icon-download"></span>Download<i class="icon-angle-right pull-right"></i></a>-->
         <?php }?>
-        <a href="info.php?id=16" class="list-group-item"><span class="icon-cogs"></span>Queries<i class="icon-angle-right pull-right"></i></a>
+        <a href="info.php?id=21" class="list-group-item"><span class="icon-cogs"></span>Queries<i class="icon-angle-right pull-right"></i></a>
         <a href="#suggestion" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="list-group-item"><span class="icon-edit-sign"></span>Suggestion<i class="icon-angle-right pull-right"></i></a>
         <a href="logout.php" class="list-group-item"><span class="icon-off"></span>Logout<i class="icon-angle-right pull-right"></i></a>
     </div>

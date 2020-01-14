@@ -145,9 +145,8 @@ function findText($id,$val){
         return $inputValue;
     }
 }
-//variable(1);
-//print_r(findText(3,'ward'));
-foreach($override->get('forms','qid',43) as $fid){//echo$fr.'  , ';
+// qid 51 , 43
+foreach($override->get('forms','qid',51) as $fid){//echo$fr.'  , ';
     $dbv=variable($fid['fid']);$am=null;
     $text=$override->get('formboxverifytext','fid',$fid['fid']);
     if($text){$desc=$text[0]['val'];}else{$desc='';}
@@ -165,19 +164,23 @@ foreach($override->get('forms','qid',43) as $fid){//echo$fr.'  , ';
     }
     try {//print_r( $override->getValueT($fid['fid']));echo ' , ';
         // print_r($am['drug']);echo'  ,  ';
-        if(findText($fid['fid'],'cxtbcase')){$cxtbcase=findText($fid['fid'],'cxtbcase');}else{$cxtbcase='';}//print_r($ward);
+        if(findText($fid['fid'],'cxtbcase')){$cxtbcase=findText($fid['fid'],'cxtbcase');}else{$cxtbcase=' ';}//print_r($ward);
 
         //print_r($am);echo' , ';
-        $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbenum'];
-        print_r($study_id);echo ' , ';
+        $cntry=preg_replace('/[^A-Za-z0-9\-]/', '', $am['country']);
+        $inst=preg_replace('/[^A-Za-z0-9\-]/', '', $am['institution']);
+        $faci=preg_replace('/[^A-Za-z0-9\-]/', '', $am['facility']);
+        $tbnum=preg_replace('/[^A-Za-z0-9\-]/', '', $am['tbenum']);
+        $study_id = $am['country'].$am['institution'].$am['facility'].$tbnum;
+        //print_r($study_id);echo ' , ';
         if(!str_replace(' ', '', $study_id) == ''){
-            if($override->selectData4('crf01_pg03','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',$am['tbenum'])){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
+            if($override->selectData4('crf01_pg03','country',$am['country'],'institution',$am['institution'],'facility',$faci,'tbenum',$tbnum)){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
             if($dbv && $dup==false){ //print_r($am['tbscore']);echo' , ';
                 $user->createRecord('crf01_pg03', array(
-                    'country' => $am['country'],
-                    'institution' => $am['institution'],
-                    'facility' => $am['facility'],
-                    'tbenum' => $am['tbenum'],
+                    'country' => $cntry,
+                    'institution' => $inst,
+                    'facility' => $faci,
+                    'tbenum' => $tbnum,
                     'study_id' => $study_id,
                     'xpertsputum' => $am['xpertsputum'],
                     'xpertstool' => $am['xpertstool'],

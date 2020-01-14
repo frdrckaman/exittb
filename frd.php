@@ -1,7 +1,9 @@
 <?php
 require_once 'php/core/init.php';
 $user = new User();
+$email = new Email();
 $override = new OverideData();
+$all = '';
 /*
 $pdo = null;
 
@@ -61,8 +63,29 @@ if (!empty($_FILES['attachment']["tmp_name"])) {
 $im->setImageFormat('jpg');
 header('Content-Type: image/jpeg');
 echo $im;*/
-$qrys = $override->getData('data_qry');
-print_r(date('dmY',strtotime('')))
 
-?>
+//$qrys = $override->getData('data_qry');
+//print_r(date('dmY',strtotime('')))
+
+//print_r($body);
+//if($email->emailSend('frdrckaman@gmail.com','Re-upload of CRF after Queries have been Resolve',$body)){echo 'Good';}
+
+foreach ($override->getData('crf01_pg03') as $data){
+    try {
+        $user->createRecord('qry', array(
+            'study_id' => $data['study_id'],
+            'fid' => $data['fid'],
+            'staff_id' => 0,
+            'rec_date' => ' ',
+            'pg' => 3,
+            'status' => 0));
+        echo 'Good';
+    } catch (Exception $e) {
+        die($e->getMessage());
+    }
+}
+
+
+
+
 
