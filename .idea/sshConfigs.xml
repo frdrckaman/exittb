@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="195.110.58.19" id="beeb919e-f832-4370-8cea-3d7df5ee918a" port="22" customName="system.exit-tb.org" nameFormat="CUSTOM" username="root" />
+      <sshConfig authType="PASSWORD" host="195.110.58.19" id="33d2a31b-0d74-4452-981c-41eecb972dd0" port="22" customName="quexf.exit-tb.org" nameFormat="CUSTOM" username="root" />
+    </configs>
+  </component>
+</project>

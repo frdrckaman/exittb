@@ -278,78 +278,83 @@ function findText($id,$val){
     }
 }
 //qid 41 , 49
+$mq=0;
 foreach($override->get('forms','qid',49) as $fid){//echo$fr.'  , ';
     $dbv=variable($fid['fid']);$am=null;
-    $text=$override->get('formboxverifytext','fid',$fid['fid']);
-    if($text){$desc=$text[0]['val'];}else{$desc='';}
-    $am=null;$stf='';
-    $arr = array('country','institution','facility','tbenum','hospnum','vdate','clinic','age','gender','marital','occupation','education','location','hivpos','hivposyr','hivres','onart','onartyr','tbcasecontact','chronicillness','chronicdx','alcohol','alcoholpres','tobacco','tobaccopres','drug','drugpres','tbtx','tbtxyr');
-    foreach($arr as $ar){//print_r($ar);
-        if($dbv){
-            if(array_key_exists($ar,$dbv)){
-                if(isset($am[$ar])){$am[$ar] .= $dbv[$ar];}else{$am[$ar] = $dbv[$ar];}
-            }else {
-                if(isset($am[$ar])){$am[$ar] .= ' ';}else{$am[$ar] = ' ';}
+    if($fid['fid']!=11484){
+        $text=$override->get('formboxverifytext','fid',$fid['fid']);
+        if($text){$desc=$text[0]['val'];}else{$desc='';}
+        $am=null;$stf='';
+        $arr = array('country','institution','facility','tbenum','hospnum','vdate','clinic','age','gender','marital','occupation','education','location','hivpos','hivposyr','hivres','onart','onartyr','tbcasecontact','chronicillness','chronicdx','alcohol','alcoholpres','tobacco','tobaccopres','drug','drugpres','tbtx','tbtxyr');
+        foreach($arr as $ar){//print_r($ar);
+            if($dbv){
+                if(array_key_exists($ar,$dbv)){
+                    if(isset($am[$ar])){$am[$ar] .= $dbv[$ar];}else{$am[$ar] = $dbv[$ar];}
+                }else {
+                    if(isset($am[$ar])){$am[$ar] .= ' ';}else{$am[$ar] = ' ';}
+                }
+                $x++;
             }
-            $x++;
         }
-    }
-    try {//print_r( $override->getValueT($fid['fid']));echo ' , ';
-        // print_r($am['drug']);echo'  ,  ';
-        if(findText($fid['fid'],'hospnum')){$hospnum=findText($fid['fid'],'hospnum');}else{$hospnum=' ';}//print_r($ward);
-        if(findText($fid['fid'],'chronicdx')){$chronicdx=findText($fid['fid'],'chronicdx');}else{$chronicdx=' ';}//print_r($village);
+        try {//print_r( $override->getValueT($fid['fid']));echo ' , ';
+            // print_r($am['drug']);echo'  ,  ';
+            if(findText($fid['fid'],'hospnum')){$hospnum=findText($fid['fid'],'hospnum');}else{$hospnum=' ';}//print_r($ward);
+            if(findText($fid['fid'],'chronicdx')){$chronicdx=findText($fid['fid'],'chronicdx');}else{$chronicdx=' ';}//print_r($village);
 
-        //print_r($am['drug']);echo' , ';
-        if($override->selectData4('crf01_pg01','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',preg_replace('/[^A-Za-z0-9\-]/', '', $am['tbenum']))){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
-        //print_r($am);echo '<br>';
-        $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbenum'];
-        $cntry=preg_replace('/[^A-Za-z0-9\-]/', '', $am['country']);
-        $inst=preg_replace('/[^A-Za-z0-9\-]/', '', $am['institution']);
-        $faci=preg_replace('/[^A-Za-z0-9\-]/', '', $am['facility']);
-        $tbnum=preg_replace('/[^A-Za-z0-9\-]/', '', $am['tbenum']);
-        //print_r($study_id);echo ' , ';
-        if($dbv && $dup==false){
-            $user->createRecord('crf01_pg01', array(
-                'country' => $cntry,
-                'institution' => $inst,
-                'facility' => $faci,
-                'tbenum' => $tbnum,
-                'study_id' => $study_id,
-                'hospnum' => $hospnum,
-                'vdate' => $am['vdate'],
-                'clinic' => $am['clinic'],
-                'age' => $am['age'],
-                'gender' => $am['gender'],
-                'marital' => $am['marital'],
-                'occupation' => $am['occupation'],
-                'education' => $am['education'],
-                'location' => $am['location'],
-                'hivpos' => $am['hivpos'],
-                'hivposyr' => $am['hivposyr'],
-                'hivres' => $am['hivres'],
-                'onart'=>$am['onart'],
-                'onartyr' => $am['onartyr'],
-                'tbcasecontact' => $am['tbcasecontact'],
-                'chronicillness' => $am['chronicillness'],
-                'chronicdx' => $chronicdx,
-                'alcohol' => $am['alcohol'],
-                'alcoholpres' => $am['alcoholpres'],
-                'tobacco'=>$am['tobacco'],
-                'tobaccopres' => $am['tobaccopres'],
-                'drug' => $am['drug'],
-                'drugpres' => $am['drugpres'],
-                'tbtx' => $am['tbtx'],
-                'tbtxyr' => $am['tbtxyr'],
-                'status' => 1,
-                'fid' => $fid['fid']
-            ));
-            //$successMessage = 'Staff have been Successful Registered';
-            echo'Good';
+            print_r($am);echo' ==> '.$fid['fid'];
+            //if($override->selectData4('crf01_pg01','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',preg_replace('/[^A-Za-z0-9\-]/', '', $am['tbenum']))){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
+
+            //print_r($am);echo '<br>';
+            $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbenum'];
+            if($override->get('crf01_pg01','study_id',$study_id)){$dup=true;}else{$dup=false;}
+            $cntry=preg_replace('/[^A-Za-z0-9\-]/', '', $am['country']);
+            $inst=preg_replace('/[^A-Za-z0-9\-]/', '', $am['institution']);
+            $faci=preg_replace('/[^A-Za-z0-9\-]/', '', $am['facility']);
+            $tbnum=preg_replace('/[^A-Za-z0-9\-]/', '', $am['tbenum']);
+            //print_r($study_id);echo ' , ';
+            if($dbv && $dup==false){
+//                $user->createRecord('crf01_pg01', array(
+//                    'country' => $cntry,
+//                    'institution' => $inst,
+//                    'facility' => $faci,
+//                    'tbenum' => $tbnum,
+//                    'study_id' => $study_id,
+//                    'hospnum' => $hospnum,
+//                    'vdate' => $am['vdate'],
+//                    'clinic' => $am['clinic'],
+//                    'age' => $am['age'],
+//                    'gender' => $am['gender'],
+//                    'marital' => $am['marital'],
+//                    'occupation' => $am['occupation'],
+//                    'education' => $am['education'],
+//                    'location' => $am['location'],
+//                    'hivpos' => $am['hivpos'],
+//                    'hivposyr' => $am['hivposyr'],
+//                    'hivres' => $am['hivres'],
+//                    'onart'=>$am['onart'],
+//                    'onartyr' => $am['onartyr'],
+//                    'tbcasecontact' => $am['tbcasecontact'],
+//                    'chronicillness' => $am['chronicillness'],
+//                    'chronicdx' => $chronicdx,
+//                    'alcohol' => $am['alcohol'],
+//                    'alcoholpres' => $am['alcoholpres'],
+//                    'tobacco'=>$am['tobacco'],
+//                    'tobaccopres' => $am['tobaccopres'],
+//                    'drug' => $am['drug'],
+//                    'drugpres' => $am['drugpres'],
+//                    'tbtx' => $am['tbtx'],
+//                    'tbtxyr' => $am['tbtxyr'],
+//                    'status' => 1,
+//                    'fid' => $fid['fid']
+//                ));
+//                //$successMessage = 'Staff have been Successful Registered';
+//                echo'Good';
+            }
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
-    } catch (Exception $e) {
-        die($e->getMessage());
+        $fr++;
     }
-    $fr++;
 
 }
 

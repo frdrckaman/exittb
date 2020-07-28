@@ -2,20 +2,18 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="94ed1e98-b9da-4fe4-8957-91046cc4920e" name="system.exit-tb.org" url="http://195.110.58.19">
-        <fileTransfer host="195.110.58.19" port="22" rootFolder="/var/www/system.exit-tb.org/public_html" accessType="SFTP">
+      <webServer id="94ed1e98-b9da-4fe4-8957-91046cc4920e" name="system.exit-tb.org" url="http://localhost/exittb">
+        <fileTransfer rootFolder="/var/www/system.exit-tb.org/public_html" accessType="SFTP" host="195.110.58.19" port="22" sshConfigId="beeb919e-f832-4370-8cea-3d7df5ee918a" sshConfig="system.exit-tb.org">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
-          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
-      <webServer id="f2e21534-dec2-4bc3-a167-46776e93d2e4" name="quexf.exit-tb.org" url="http://195.110.58.19">
-        <fileTransfer host="195.110.58.19" port="22" rootFolder="/var/www/quexf.exit-tb.org/public_html" accessType="SFTP">
+      <webServer id="f2e21534-dec2-4bc3-a167-46776e93d2e4" name="quexf.exit-tb.org" url="http://localhost/exittb">
+        <fileTransfer rootFolder="/var/www/quexf.exit-tb.org/public_html" accessType="SFTP" host="195.110.58.19" port="22" sshConfigId="33d2a31b-0d74-4452-981c-41eecb972dd0" sshConfig="quexf.exit-tb.org">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
-          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
     </option>
