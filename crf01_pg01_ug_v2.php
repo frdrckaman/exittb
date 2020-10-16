@@ -322,7 +322,7 @@ foreach($override->get('forms','qid',74) as $fid){//echo$fr.'  , ';
     try {//print_r( $override->getValueT($fid['fid']));echo ' , ';
         //print_r($am['drug']);echo'  ,  ';
         if(findText($fid['fid'],'hospnum')){$hospnum=findText($fid['fid'],'hospnum');}else{$hospnum=' ';}//print_r($ward);
-        if(findText($fid['fid'],'chronicillnessdx')){$chronicdx=findText($fid['fid'],'chronicillnessdx');}else{$chronicdx=' ';}//print_r($village);
+        if(findText($fid['fid'],'chronicdx')){$chronicdx=findText($fid['fid'],'chronicdx');}else{$chronicdx=' ';}//print_r($village);
 
         //print_r($am['drug']);echo' , ';
         if($override->selectData4('crf01_pg01_ug_v2','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',preg_replace('/[^A-Za-z0-9\-]/', '', $am['tbenum']))){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
@@ -360,7 +360,7 @@ foreach($override->get('forms','qid',74) as $fid){//echo$fr.'  , ';
                 'onartyr' => $am['onartyr'],
                 'tbcasecontact' => $am['tbcasecontact'],
                 'chronicillness' => $am['chronicillness'],
-                'chronicillnessdx' => $chronicdx,
+                'chronicdx' => $chronicdx,
                 'alcohol' => $am['alcohol'],
                 'alcoholpres' => $am['alcoholpres'],
                 'tobacco'=>$am['tobacco'],

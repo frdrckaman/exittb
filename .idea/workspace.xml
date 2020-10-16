@@ -20,11 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5167cc8c-ff29-49a6-a789-6e1c601de56c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/crf01_pg01_ug_v2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf01_pg02_ug_v2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/crf01_pg03_ug_v2.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frd.php" beforeDir="false" afterPath="$PROJECT_DIR$/frd.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crf01_pg01_ug_v2.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf01_pg01_ug_v2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crf01_pg02_ug_v2.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf01_pg02_ug_v2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crf01_pg03_ug_v2.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf01_pg03_ug_v2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +280,8 @@
       <workItem from="1601970214842" duration="241000" />
       <workItem from="1601970465477" duration="608000" />
       <workItem from="1602397374779" duration="4628000" />
-      <workItem from="1602756035278" duration="5609000" />
+      <workItem from="1602756035278" duration="11404000" />
+      <workItem from="1602831211837" duration="5832000" />
     </task>
     <servers />
   </component>

@@ -45,7 +45,7 @@ function variable($a){
                             case 'facility':
                                 $frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsnum':
+                            case 'tbenum':
                                 $frd[$va] .=$f['val'];
                                 break;
                             case 'ptenum':
@@ -94,20 +94,9 @@ function variable($a){
                                 $frd[$va] .=$f['val'];
                                 break;
                             case 'formdate':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
-                                //$frd[$va] .=$f['val'];
-                                break;
-                            case 'dateVerified':
                                 $frd[$va] .=$f['val'];
                                 break;
-                            case 'compiledBy':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
-                                break;
-                            case 'verifiedBy':
+                            case 'dateVerified':
                                 $frd[$va] .=$f['val'];
                                 break;
                         }
@@ -122,7 +111,7 @@ function variable($a){
                             case 'facility':
                                 $frd[$va] =$f['val'];
                                 break;
-                            case 'tbsnum':
+                            case 'tbenum':
                                 $frd[$va] =$f['val'];
                                 break;
                             case 'ptenum':
@@ -171,21 +160,10 @@ function variable($a){
                                 $frd[$va] =$f['val'];
                                 break;
                             case 'formdate':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
-                                //$frd[$va] .=$f['val'];
+                                $frd[$va] =$f['val'];
                                 break;
                             case 'dateVerified':
-                                $frd[$va] .=$f['val'];
-                                break;
-                            case 'compiledBy':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] = $bx[0]['value'];
-                                break;
-                            case 'verifiedBy':
-                                $frd[$va] .=$f['val'];
+                                $frd[$va] =$f['val'];
                                 break;
                         }
                     }
@@ -219,7 +197,7 @@ function findText($id,$val){
 foreach($override->get('forms','qid',76) as $fid){//echo$fr.'  , ';
     $dbv=variable($fid['fid']);$am=null;
     $am=null;$stf='';
-    $arr = array('country','institution','facility','tbenum','ptenum','tbsx01','tbsx01days','tbsx02','tbsx02days','tbsx03','tbsx03days','tbsx04','tbsx04days','tbsx05','tbsx05days','tbsx06','tbsx06days','tbsx_other','cough_care','carefac','othercarefac','xpertsputumDone','xpertsputum','xpertstoolDone','xpertstool');
+    $arr = array('country','institution','facility','tbenum','ptenum','smearDone','smear','tbscore','cxtbcaseDone','cxtbcase','lf_Lamdone','lf_LamResults','diagnosis','formdate','dateVerified','compiledBy','verifiedBy');
     foreach($arr as $ar){//print_r($ar);
         if($dbv){
             if(array_key_exists($ar,$dbv)){
@@ -232,20 +210,25 @@ foreach($override->get('forms','qid',76) as $fid){//echo$fr.'  , ';
     }
     try {
         //print_r($am);
-        if($override->selectData4('crf01_pg03_ug_v2','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbsnum',$am['tbsnum'])){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
-        $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbsnum'];
+        //if($override->selectData4('crf01_pg03_ug_v2','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',$am['tbenum'])){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
+        $cntry=preg_replace('/[^A-Za-z0-9\-]/', '', $am['country']);
+        $inst=preg_replace('/[^A-Za-z0-9\-]/', '', $am['institution']);
+        $faci=preg_replace('/[^A-Za-z0-9\-]/', '', $am['facility']);
+        $tbnum=preg_replace('/[^A-Za-z0-9\-]/', '', $am['tbenum']);
+        $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbenum'];
+        if($override->selectData4('crf01_pg03_ug_v2','country',$cntry,'institution',$inst,'facility',$faci,'tbenum',$tbnum)){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
+        $study_id = preg_replace('/[^A-Za-z0-9\-]/', '', $study_id);
         if($dbv && $dup==false){
             $user->createRecord('crf01_pg03_ug_v2', array(
-                'country' => $am['country'],
-                'institution' => $am['institution'],
-                'facility' => $am['facility'],
-                'tbsnum' => $am['tbsnum'],
+                'country' => $cntry,
+                'institution' => $inst,
+                'facility' => $faci,
+                'tbenum' => $tbnum,
                 'study_id' => $study_id,
                 'ptenum' => $am['ptenum'],
                 'smearDone' => $am['smearDone'],
                 'smear' => $am['smear'],
                 'tbscore' => $am['tbscore'],
-                'cxray' => $am['cxray'],
                 'cxtbcaseDone' => $am['cxtbcaseDone'],
                 'cxtbcase' => $am['cxtbcase'],
                 'lf_Lamdone'=>$am['lf_Lamdone'],
@@ -255,6 +238,7 @@ foreach($override->get('forms','qid',76) as $fid){//echo$fr.'  , ';
                 'dateVerified' => $am['dateVerified'],
                 'compiledBy' => $am['compiledBy'],
                 'verifiedBy' => $am['verifiedBy'],
+                'status' => 1,
                 'fid' => $fid['fid']
             ));
             //$successMessage = 'Staff have been Successful Registered';
@@ -269,6 +253,6 @@ foreach($override->get('forms','qid',76) as $fid){//echo$fr.'  , ';
 
 $arr1 = array('country','institution','facility','tbenum','ptenum','hospnum','vdate','clinic','age','gender','marital','occupation','education','location','hivpos','hivposyr','hivres','onart','onartyr','clinicalStage','missing','whoStage','tbcasecontact','chronicillness','chronicdx','alcohol','alcoholpres','tobacco','tobaccopres','drug','drugpres','tbtx','tbtxyr');
 $arr2 = array('country','institution','facility','tbenum','ptenum','tbsx01','tbsx01days','tbsx02','tbsx02days','tbsx03','tbsx03days','tbsx04','tbsx04days','tbsx05','tbsx05days','tbsx06','tbsx06days','tbsx_other','cough_care','carefac','othercarefac','xpertsputumDone','xpertsputum','xpertstoolDone','xpertstool');
-$arr3 = array('country','institution','facility','tbenum','ptenum','smearDone','smear','tbscore','cxray','cxtbcaseDone','cxtbcase','lf_Lamdone','lf_LamResults','diagnosis','formdate','dateVerified','compiledBy','verifiedBy');
+$arr3 = array('country','institution','facility','tbenum','ptenum','smearDone','smear','tbscore','cxtbcaseDone','cxtbcase','lf_Lamdone','lf_LamResults','diagnosis','formdate','dateVerified','compiledBy','verifiedBy');
 
 

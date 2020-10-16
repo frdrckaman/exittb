@@ -45,17 +45,11 @@ function variable($a){
                             case 'facility':
                                 $frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsnum':
+                            case 'tbenum':
                                 $frd[$va] .=$f['val'];
                                 break;
                             case 'ptenum':
                                 $frd[$va] .=$f['val'];
-                                break;
-                            case 'tbtx':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                //$frd[$va] = $bx[0]['value'];
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx01':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
@@ -63,7 +57,7 @@ function variable($a){
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx01date':
+                            case 'tbsx01days':
                                 $frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx02':
@@ -72,7 +66,7 @@ function variable($a){
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx02date':
+                            case 'tbsx02days':
                                 $frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx03':
@@ -81,7 +75,7 @@ function variable($a){
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx03date':
+                            case 'tbsx03days':
                                 $frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx04':
@@ -90,7 +84,7 @@ function variable($a){
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx04date':
+                            case 'tbsx04days':
                                 $frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx05':
@@ -99,7 +93,7 @@ function variable($a){
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx05date':
+                            case 'tbsx05days':
                                 $frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx06':
@@ -107,7 +101,7 @@ function variable($a){
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 break;
-                            case 'tbsx06date':
+                            case 'tbsx06days':
                                 $frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx_other':
@@ -169,17 +163,11 @@ function variable($a){
                             case 'facility':
                                 $frd[$va] =$f['val'];
                                 break;
-                            case 'tbsnum':
+                            case 'tbenum':
                                 $frd[$va] =$f['val'];
                                 break;
                             case 'ptenum':
                                 $frd[$va] =$f['val'];
-                                break;
-                            case 'tbtx':
-                                $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
-                                //$frd[$va] = $bx[0]['value'];
-                                $frd[$va] = $bx[0]['label'];
-                                //$frd[$va] .=$f['val'];
                                 break;
                             case 'tbsx01':
                                 $bx=$override->get('boxes','bid',$f['bid']);//print_r($bx[0]['bid']);echo' , ';
@@ -187,7 +175,7 @@ function variable($a){
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx01date':
+                            case 'tbsx01days':
                                 $frd[$va] =$f['val'];
                                 break;
                             case 'tbsx02':
@@ -196,7 +184,7 @@ function variable($a){
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx02date':
+                            case 'tbsx02days':
                                 $frd[$va] =$f['val'];
                                 break;
                             case 'tbsx03':
@@ -205,7 +193,7 @@ function variable($a){
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx03date':
+                            case 'tbsx03days':
                                 $frd[$va] =$f['val'];
                                 break;
                             case 'tbsx04':
@@ -214,7 +202,7 @@ function variable($a){
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx04date':
+                            case 'tbsx04days':
                                 $frd[$va] =$f['val'];
                                 break;
                             case 'tbsx05':
@@ -223,7 +211,7 @@ function variable($a){
                                 //$frd[$va] = $bx[0]['value'];
                                 //$frd[$va] .=$f['val'];
                                 break;
-                            case 'tbsx05date':
+                            case 'tbsx05days':
                                 $frd[$va] =$f['val'];
                                 break;
                             case 'tbsx06':
@@ -231,7 +219,7 @@ function variable($a){
                                 $frd[$va] = $bx[0]['label'];
                                 //$frd[$va] = $bx[0]['value'];
                                 break;
-                            case 'tbsx06date':
+                            case 'tbsx06days':
                                 $frd[$va] =$f['val'];
                                 break;
                             case 'tbsx_other':
@@ -324,52 +312,49 @@ foreach($override->get('forms','qid',75) as $fid){//echo$fr.'  , ';
             $x++;
         }
     }
-    try {//print_r( $override->getValueT($fid['fid']));echo ' , ';
-        //print_r($am);echo'  ,  ';
-        /*if(findText($fid['fid'],'ward')){$ward=findText($fid['fid'],'ward');}else{$ward='';}
-        if(findText($fid['fid'],'village')){$village=findText($fid['fid'],'village');}else{$village='';}
-        if(findText($fid['fid'],'leadertencell')){$leadertencell=findText($fid['fid'],'leadertencell');}else{$leadertencell='';}
-        if(findText($fid['fid'],'phone1')){$phone1=findText($fid['fid'],'phone1');}else{$phone1='';}
-        if(findText($fid['fid'],'phone2')){$phone2=findText($fid['fid'],'phone2');}else{$phone2='';}
-        if(findText($fid['fid'],'chronicillness')){$chronicillness=findText($fid['fid'],'chronicillness');}else{$chronicillness='';}*/
-
+    try {
         //print_r($am);
-        if($override->selectData4('crf01_pg02_ug_v2','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbsnum',$am['tbsnum'])){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
-        $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbsnum'];
+        if($override->selectData4('crf01_pg02_ug_v2','country',$am['country'],'institution',$am['institution'],'facility',$am['facility'],'tbenum',$am['tbenum'])){$dup=true;}else{$dup=false;}//echo$f.' , ';$f++;
+        if(findText($fid['fid'],'othercarefac')){$othercarefac=findText($fid['fid'],'othercarefac');}else{$othercarefac=' ';}//p
+        if(findText($fid['fid'],'tbsx_other')){$tbsx_other=findText($fid['fid'],'tbsx_other');}else{$tbsx_other=' ';}//p
+        $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbenum'];
         if($dbv && $dup==false){
-            $user->createRecord('crf01_pg02_ug_v2', array(
-                'country' => $am['country'],
-                'institution' => $am['institution'],
-                'facility' => $am['facility'],
-                'tbsnum' => $am['tbsnum'],
-                'study_id' => $study_id,
-                'ptenum' => $am['ptenum'],
-                'tbtx' => $am['tbtx'],
-                'tbtxperiod' => $am['tbtxperiod'],
-                'tbsx01' => $am['tbsx01'],
-                'tbsx01date' => $am['tbsx01date'],
-                'tbsx02' => $am['tbsx02'],
-                'tbsx02date' => $am['tbsx02date'],
-                'tbsx03'=>$am['tbsx03'],
-                'tbsx03date' => $am['tbsx03date'],
-                'tbsx04' => $am['tbsx04'],
-                'tbsx04date' => $am['tbsx04date'],
-                'tbsx05' => $am['tbsx05'],
-                'tbsx05date' => $am['tbsx05date'],
-                'tbsx06' => $am['tbsx06'],
-                'tbsx06date'=>$am['tbsx06date'],
-                'tbsx_other' => $am['tbsx_other'],
-                'cough_care' => $am['cough_care'],
-                'carefac' => $am['carefac'],
-                'othercarefac' => $am['othercarefac'],
-                'xpertsputumDone' => $am['xpertsputumDone'],
-                'xpertsputum' => $am['xpertsputum'],
-                'xpertstoolDone' => $am['xpertstoolDone'],
-                'xpertstool' => $am['xpertstool'],
-                'fid' => $fid['fid']
-            ));
-            //$successMessage = 'Staff have been Successful Registered';
-            echo'Good';
+            // print_r($study_id);echo ' , ';
+            if(strlen($study_id) <=8){
+                $user->createRecord('crf01_pg02_ug_v2', array(
+                    'country' => $am['country'],
+                    'institution' => $am['institution'],
+                    'facility' => $am['facility'],
+                    'tbenum' => $am['tbenum'],
+                    'study_id' => $study_id,
+                    'ptenum' => $am['ptenum'],
+                    'tbsx01' => $am['tbsx01'],
+                    'tbsx01days' => $am['tbsx01days'],
+                    'tbsx02' => $am['tbsx02'],
+                    'tbsx02days' => $am['tbsx02days'],
+                    'tbsx03'=>$am['tbsx03'],
+                    'tbsx03days' => $am['tbsx03days'],
+                    'tbsx04' => $am['tbsx04'],
+                    'tbsx04days' => $am['tbsx04days'],
+                    'tbsx05' => $am['tbsx05'],
+                    'tbsx05days' => $am['tbsx05days'],
+                    'tbsx06' => $am['tbsx06'],
+                    'tbsx06days'=>$am['tbsx06days'],
+                    'tbsx_other' => $tbsx_other,
+                    'cough_care' => $am['cough_care'],
+                    'carefac' => $am['carefac'],
+                    'othercarefac' => $othercarefac,
+                    'xpertsputumDone' => $am['xpertsputumDone'],
+                    'xpertsputum' => $am['xpertsputum'],
+                    'xpertstoolDone' => $am['xpertstoolDone'],
+                    'xpertstool' => $am['xpertstool'],
+                    'status' => 1,
+                    'fid' => $fid['fid']
+                ));
+                //$successMessage = 'Staff have been Successful Registered';
+                echo'Good';
+            }
+
         }
     } catch (Exception $e) {
         die($e->getMessage());
