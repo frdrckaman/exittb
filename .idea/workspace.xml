@@ -19,14 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5167cc8c-ff29-49a6-a789-6e1c601de56c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/mcrf01.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crf01_pg02_ug_v2.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf01_pg02_ug_v2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frd.php" beforeDir="false" afterPath="$PROJECT_DIR$/frd.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/classes/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classes/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/topBar.php" beforeDir="false" afterPath="$PROJECT_DIR$/topBar.php" afterDir="false" />
-    </list>
+    <list default="true" id="5167cc8c-ff29-49a6-a789-6e1c601de56c" name="Default" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +79,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../eyecare" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="options.lastSelected" value="Configurable.PHP.Debug" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -320,6 +313,7 @@
       <workItem from="1644218928544" duration="22000" />
       <workItem from="1646045927482" duration="837000" />
       <workItem from="1646130497882" duration="3226000" />
+      <workItem from="1647380068592" duration="353000" />
     </task>
     <servers />
   </component>
