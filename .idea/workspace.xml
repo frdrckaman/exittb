@@ -20,10 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5167cc8c-ff29-49a6-a789-6e1c601de56c" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/mcrf01.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crf01_pg01_ug_v2.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf01_pg01_ug_v2.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crf01_pg02_ug_v2.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf01_pg02_ug_v2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crf01_pg03_ug_v2.php" beforeDir="false" afterPath="$PROJECT_DIR$/crf01_pg03_ug_v2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frd.php" beforeDir="false" afterPath="$PROJECT_DIR$/frd.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/classes/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classes/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/topBar.php" beforeDir="false" afterPath="$PROJECT_DIR$/topBar.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,40 +45,6 @@
         <option value="HTML File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>renameFile</find>
-      <find>study_id</find>
-      <find>ord</find>
-      <find>order by</find>
-      <find>des</find>
-      <find>update</find>
-      <find>crfD</find>
-      <find>crf01D</find>
-      <find>pdf</find>
-      <find>countNo</find>
-      <find>struct</find>
-      <find>dat</find>
-      <find>print_r</find>
-      <find>$data</find>
-      <find>getValueT</find>
-      <find>getValue1</find>
-      <find>like</find>
-      <find>dis</find>
-      <find>getSelectNoRepeat3</find>
-      <find>getSelectData3</find>
-      <find>selectd</find>
-      <find>countNoRepeat2</find>
-      <find>log</find>
-      <find>$am</find>
-      <find>la</find>
-      <find>data</find>
-      <find>data()</find>
-      <find>OBJ</find>
-      <find>las</find>
-      <find>pg</find>
-    </findStrings>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -109,6 +77,8 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="FullScreen" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
@@ -116,7 +86,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../movers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../eyecare" />
     <property name="options.lastSelected" value="Configurable.PHP.Debug" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -281,7 +251,75 @@
       <workItem from="1601970465477" duration="608000" />
       <workItem from="1602397374779" duration="4628000" />
       <workItem from="1602756035278" duration="11404000" />
-      <workItem from="1602831211837" duration="5832000" />
+      <workItem from="1602831211837" duration="5966000" />
+      <workItem from="1602989487784" duration="3000" />
+      <workItem from="1603440222540" duration="3261000" />
+      <workItem from="1603956715002" duration="4000" />
+      <workItem from="1603957570239" duration="9000" />
+      <workItem from="1604479722924" duration="638000" />
+      <workItem from="1604887098836" duration="26499000" />
+      <workItem from="1605091992937" duration="260000" />
+      <workItem from="1605094358911" duration="6940000" />
+      <workItem from="1605251290101" duration="2010000" />
+      <workItem from="1605512917549" duration="4895000" />
+      <workItem from="1605593916155" duration="14593000" />
+      <workItem from="1606284987986" duration="6506000" />
+      <workItem from="1606627724109" duration="2135000" />
+      <workItem from="1606731225519" duration="2040000" />
+      <workItem from="1606741007251" duration="2737000" />
+      <workItem from="1606817959527" duration="783000" />
+      <workItem from="1606915518476" duration="1575000" />
+      <workItem from="1607306143592" duration="38000" />
+      <workItem from="1608122587939" duration="1022000" />
+      <workItem from="1608195209705" duration="4970000" />
+      <workItem from="1609246828921" duration="4000" />
+      <workItem from="1612448756877" duration="709000" />
+      <workItem from="1612766611943" duration="22000" />
+      <workItem from="1621157707846" duration="832000" />
+      <workItem from="1621349064553" duration="26000" />
+      <workItem from="1621582014771" duration="4529000" />
+      <workItem from="1621843436344" duration="7353000" />
+      <workItem from="1622035327765" duration="37000" />
+      <workItem from="1622470816738" duration="984000" />
+      <workItem from="1622479349779" duration="1667000" />
+      <workItem from="1623061871630" duration="4000" />
+      <workItem from="1623141221886" duration="2135000" />
+      <workItem from="1623225275055" duration="320000" />
+      <workItem from="1623230121992" duration="22000" />
+      <workItem from="1623315426680" duration="5199000" />
+      <workItem from="1623841298478" duration="390000" />
+      <workItem from="1624872823182" duration="3260000" />
+      <workItem from="1624949415921" duration="1966000" />
+      <workItem from="1625124508481" duration="833000" />
+      <workItem from="1625218634907" duration="731000" />
+      <workItem from="1625224633458" duration="1383000" />
+      <workItem from="1625230854414" duration="197000" />
+      <workItem from="1625584987430" duration="674000" />
+      <workItem from="1626277391593" duration="801000" />
+      <workItem from="1626359015741" duration="15000" />
+      <workItem from="1627011400440" duration="25000" />
+      <workItem from="1627481550576" duration="1961000" />
+      <workItem from="1628598789402" duration="61000" />
+      <workItem from="1629202352293" duration="1752000" />
+      <workItem from="1631521175906" duration="1225000" />
+      <workItem from="1632471583286" duration="2880000" />
+      <workItem from="1632898476900" duration="1423000" />
+      <workItem from="1633604301381" duration="816000" />
+      <workItem from="1633694030743" duration="794000" />
+      <workItem from="1635232352985" duration="3603000" />
+      <workItem from="1635324578918" duration="1970000" />
+      <workItem from="1635756547527" duration="31000" />
+      <workItem from="1635762914409" duration="3172000" />
+      <workItem from="1636018713068" duration="613000" />
+      <workItem from="1636381456459" duration="666000" />
+      <workItem from="1638961410277" duration="770000" />
+      <workItem from="1642081577223" duration="1211000" />
+      <workItem from="1642653524304" duration="3431000" />
+      <workItem from="1644173424506" duration="36000" />
+      <workItem from="1644173804032" duration="11000" />
+      <workItem from="1644218928544" duration="22000" />
+      <workItem from="1646045927482" duration="837000" />
+      <workItem from="1646130497882" duration="3226000" />
     </task>
     <servers />
   </component>
@@ -309,21 +347,24 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="558" y="205" width="800" height="683" key="#Deployment" timestamp="1595586745692">
+    <state x="563" y="213" width="800" height="683" key="#Deployment" timestamp="1644218948429">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="558" y="205" width="800" height="683" key="#Deployment/0.27.1920.1053@0.27.1920.1053" timestamp="1595586745692" />
-    <state x="746" y="277" width="424" height="490" key="FileChooserDialogImpl" timestamp="1602507395333">
+    <state x="563" y="213" width="800" height="683" key="#Deployment/0.27.1920.1053@0.27.1920.1053" timestamp="1644218948429" />
+    <state x="746" y="172" width="424" height="490" key="FileChooserDialogImpl" timestamp="1646205393170">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="746" y="277" width="424" height="490" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1602507395333" />
-    <state x="758" y="469" width="399" height="155" key="NewPhpFileDialog" timestamp="1602756192101">
-      <screen x="0" y="27" width="1920" height="1053" />
-    </state>
-    <state x="758" y="469" width="399" height="155" key="NewPhpFileDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1602756192101" />
-    <state x="688" y="463" width="540" height="178" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1595942728676">
-      <screen x="0" y="27" width="1920" height="1053" />
-    </state>
-    <state x="688" y="463" width="540" height="178" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1595942728676" />
+    <state x="746" y="172" width="424" height="490" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1646205393170" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>remoteDeploymentFS://&lt;94ed1e98-b9da-4fe4-8957-91046cc4920e&gt;/crf01_ug_pg2.php</url>
+          <line>138</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

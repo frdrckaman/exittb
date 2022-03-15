@@ -285,6 +285,11 @@ class User {
             throw new Exception('There is problem updating');
         }
     }
+    public function updateRecordAn($table,$fields=array(),$id = null){
+        if(!$this->_db->update($table,$id,$fields)){
+            throw new Exception('There is problem updating');
+        }
+    }
     public function updateFunction($table,$fields=array(),$id = null){
         if(!$this->_db->update($table,$id,$fields)){
             throw new Exception('There is problem updating');

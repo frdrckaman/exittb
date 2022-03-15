@@ -845,6 +845,11 @@ if($user->isLoggedIn()) {
                             </ul>
                     </ul>
                 </li>
+                <li class="">
+                    <a href="mcrf01.php">
+                        <span class="icon-eraser"></span> Missing Crf
+                    </a>
+                </li>
             <?php }?>
             <li class="">
                 <a href="profile.php">

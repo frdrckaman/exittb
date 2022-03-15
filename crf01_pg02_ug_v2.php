@@ -318,6 +318,7 @@ foreach($override->get('forms','qid',75) as $fid){//echo$fr.'  , ';
         if(findText($fid['fid'],'othercarefac')){$othercarefac=findText($fid['fid'],'othercarefac');}else{$othercarefac=' ';}//p
         if(findText($fid['fid'],'tbsx_other')){$tbsx_other=findText($fid['fid'],'tbsx_other');}else{$tbsx_other=' ';}//p
         $study_id = $am['country'].$am['institution'].$am['facility'].$am['tbenum'];
+        $tbnum=preg_replace('/[^A-Za-z0-9\-]/', '', $am['tbenum']);
         if($dbv && $dup==false){
             // print_r($study_id);echo ' , ';
             if(strlen($study_id) <=8){
@@ -325,7 +326,7 @@ foreach($override->get('forms','qid',75) as $fid){//echo$fr.'  , ';
                     'country' => $am['country'],
                     'institution' => $am['institution'],
                     'facility' => $am['facility'],
-                    'tbenum' => $am['tbenum'],
+                    'tbenum' => $tbnum,
                     'study_id' => $study_id,
                     'ptenum' => $am['ptenum'],
                     'tbsx01' => $am['tbsx01'],
