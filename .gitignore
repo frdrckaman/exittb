@@ -43,7 +43,7 @@
 # .idea/modules
 # *.iml
 # *.ipr
-
+php/core/
 # CMake
 cmake-build-*/
 
