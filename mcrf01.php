@@ -26,17 +26,35 @@ if($user->isLoggedIn()){
                     ),Input::get('id'));
                     $successMessage = 'Changes Made Successful';
                     unlink(Input::get('img'));
+                    $pdf1=null; $pdf2=null; $pdf3=null;
                     $query = $override->lastRow1('missing_crf','status',0,'id');
                     if($query){
                         try {$user->updateRecord('missing_crf', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
-                        $pdf = $override->selectData('crf_record','study_id',$query[0]['study_id'],'page',3,'crf_id',7);
-                        if($pdf){
-                            $pathToPdf=$pdf[0]['attachment'];
+                        $pdf1 = $override->selectData('crf_record','study_id',$query[0]['study_id'],'page',1,'crf_id',7);
+                        $pdf2 = $override->selectData('crf_record','study_id',$query[0]['study_id'],'page',2,'crf_id',7);
+                        $pdf3 = $override->selectData('crf_record','study_id',$query[0]['study_id'],'page',3,'crf_id',7);
+//                        $pdf = $override->getNews('crf_record','tb_crf_id',$query[0]['tb_crf_id'],'crf_id',10);
+                        if($pdf1 || $pdf2 || $pdf3){
+                            $pathToPdf=$pdf1[0]['attachment'];
                             $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
                             $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
                             $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
                             $pdfImg->saveImage($pathToWhereImageShouldBeStored);
                             $imgL='crf_images/'.$svDoc.'.jpg';
+
+                            $pathToPdf=$pdf2[0]['attachment'];
+                            $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+                            $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+                            $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+                            $pdfImg->saveImage($pathToWhereImageShouldBeStored);
+                            $imgL2='crf_images/'.$svDoc.'.jpg';
+
+                            $pathToPdf=$pdf3[0]['attachment'];
+                            $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+                            $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+                            $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+                            $pdfImg->saveImage($pathToWhereImageShouldBeStored);
+                            $imgL3='crf_images/'.$svDoc.'.jpg';
                         }else{
                             Redirect::to('mcrf01.php');
                         }
@@ -69,17 +87,35 @@ if($user->isLoggedIn()){
                     $successMessage = 'Query added Successful';
                     //try {$user->updateRecord('missing_crf', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
                     unlink(Input::get('img'));
+                    $pdf1=null; $pdf2=null; $pdf3=null;
                     $query = $override->lastRow1('missing_crf','status',0,'id');
                     if($query){
                         try {$user->updateRecord('missing_crf', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
-                        $pdf = $override->selectData('crf_record','study_id',$query[0]['study_id'],'page',3,'crf_id',7);
-                        if($pdf){
-                            $pathToPdf=$pdf[0]['attachment'];
+                        $pdf1 = $override->selectData('crf_record','study_id',$query[0]['study_id'],'page',1,'crf_id',7);
+                        $pdf2 = $override->selectData('crf_record','study_id',$query[0]['study_id'],'page',2,'crf_id',7);
+                        $pdf3 = $override->selectData('crf_record','study_id',$query[0]['study_id'],'page',3,'crf_id',7);
+//                        $pdf = $override->getNews('crf_record','tb_crf_id',$query[0]['tb_crf_id'],'crf_id',10);
+                        if($pdf1 || $pdf2 || $pdf3){
+                            $pathToPdf=$pdf1[0]['attachment'];
                             $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
                             $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
                             $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
                             $pdfImg->saveImage($pathToWhereImageShouldBeStored);
                             $imgL='crf_images/'.$svDoc.'.jpg';
+
+                            $pathToPdf=$pdf2[0]['attachment'];
+                            $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+                            $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+                            $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+                            $pdfImg->saveImage($pathToWhereImageShouldBeStored);
+                            $imgL2='crf_images/'.$svDoc.'.jpg';
+
+                            $pathToPdf=$pdf3[0]['attachment'];
+                            $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+                            $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+                            $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+                            $pdfImg->saveImage($pathToWhereImageShouldBeStored);
+                            $imgL3='crf_images/'.$svDoc.'.jpg';
                         }else{
                             Redirect::to('mcrf01.php');
                         }
@@ -95,17 +131,35 @@ if($user->isLoggedIn()){
             }
         }
     }else{
+        $pdf1=null; $pdf2=null; $pdf3=null;
         $query = $override->lastRow1('missing_crf','status',0,'id');
         if($query){
             try {$user->updateRecord('missing_crf', array('status' => 2), $query[0]['id']);} catch (Exception $e) {}
-            $pdf = $override->selectData('crf_record','study_id',$query[0]['study_id'],'page',1,'crf_id',7);
-            if($pdf){
-//                $pathToPdf=$pdf[0]['attachment'];
-//                $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
-//                $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
-//                $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
-//                $pdfImg->saveImage($pathToWhereImageShouldBeStored);
-//                $imgL='crf_images/'.$svDoc.'.jpg';
+            $pdf1 = $override->selectData('crf_record','tb_crf_id',$query[0]['tb_crf_id'],'page',1,'crf_id',7);
+            $pdf2 = $override->selectData('crf_record','tb_crf_id',$query[0]['tb_crf_id'],'page',2,'crf_id',7);
+            $pdf3 = $override->selectData('crf_record','tb_crf_id',$query[0]['tb_crf_id'],'page',3,'crf_id',7);
+//            $pdf = $override->getNews('crf_record','tb_crf_id',$query[0]['tb_crf_id'],'crf_id',10);
+            if($pdf1 || $pdf2 || $pdf3){
+                $pathToPdf=$pdf1[0]['attachment'];
+                $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+                $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+                $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+                $pdfImg->saveImage($pathToWhereImageShouldBeStored);
+                $imgL='crf_images/'.$svDoc.'.jpg';
+
+                $pathToPdf=$pdf2[0]['attachment'];
+                $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+                $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+                $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+                $pdfImg->saveImage($pathToWhereImageShouldBeStored);
+                $imgL2='crf_images/'.$svDoc.'.jpg';
+
+                $pathToPdf=$pdf3[0]['attachment'];
+                $svDoc=$query[0]['study_id'].'_'.$user->data()->id.'_'.date('Y-m-d s');
+                $pdfImg = new Spatie\PdfToImage\Pdf($pathToPdf,$svDoc);
+                $pathToWhereImageShouldBeStored = '/var/www/system.exit-tb.org/public_html/crf_images/';
+                $pdfImg->saveImage($pathToWhereImageShouldBeStored);
+                $imgL3='crf_images/'.$svDoc.'.jpg';
             }else{
                 Redirect::to('mcrf01.php');
             }
@@ -158,6 +212,7 @@ if($user->isLoggedIn()){
     <script type='text/javascript' src='js/actions.js'></script>
     <script type='text/javascript' src='js/settings.js'></script>
     <script src="/js/pdfobject.js"></script>
+
     <style>
         .rotate90 {
             -webkit-transform: rotate(180deg);
@@ -188,7 +243,7 @@ if($user->isLoggedIn()){
             <?php }elseif($pageError){?>
                 <div class="block col-md-12">
                     <div class="alert alert-danger">
-                        <b>Error!</b> <?php foreach($pageError2 as $error){echo $error.' , ';}?>
+                        <b>Error!</b> <?php foreach($pageError as $error){echo $error.' , ';}?>
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                     </div>
                 </div>
@@ -203,9 +258,16 @@ if($user->isLoggedIn()){
 
         </div>
         <?php if($query){?>
-            <div class="col-md-offset-2 col-md-8 col-md-offset-2">
-                <img src='<?=$imgL?>' width='100%' class="rotate180">
-                <img src='img/nimr.jpg' width='100%' class="rotate90">
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <img src='<?=$imgL?>' width='100%' class="">
+                </div>
+                <div class="col-md-4">
+                    <img src='<?=$imgL2?>' width='100%' class="">
+                </div>
+                <div class="col-md-4">
+                    <img src='<?=$imgL3?>' width='100%' class="">
+                </div>
                 <p>&nbsp;</p>
                 <div class="pull-right">
                     <form method="post">
