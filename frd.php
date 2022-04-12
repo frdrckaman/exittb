@@ -142,28 +142,28 @@ print_r($x);*/
 //print_r($x);
 //  ****************************** updating query from table_name **********************************
 //$x=0;
-$table='CRF01_ODK';
-foreach ($override->getData('table_name') as $data){
-    //print_r($override->getColumn('crf01_pg01')[1]);
-    foreach ($override->getColumn($table) as $column){
-        // print_r($column['Field']);echo ' , ';
-        if($data['col'] == $column['Field']){
-            $dt = $override->get($table,'study_id',$data['study_id']);
-            if($dt){print_r($data['study_id'].' | ');
-//                print_r($data['col']);echo ' '.$data['value'].' , ';
-                if($data['value']){$d_value = $data['value'];}else{$d_value='';}
-                try {
-                    print_r($data['study_id']);echo ", ";
-                    $user->updateRecord($table, array($data['col'] => $d_value), $dt[0]['id']);
-                    echo 'ok ,';
-                    $x++;
-                } catch (Exception $e) {
-                    die($e->getMessage());
-                }
-            }
-        }
-    }
-}
+//$table='CRF01_ODK';
+//foreach ($override->getData('table_name') as $data){
+//    //print_r($override->getColumn('crf01_pg01')[1]);
+//    foreach ($override->getColumn($table) as $column){
+//        // print_r($column['Field']);echo ' , ';
+//        if($data['col'] == $column['Field']){
+//            $dt = $override->get($table,'study_id',$data['study_id']);
+//            if($dt){print_r($data['study_id'].' | ');
+////                print_r($data['col']);echo ' '.$data['value'].' , ';
+//                if($data['value']){$d_value = $data['value'];}else{$d_value='';}
+//                try {
+//                    print_r($data['study_id']);echo ", ";
+//                    $user->updateRecord($table, array($data['col'] => $d_value), $dt[0]['id']);
+//                    echo 'ok ,';
+//                    $x++;
+//                } catch (Exception $e) {
+//                    die($e->getMessage());
+//                }
+//            }
+//        }
+//    }
+//}
 //print_r($x);
 ////********************** fix date format **********************************
 //$dVar = array('vdate','tbsx01days','tbsx02days','tbsx03days','tbsx04days','tbsx05days','tbsx06days','formdate');
@@ -352,5 +352,18 @@ foreach ($override->getData('table_name') as $data){
 //}
 //
 //print_r('Found: '.$f.' | '.'Not Found: '.$n);
+
+$frd = '/var/www/system.exit-tb.org/public_html/scanned_crf/EXIT-TB_CRF01_PG0_1_111-00001.pdf';
+$folderName = '/var/www/quexf.exit-tb.org/public_html/scans/';
+
+//foreach ($override->getNews('crf_record', 'c_id', 1, 'page', 3) as $file){
+//    print_r($file['attachment']);
+//}
+
+//$f = explode('/', $frd);
+//$a = $folderName.$f[6];
+//print_r($a);
+//$output = shell_exec('cp 403.php data/');
+//echo "<pre>$output</pre>";
 
 
